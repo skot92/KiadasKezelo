@@ -1,33 +1,48 @@
 package skot92.hu.unideb.hu.kiadaskezelo.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 
-import skot92.hu.unideb.hu.kiadaskezelo.ui.fragment.MyFragmentAdapter;
 import skot92.hu.unideb.hu.kiadaskezelo.R;
 
-import android.support.v4.view.ViewPager;
 
+public class MainActivity extends AppCompatActivity {
 
-public class MainActivity extends FragmentActivity {
+    private Button btnNewExpense;
+    private Button btnAllExpense;
 
-    private Button btnAllList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MyFragmentAdapter adapter =
-                new MyFragmentAdapter(getSupportFragmentManager());
+        btnNewExpense = (Button) findViewById(R.id.btnNewExpensives);
+        btnAllExpense = (Button) findViewById(R.id.btnExpensives);
+        controll();
+    }
 
-        ViewPager p = (ViewPager) findViewById(R.id.pager);
-        p.setAdapter(adapter);
+    public void controll() {
+        btnNewExpense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NewExpenseActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        p.setCurrentItem(MyFragmentAdapter.NUM_ITEMS - 1);
+        btnAllExpense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AllExpenseActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

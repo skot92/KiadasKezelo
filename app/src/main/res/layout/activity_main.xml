@@ -4,19 +4,32 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        >
+        android:text="Új kiadás"
+        android:id="@+id/btnNewExpensives"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"/>
 
-        <android.support.v4.view.PagerTabStrip
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Új bevétel"
+        android:id="@+id/btnNewInCome"
+        android:layout_gravity="center_horizontal" />
 
-    </android.support.v4.view.ViewPager>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kiadások"
+        android:id="@+id/btnExpensives"
+        android:layout_gravity="center_horizontal" />
 
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bevételek"
+        android:id="@+id/btnInComeings"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>

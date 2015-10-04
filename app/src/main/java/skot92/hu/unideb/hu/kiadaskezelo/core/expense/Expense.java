@@ -1,4 +1,4 @@
-package skot92.hu.unideb.hu.kiadaskezelo.core;
+package skot92.hu.unideb.hu.kiadaskezelo.core.expense;
 
 /**
  * Created by skot9 on 2015. 09. 25..

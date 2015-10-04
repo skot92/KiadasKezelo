@@ -1,4 +1,4 @@
-package skot92.hu.unideb.hu.kiadaskezelo.core;
+package skot92.hu.unideb.hu.kiadaskezelo.core.expense;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
