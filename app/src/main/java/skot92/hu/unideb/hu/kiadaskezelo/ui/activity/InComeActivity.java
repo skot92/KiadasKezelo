@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -24,7 +26,7 @@ public class InComeActivity extends AppCompatActivity {
 
     private Button mPickDate;
     private Button btnAddNew;
-    private EditText etName;
+    private AutoCompleteTextView etName;
     private EditText etPrice;
 
 
@@ -40,8 +42,14 @@ public class InComeActivity extends AppCompatActivity {
         newInComeDAO = new NewInComeDAO(getApplicationContext()); //= new DatabaseHelper(getApplicationContext());
         mPickDate = (Button) findViewById(R.id.myDatePickerButton);
         btnAddNew = (Button) findViewById(R.id.btnAddNewInCome);
-        etName = (EditText) findViewById(R.id.etInComeName);
+        etName = (AutoCompleteTextView) findViewById(R.id.etInComeName);
         etPrice = (EditText) findViewById(R.id.etInComePrice);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this,android.R.layout.select_dialog_item, newInComeDAO.getInComeNames());
+
+        etName.setThreshold(0);
+        etName.setAdapter(adapter);
 
         mPickDate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -58,16 +66,17 @@ public class InComeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 InComeEntity income = new InComeEntity();
-                income.setDate(mPickDate.getText().toString());
-                income.setName(etName.getText().toString());
-                income.setAmount(Integer.parseInt(etPrice.getText().toString()));
                 try {
+                    income.setDate(mPickDate.getText().toString());
+                    income.setName(etName.getText().toString());
+                    income.setAmount(Integer.parseInt(etPrice.getText().toString()));
                     if (income.getName().equals("")) {
                         throw  new Exception("nincs nev");
                     }
                     newInComeDAO.save(income);
                     Toast.makeText(getApplicationContext(), "Sikeres mentés", Toast.LENGTH_SHORT).show();
                 } catch ( Exception e) {
+                    e.printStackTrace();
                     Toast.makeText(getApplicationContext(), "Nem sikerült lementeni", Toast.LENGTH_SHORT).show();
                 }
             }
