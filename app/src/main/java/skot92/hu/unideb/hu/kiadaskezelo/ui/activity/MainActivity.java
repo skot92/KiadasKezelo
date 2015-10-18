@@ -53,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onResume()
-    {  // After a pause OR at startup
+    public void onResume() {
         super.onResume();
         tBalance.setText(String.valueOf(balanceDAO.getBalance()));
     }
