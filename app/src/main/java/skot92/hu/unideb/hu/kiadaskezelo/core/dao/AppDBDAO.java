@@ -15,7 +15,7 @@ public class AppDBDAO {
 
     protected SQLiteDatabase database;
     private DatabaseHelper dbHelper;
-    private Context mContext;
+    protected Context mContext;
 
     public AppDBDAO(Context context) {
         this.mContext = context;

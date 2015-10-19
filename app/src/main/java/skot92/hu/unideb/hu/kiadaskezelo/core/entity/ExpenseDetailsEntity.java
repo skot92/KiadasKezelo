@@ -10,15 +10,17 @@ public class ExpenseDetailsEntity implements Serializable {
     private long id;
     private long expnseId;
     private String name;
+    private String description;
     private int amount;
 
     public ExpenseDetailsEntity() {
     }
 
-    public ExpenseDetailsEntity(long id, long expnseId, String name, int amount) {
+    public ExpenseDetailsEntity(long id, long expnseId, String name, String description, int amount) {
         this.id = id;
         this.expnseId = expnseId;
         this.name = name;
+        this.description = description;
         this.amount = amount;
     }
 
@@ -52,5 +54,13 @@ public class ExpenseDetailsEntity implements Serializable {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
