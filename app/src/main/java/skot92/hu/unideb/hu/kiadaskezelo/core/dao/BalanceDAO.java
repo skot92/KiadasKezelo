@@ -15,7 +15,7 @@ public class BalanceDAO extends AppDBDAO {
         super(context);
     }
 
-    public void save(BalanceEntity balance) {
+    public long save(BalanceEntity balance) {
 
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COLUMN_BALANCE_AMOUNT, balance.getAmount());
@@ -23,6 +23,7 @@ public class BalanceDAO extends AppDBDAO {
         values.put(DatabaseHelper.COLUMN_BALANCE_TYPE, balance.getType());
         // insert row
         long balance_id = database.insert(DatabaseHelper.TABLE_BALANCE, null, values);
+        return  balance_id;
     }
 
     public int getBalance() {

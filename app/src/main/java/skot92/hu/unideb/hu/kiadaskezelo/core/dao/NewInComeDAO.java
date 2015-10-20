@@ -19,7 +19,7 @@ public class NewInComeDAO extends AppDBDAO {
         super(context);
     }
 
-    public void save(InComeEntity inCome) {
+    public long save(InComeEntity inCome) {
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COLUMN_IN_COME_NAME, inCome.getName());
         values.put(DatabaseHelper.COLUMN_IN_COME_DATE, inCome.getDate());
@@ -32,6 +32,8 @@ public class NewInComeDAO extends AppDBDAO {
         balanceEntity.setDate(inCome.getDate());
         balanceEntity.setType("in");
         balanceDAO.save(balanceEntity);
+
+        return inCome_id;
 
     }
 
