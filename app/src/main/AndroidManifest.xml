@@ -20,8 +20,6 @@
         </activity>
         <activity android:name=".ui.activity.NewExpenseActivity" >
         </activity>
-        <activity android:name=".ui.activity.NewExpenseDetailsActivity" >
-        </activity>
     </application>
 
 </manifest>
