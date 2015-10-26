@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +35,8 @@ public class NewExpenseActivity extends ListActivity {
         detailsList = new ArrayList<ExpenseDetailsEntity>();
         values = new ArrayList<String>();
 
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, values);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, values);
         setListAdapter(adapter);
-
-
 
         btnNewItem = (Button) findViewById(R.id.btnAddNewItem);
         btnSaveExpense = (Button) findViewById(R.id.btnSaveExpense);
@@ -53,15 +48,19 @@ public class NewExpenseActivity extends ListActivity {
         btnNewItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onCreateDialog();
+                onCreateNewItemDialog();
+            }
+        });
+        btnSaveExpense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveExpense();
             }
         });
     }
 
 
-
-
-    public void onCreateDialog() {
+    public void onCreateNewItemDialog() {
         Context context = this;
         LayoutInflater li = LayoutInflater.from(context);
         View promptsView = li.inflate(R.layout.dialog_item_details, null);
@@ -104,11 +103,12 @@ public class NewExpenseActivity extends ListActivity {
                             }
                         });
 
-        // create alert dialog
         AlertDialog alertDialog = alertDialogBuilder.create();
-
-        // show it
         alertDialog.show();
+    }
+
+    public void saveExpense() {
+
     }
 
 }
