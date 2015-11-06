@@ -106,10 +106,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         // creating required tables
-        db.execSQL(CREATE_TABLE_IN_COME);
-        db.execSQL(CREATE_TABLE_BALANCE);
-        db.execSQL(CREATE_TABLE_EXPENSE);
-        db.execSQL(CREATE_TABLE_EXPENSE_DETAILS);
+        try {
+            db.execSQL(CREATE_TABLE_IN_COME);
+            db.execSQL(CREATE_TABLE_BALANCE);
+            db.execSQL(CREATE_TABLE_EXPENSE);
+            db.execSQL(CREATE_TABLE_EXPENSE_DETAILS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

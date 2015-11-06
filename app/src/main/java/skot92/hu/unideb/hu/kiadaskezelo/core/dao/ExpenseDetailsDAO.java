@@ -1,5 +1,6 @@
 package skot92.hu.unideb.hu.kiadaskezelo.core.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -43,5 +44,20 @@ public class ExpenseDetailsDAO extends AppDBDAO {
         }
         c.close();
         return  expenses;
+    }
+
+    public int save(List<ExpenseDetailsEntity> details, Long expenseId ) {
+        int sum = 0;
+        ContentValues values = new ContentValues();
+        for (ExpenseDetailsEntity detail : details) {
+            sum += detail.getAmount();
+            values.put(DatabaseHelper.COLUMN_EXPENSE_DETAILS_AMOUNT, detail.getAmount());
+            values.put(DatabaseHelper.COLUMN_EXPENSE_DETAILS_DESCRIPTION, detail.getDescription());
+            values.put(DatabaseHelper.COLUMN_EXPENSE_DETAILS_EXPENSE_ID, expenseId);
+            values.put(DatabaseHelper.COLUMN_EXPENSE_DETAILS_NAME, detail.getName());
+            database.insert(DatabaseHelper.TABLE_EXPENSE_DETAILS, null, values);
+        }
+
+        return sum;
     }
 }

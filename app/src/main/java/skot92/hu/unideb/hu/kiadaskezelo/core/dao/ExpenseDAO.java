@@ -29,6 +29,13 @@ public class ExpenseDAO extends AppDBDAO{
         return  expense_id;
     }
 
+    public long update (int sum, long id) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHelper.COLUMN_EXPENSE_AMOUNT, sum);
+        long expense_id = database.update(DatabaseHelper.TABLE_EXPENSE,values,"id=" + id, null);
+        return  expense_id;
+    }
+
     public List<ExpenseEntity> getAll() {
         int amount;
         String name;
