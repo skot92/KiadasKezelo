@@ -15,7 +15,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
-import skot92.hu.unideb.hu.kiadaskezelo.core.dao.NewInComeDAO;
+import skot92.hu.unideb.hu.kiadaskezelo.core.dao.InComeDAO;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.InComeEntity;
 
 public class InComeActivity extends AppCompatActivity {
@@ -32,21 +32,21 @@ public class InComeActivity extends AppCompatActivity {
 
     static final int DATE_DIALOG_ID = 0;
 
-    NewInComeDAO newInComeDAO;
+    InComeDAO inComeDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_income);
 
-        newInComeDAO = new NewInComeDAO(getApplicationContext()); //= new DatabaseHelper(getApplicationContext());
+        inComeDAO = new InComeDAO(getApplicationContext()); //= new DatabaseHelper(getApplicationContext());
         mPickDate = (Button) findViewById(R.id.myDatePickerButton);
         btnAddNew = (Button) findViewById(R.id.btnAddNewInCome);
         etName = (AutoCompleteTextView) findViewById(R.id.etInComeName);
         etPrice = (EditText) findViewById(R.id.etInComePrice);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                (this,android.R.layout.select_dialog_item, newInComeDAO.getInComeNames());
+                (this,android.R.layout.select_dialog_item, inComeDAO.getInComeNamesGroupByNames());
 
         etName.setThreshold(0);
         etName.setAdapter(adapter);
@@ -73,7 +73,7 @@ public class InComeActivity extends AppCompatActivity {
                     if (income.getName().equals("")) {
                         throw  new Exception("nincs nev");
                     }
-                    newInComeDAO.save(income);
+                    inComeDAO.save(income);
                     Toast.makeText(getApplicationContext(), "Sikeres mentés", Toast.LENGTH_SHORT).show();
                 } catch ( Exception e) {
                     e.printStackTrace();

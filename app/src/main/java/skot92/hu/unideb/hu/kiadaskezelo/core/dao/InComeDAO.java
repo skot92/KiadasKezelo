@@ -14,8 +14,8 @@ import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
 /**
  * Created by skot9 on 2015. 10. 18..
  */
-public class NewInComeDAO extends AppDBDAO {
-    public NewInComeDAO(Context context) {
+public class InComeDAO extends AppDBDAO {
+    public InComeDAO(Context context) {
         super(context);
     }
 
@@ -37,7 +37,7 @@ public class NewInComeDAO extends AppDBDAO {
 
     }
 
-    public List<String> getInComeNames() {
+    public List<String> getInComeNamesGroupByNames() {
         List<String> names = new ArrayList<String>();
         Cursor cursor = database.query( DatabaseHelper.TABLE_IN_COME,
                 new String[]{DatabaseHelper.COLUMN_IN_COME_NAME}, null, null, DatabaseHelper.COLUMN_IN_COME_NAME, null, null);
@@ -47,4 +47,35 @@ public class NewInComeDAO extends AppDBDAO {
         }
         return names;
     }
+
+    public List<String> getInComeNames() {
+        List<String> names = new ArrayList<String>();
+        Cursor cursor = database.query( DatabaseHelper.TABLE_IN_COME,
+                new String[]{DatabaseHelper.COLUMN_IN_COME_NAME}, null, null, null, null, null);
+        while (cursor.moveToNext()) {
+            String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_IN_COME_NAME));
+            names.add(name);
+        }
+        return names;
+    }
+
+    public List<InComeEntity> getInCome() {
+        Cursor cursor = database.query(DatabaseHelper.TABLE_IN_COME, new String[]{
+                DatabaseHelper.COLUMN_IN_COME_AMOUNT, DatabaseHelper.COLUMN_IN_COME_DATE,
+                DatabaseHelper.COLUMN_IN_COME_NAME,DatabaseHelper.COLUMN_IN_COME_ID}, null, null, null, null, null) ;
+
+        List<InComeEntity> inComeEntities = new ArrayList<InComeEntity>();
+        while (cursor.moveToNext()) {
+            InComeEntity entity = new InComeEntity();
+            entity.setName(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_IN_COME_NAME)));
+            entity.setDate(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_IN_COME_DATE)));
+            entity.setAmount(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_IN_COME_AMOUNT)));
+            entity.setId(cursor.getLong(cursor.getColumnIndex(DatabaseHelper.COLUMN_IN_COME_ID)));
+            inComeEntities.add(entity);
+        }
+        return  inComeEntities;
+    }
+
+
+
 }

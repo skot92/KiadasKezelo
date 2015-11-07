@@ -14,6 +14,7 @@ import org.w3c.dom.Text;
 import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.core.dao.BalanceDAO;
 import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllIncomeActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnNewExpense;
     private Button btnAllExpense;
     private Button btnNewInCome;
+    private Button btnAllIncome;
     private TextView tBalance;
 
     private BalanceDAO balanceDAO;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         btnNewExpense = (Button) findViewById(R.id.btnNewExpensives);
         btnAllExpense = (Button) findViewById(R.id.btnExpensives);
         btnNewInCome = (Button) findViewById(R.id.btnNewInCome);
+        btnAllIncome = (Button) findViewById(R.id.btnInComeings);
         tBalance = (TextView) findViewById(R.id.tBalance);
 
         tBalance.setText(String.valueOf(balanceDAO.getBalance()));
@@ -55,6 +58,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, NewExpenseActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnAllIncome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AllIncomeActivity.class);
                 startActivity(intent);
             }
         });
