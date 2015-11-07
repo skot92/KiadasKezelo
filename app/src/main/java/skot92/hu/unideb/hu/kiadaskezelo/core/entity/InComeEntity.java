@@ -61,4 +61,9 @@ public class InComeEntity implements Serializable {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

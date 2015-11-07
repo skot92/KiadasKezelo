@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,12 +17,12 @@ import java.util.List;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.core.dao.InComeDAO;
+import skot92.hu.unideb.hu.kiadaskezelo.core.entity.InComeEntity;
 
 public class AllIncomeActivity extends AppCompatActivity {
 
     private ListView lv;
-    ArrayAdapter<String> adapter;
-    ArrayList<HashMap<String, String>> productList;
+    ArrayAdapter<InComeEntity> adapter;
     EditText inputSearch;
     InComeDAO inComeDAO;
 
@@ -31,18 +34,22 @@ public class AllIncomeActivity extends AppCompatActivity {
 
         inComeDAO = new InComeDAO(getApplicationContext());
 
-        List<String> names = inComeDAO.getInComeNames();
+        List<InComeEntity> names = inComeDAO.getInCome();
 
         lv = (ListView) findViewById(R.id.list_view);
         inputSearch = (EditText) findViewById(R.id.inputSearch);
 
         // Adding items to listview
-        adapter = new ArrayAdapter<String>(this, R.layout.list_item, R.id.product_name, names);
+        adapter = new ArrayAdapter<InComeEntity>(this, R.layout.list_item, R.id.product_name, names);
         lv.setAdapter(adapter);
 
-        /**
-         * Enabling Search Filter
-         * */
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
+
         inputSearch.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -55,7 +62,6 @@ public class AllIncomeActivity extends AppCompatActivity {
             public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
                                           int arg3) {
                 // TODO Auto-generated method stub
-
             }
 
             @Override
