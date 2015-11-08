@@ -17,9 +17,13 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -38,18 +42,22 @@ public class AllIncomeChartActivity extends AppCompatActivity {
         inComeDAO = new InComeDAO(getApplicationContext());
         incomens = inComeDAO.findAmountGroupByDate();
 
-        BarChart chart = (BarChart) findViewById(R.id.chart);
-        BarData data = new BarData(getXAxisValues(), getDataSet());
+        LineChart chart = (LineChart) findViewById(R.id.chart);
+
+        LineData data = new LineData(getXAxisValues(),getDataSet());
         chart.setData(data);
         chart.setDescription("");
         chart.animateXY(2000, 2000);
         chart.invalidate();
+
+        chart.setDragEnabled(true);
+        chart.setScaleEnabled(true);
     }
 
-    private ArrayList<BarDataSet> getDataSet() {
-        ArrayList<BarDataSet> dataSets = null;
+    private ArrayList<LineDataSet> getDataSet() {
+        ArrayList<LineDataSet> dataSets = null;
 
-        ArrayList<BarEntry> valueSet1 = new ArrayList<>();
+        ArrayList<Entry> valueSet1 = new ArrayList<>();
         int i = 0;
         for (Map.Entry<String, Integer> entry : incomens.entrySet()) {
             BarEntry v1 = new BarEntry(entry.getValue(),i);
@@ -58,7 +66,7 @@ public class AllIncomeChartActivity extends AppCompatActivity {
         }
 
 
-        BarDataSet barDataSet1 = new BarDataSet(valueSet1, "Bevételek");
+        LineDataSet barDataSet1 = new LineDataSet(valueSet1, "Bevételek");
         barDataSet1.setColor(Color.rgb(0, 155, 0));
 
         dataSets = new ArrayList<>();
