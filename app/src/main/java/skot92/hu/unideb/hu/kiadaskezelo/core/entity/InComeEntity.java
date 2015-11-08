@@ -64,6 +64,11 @@ public class InComeEntity implements Serializable {
 
     @Override
     public String toString() {
-        return name;
+        return "InComeEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", date='" + date + '\'' +
+                ", amount=" + amount +
+                '}';
     }
 }

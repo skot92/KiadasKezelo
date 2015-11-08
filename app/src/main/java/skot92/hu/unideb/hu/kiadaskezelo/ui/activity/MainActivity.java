@@ -15,6 +15,7 @@ import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.core.dao.BalanceDAO;
 import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllIncomeActivity;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.charts.AllIncomeChartActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnAllExpense;
     private Button btnNewInCome;
     private Button btnAllIncome;
+    private Button btnAllIncomeChart;
     private TextView tBalance;
 
     private BalanceDAO balanceDAO;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         btnAllExpense = (Button) findViewById(R.id.btnExpensives);
         btnNewInCome = (Button) findViewById(R.id.btnNewInCome);
         btnAllIncome = (Button) findViewById(R.id.btnInComeings);
+        btnAllIncomeChart = (Button) findViewById(R.id.btnAllInVomeCharts);
         tBalance = (TextView) findViewById(R.id.tBalance);
 
         tBalance.setText(String.valueOf(balanceDAO.getBalance()));
@@ -66,6 +69,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AllIncomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnAllIncomeChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AllIncomeChartActivity.class);
                 startActivity(intent);
             }
         });

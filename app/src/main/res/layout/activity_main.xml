@@ -39,4 +39,11 @@
         android:text=""
         android:id="@+id/tBalance"
         android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Diagramok"
+        android:id="@+id/btnAllInVomeCharts"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>

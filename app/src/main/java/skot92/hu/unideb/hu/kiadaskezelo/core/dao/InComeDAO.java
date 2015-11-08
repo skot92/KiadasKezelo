@@ -3,9 +3,12 @@ package skot92.hu.unideb.hu.kiadaskezelo.core.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.BalanceEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.InComeEntity;
@@ -74,6 +77,20 @@ public class InComeDAO extends AppDBDAO {
             inComeEntities.add(entity);
         }
         return  inComeEntities;
+    }
+
+
+    public Map<String, Integer> findAmountGroupByDate(){
+        Map<String, Integer> res = new HashMap<>();
+        Cursor cursor = database.query(DatabaseHelper.TABLE_IN_COME, new String[]{"sum( " +
+                        DatabaseHelper.COLUMN_IN_COME_AMOUNT + ")", DatabaseHelper.COLUMN_IN_COME_DATE},
+                null, null, DatabaseHelper.COLUMN_IN_COME_DATE, null, null);
+        while (cursor.moveToNext()) {
+            int amount = cursor.getInt(0);
+            String date = cursor.getString(1);
+            res.put(date, amount);
+        }
+        return res;
     }
 
 
