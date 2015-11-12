@@ -10,6 +10,7 @@ import android.view.View;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.core.dao.InComeDAO;
+import skot92.hu.unideb.hu.kiadaskezelo.service.InComeService;
 
 
 import android.graphics.Color;
@@ -32,15 +33,15 @@ import java.util.Map;
 public class AllIncomeChartActivity extends AppCompatActivity {
 
     Map<String,Integer> incomens;
-    InComeDAO inComeDAO;
+    InComeService inComeService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_income_chart);
 
-        inComeDAO = new InComeDAO(getApplicationContext());
-        incomens = inComeDAO.findAmountGroupByDate();
+        inComeService = new InComeService(getApplicationContext());
+        incomens = inComeService.findAmountGroupByDate();
 
         LineChart chart = (LineChart) findViewById(R.id.chart);
 

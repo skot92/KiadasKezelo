@@ -21,22 +21,27 @@ public class ExpenseDAO extends AppDBDAO{
     }
 
     public long save(ExpenseEntity expense) {
+        super.open();
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COLUMN_EXPENSE_NAME, expense.getName());
         values.put(DatabaseHelper.COLUMN_EXPENSE_DATE, expense.getDate());
         values.put(DatabaseHelper.COLUMN_EXPENSE_AMOUNT, 0);
         long expense_id = database.insert(DatabaseHelper.TABLE_EXPENSE, null, values);
+        super.close();
         return  expense_id;
     }
 
     public long update (int sum, long id) {
+        super.open();
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COLUMN_EXPENSE_AMOUNT, sum);
         long expense_id = database.update(DatabaseHelper.TABLE_EXPENSE,values,"id=" + id, null);
+        super.close();
         return  expense_id;
     }
 
     public List<ExpenseEntity> getAll() {
+        super.open();
         int amount;
         String name;
         String date;
@@ -58,7 +63,7 @@ public class ExpenseDAO extends AppDBDAO{
 
         }
         c.close();
-
+        super.close();
         return  expenses;
     }
 }

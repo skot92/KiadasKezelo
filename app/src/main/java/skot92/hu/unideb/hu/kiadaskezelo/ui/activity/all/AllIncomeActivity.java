@@ -9,22 +9,20 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.core.dao.InComeDAO;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.InComeEntity;
+import skot92.hu.unideb.hu.kiadaskezelo.service.InComeService;
 
 public class AllIncomeActivity extends AppCompatActivity {
 
     private ListView lv;
     ArrayAdapter<InComeEntity> adapter;
     EditText inputSearch;
-    InComeDAO inComeDAO;
+    InComeService inComeService;
 
 
     @Override
@@ -32,15 +30,15 @@ public class AllIncomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_income);
 
-        inComeDAO = new InComeDAO(getApplicationContext());
+        inComeService = new InComeService(getApplicationContext());
 
-        List<InComeEntity> names = inComeDAO.getInCome();
+        List<InComeEntity> names = inComeService.findInComes();
 
         lv = (ListView) findViewById(R.id.list_view);
         inputSearch = (EditText) findViewById(R.id.inputSearch);
 
         // Adding items to listview
-        adapter = new ArrayAdapter<InComeEntity>(this, R.layout.list_item, R.id.product_name, names);
+        adapter = new ArrayAdapter<InComeEntity>(this, R.layout.all_income_list_item, R.id.product_name, names);
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

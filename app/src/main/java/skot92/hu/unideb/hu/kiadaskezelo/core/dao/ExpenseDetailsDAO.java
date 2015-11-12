@@ -21,6 +21,7 @@ public class ExpenseDetailsDAO extends AppDBDAO {
     }
 
     public List<ExpenseDetailsEntity> findById(long expenseId) {
+        super.open();
         int amount;
         String name;
         String description;
@@ -43,10 +44,12 @@ public class ExpenseDetailsDAO extends AppDBDAO {
 
         }
         c.close();
+        super.close();
         return  expenses;
     }
 
     public int save(List<ExpenseDetailsEntity> details, Long expenseId ) {
+        super.open();
         int sum = 0;
         ContentValues values = new ContentValues();
         for (ExpenseDetailsEntity detail : details) {
@@ -57,7 +60,7 @@ public class ExpenseDetailsDAO extends AppDBDAO {
             values.put(DatabaseHelper.COLUMN_EXPENSE_DETAILS_NAME, detail.getName());
             database.insert(DatabaseHelper.TABLE_EXPENSE_DETAILS, null, values);
         }
-
+        super.close();
         return sum;
     }
 }

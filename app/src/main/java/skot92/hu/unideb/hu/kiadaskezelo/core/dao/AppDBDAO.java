@@ -20,7 +20,7 @@ public class AppDBDAO {
     public AppDBDAO(Context context) {
         this.mContext = context;
         dbHelper = DatabaseHelper.getHelper(mContext);
-        open();
+        //open();
 
     }
 
@@ -32,6 +32,7 @@ public class AppDBDAO {
 
     public void close() {
         dbHelper.close();
-        database = null;
+        //database = null;
+        database.close();
     }
 }

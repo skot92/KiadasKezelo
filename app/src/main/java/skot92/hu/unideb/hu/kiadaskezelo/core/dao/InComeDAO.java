@@ -23,6 +23,7 @@ public class InComeDAO extends AppDBDAO {
     }
 
     public long save(InComeEntity inCome) {
+        super.open();
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COLUMN_IN_COME_NAME, inCome.getName());
         values.put(DatabaseHelper.COLUMN_IN_COME_DATE, inCome.getDate());
@@ -35,12 +36,13 @@ public class InComeDAO extends AppDBDAO {
         balanceEntity.setDate(inCome.getDate());
         balanceEntity.setType("in");
         balanceDAO.save(balanceEntity);
-
+        super.close();
         return inCome_id;
 
     }
 
     public List<String> getInComeNamesGroupByNames() {
+        super.open();
         List<String> names = new ArrayList<String>();
         Cursor cursor = database.query( DatabaseHelper.TABLE_IN_COME,
                 new String[]{DatabaseHelper.COLUMN_IN_COME_NAME}, null, null, DatabaseHelper.COLUMN_IN_COME_NAME, null, null);
@@ -48,10 +50,13 @@ public class InComeDAO extends AppDBDAO {
             String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_IN_COME_NAME));
             names.add(name);
         }
+        cursor.close();
+        super.close();
         return names;
     }
 
     public List<String> getInComeNames() {
+        super.open();
         List<String> names = new ArrayList<String>();
         Cursor cursor = database.query( DatabaseHelper.TABLE_IN_COME,
                 new String[]{DatabaseHelper.COLUMN_IN_COME_NAME}, null, null, null, null, null);
@@ -59,10 +64,13 @@ public class InComeDAO extends AppDBDAO {
             String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_IN_COME_NAME));
             names.add(name);
         }
+        cursor.close();
+        super.close();
         return names;
     }
 
     public List<InComeEntity> getInCome() {
+        super.open();
         Cursor cursor = database.query(DatabaseHelper.TABLE_IN_COME, new String[]{
                 DatabaseHelper.COLUMN_IN_COME_AMOUNT, DatabaseHelper.COLUMN_IN_COME_DATE,
                 DatabaseHelper.COLUMN_IN_COME_NAME,DatabaseHelper.COLUMN_IN_COME_ID}, null, null, null, null, null) ;
@@ -76,11 +84,14 @@ public class InComeDAO extends AppDBDAO {
             entity.setId(cursor.getLong(cursor.getColumnIndex(DatabaseHelper.COLUMN_IN_COME_ID)));
             inComeEntities.add(entity);
         }
+        cursor.close();
+        super.close();
         return  inComeEntities;
     }
 
 
     public Map<String, Integer> findAmountGroupByDate(){
+        super.open();
         Map<String, Integer> res = new HashMap<>();
         Cursor cursor = database.query(DatabaseHelper.TABLE_IN_COME, new String[]{"sum( " +
                         DatabaseHelper.COLUMN_IN_COME_AMOUNT + ")", DatabaseHelper.COLUMN_IN_COME_DATE},
@@ -90,6 +101,8 @@ public class InComeDAO extends AppDBDAO {
             String date = cursor.getString(1);
             res.put(date, amount);
         }
+        cursor.close();
+        super.close();
         return res;
     }
 

@@ -14,6 +14,7 @@ import org.w3c.dom.Text;
 import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.core.dao.BalanceDAO;
 import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
+import skot92.hu.unideb.hu.kiadaskezelo.service.BalanceService;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllIncomeActivity;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.charts.AllIncomeChartActivity;
 
@@ -27,14 +28,14 @@ public class MainActivity extends AppCompatActivity {
     private Button btnAllIncomeChart;
     private TextView tBalance;
 
-    private BalanceDAO balanceDAO;
+    private BalanceService balanceService;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        balanceDAO = new BalanceDAO(getApplicationContext());
+        balanceService = new BalanceService(getApplicationContext());
 
         btnNewExpense = (Button) findViewById(R.id.btnNewExpensives);
         btnAllExpense = (Button) findViewById(R.id.btnExpensives);
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         btnAllIncomeChart = (Button) findViewById(R.id.btnAllInVomeCharts);
         tBalance = (TextView) findViewById(R.id.tBalance);
 
-        tBalance.setText(String.valueOf(balanceDAO.getBalance()));
+        tBalance.setText(String.valueOf(balanceService.findBalance()));
         controll();
     }
 
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        tBalance.setText(String.valueOf(balanceDAO.getBalance()));
+        tBalance.setText(String.valueOf(balanceService.findBalance()));
     }
 
 

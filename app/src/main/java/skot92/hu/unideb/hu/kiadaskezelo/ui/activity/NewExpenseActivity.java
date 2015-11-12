@@ -26,6 +26,7 @@ import skot92.hu.unideb.hu.kiadaskezelo.core.dao.ExpenseDetailsDAO;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.BalanceEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseDetailsEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseEntity;
+import skot92.hu.unideb.hu.kiadaskezelo.service.ExpenseService;
 
 public class NewExpenseActivity extends ListActivity {
 
@@ -46,11 +47,15 @@ public class NewExpenseActivity extends ListActivity {
 
     static final int DATE_DIALOG_ID = 1;
 
+    ExpenseService expenseService;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_expense);
+        setContentView(R.layout.activity_new_expense);
+
+        expenseService = new ExpenseService(getApplicationContext());
 
         detailsList = new ArrayList<ExpenseDetailsEntity>();
         values = new ArrayList<String>();
@@ -89,7 +94,7 @@ public class NewExpenseActivity extends ListActivity {
     public void onCreateNewItemDetailsDialog() {
         Context context = this;
         LayoutInflater li = LayoutInflater.from(context);
-        View promptsView = li.inflate(R.layout.dialog_item_details, null);
+        View promptsView = li.inflate(R.layout.dialog_new_item_details, null);
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 context);
@@ -219,14 +224,13 @@ public class NewExpenseActivity extends ListActivity {
         expenseEntity.setName(expenseName.getText().toString());
         expenseEntity.setDate(expenseDate.getText().toString());
 
-        ExpenseDAO expenseDAO = new ExpenseDAO(getApplicationContext());
-        Long id = expenseDAO.save(expenseEntity);
+        Long id = expenseService.save(expenseEntity);
 
         ExpenseDetailsDAO expenseDetailsDAO = new ExpenseDetailsDAO(getApplicationContext());
         int sum =  expenseDetailsDAO.save(detailsList,id);
 
         sum = -sum;
-        expenseDAO.update(sum, id);
+        expenseService.update(sum, id);
 
         BalanceDAO balanceDAO = new BalanceDAO(getApplicationContext());
         BalanceEntity balanceEntity = new BalanceEntity();
