@@ -33,7 +33,7 @@ public class InComeActivity extends AppCompatActivity {
 
     static final int DATE_DIALOG_ID = 0;
 
-    InComeService inComeService;
+    private InComeService inComeService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,8 @@ public class InComeActivity extends AppCompatActivity {
         etPrice = (EditText) findViewById(R.id.etInComePrice);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                (this,android.R.layout.select_dialog_item, inComeService.getInComeNamesGroupByNames());
+                (this,android.R.layout.select_dialog_item,
+                        inComeService.getInComeNamesGroupByNames());
 
         etName.setThreshold(0);
         etName.setAdapter(adapter);

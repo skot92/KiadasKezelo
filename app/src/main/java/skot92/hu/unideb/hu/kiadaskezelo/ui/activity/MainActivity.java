@@ -17,6 +17,7 @@ import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
 import skot92.hu.unideb.hu.kiadaskezelo.service.BalanceService;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllIncomeActivity;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.charts.AllIncomeChartActivity;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.MainDiagramsFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         btnAllIncomeChart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AllIncomeChartActivity.class);
+                Intent intent = new Intent(MainActivity.this, MainDiagramsFragment.class);
                 startActivity(intent);
             }
         });
