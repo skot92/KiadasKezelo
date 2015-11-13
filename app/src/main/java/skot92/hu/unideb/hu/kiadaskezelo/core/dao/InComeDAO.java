@@ -106,6 +106,24 @@ public class InComeDAO extends AppDBDAO {
         return res;
     }
 
+    public List<InComeEntity> getInComeGroubByName() {
+        super.open();
+        Cursor cursor = database.query(DatabaseHelper.TABLE_IN_COME, new String[]{"sum( " +
+                        DatabaseHelper.COLUMN_IN_COME_AMOUNT + ")",DatabaseHelper.COLUMN_IN_COME_NAME},
+                null, null, DatabaseHelper.COLUMN_IN_COME_NAME, null, null);
+
+        List<InComeEntity> inComeEntities = new ArrayList<InComeEntity>();
+        while (cursor.moveToNext()) {
+            InComeEntity entity = new InComeEntity();
+            entity.setName(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_IN_COME_NAME)));
+            entity.setAmount(cursor.getInt(0));
+            inComeEntities.add(entity);
+        }
+        cursor.close();
+        super.close();
+        return  inComeEntities;
+    }
+
 
 
 }

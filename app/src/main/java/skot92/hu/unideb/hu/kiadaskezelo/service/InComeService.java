@@ -45,4 +45,9 @@ public class InComeService {
         return  inComeDAO.findAmountGroupByDate();
     }
 
+    public List<InComeEntity>getInComeGroubByName(){
+        return inComeDAO.getInComeGroubByName();
+    }
+
+
 }
