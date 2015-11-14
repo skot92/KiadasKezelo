@@ -15,6 +15,7 @@ import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.core.dao.BalanceDAO;
 import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
 import skot92.hu.unideb.hu.kiadaskezelo.service.BalanceService;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllExpenseActivity;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllIncomeActivity;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.charts.AllIncomeChartActivity;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.MainDiagramsFragment;
@@ -79,6 +80,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, MainDiagramsFragment.class);
+                startActivity(intent);
+            }
+        });
+
+        btnAllExpense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AllExpenseActivity.class);
                 startActivity(intent);
             }
         });
