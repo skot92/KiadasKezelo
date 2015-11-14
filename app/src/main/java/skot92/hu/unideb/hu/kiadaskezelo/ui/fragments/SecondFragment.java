@@ -40,12 +40,10 @@ import skot92.hu.unideb.hu.kiadaskezelo.service.InComeService;
 /**
  * Created by skot9 on 2015. 11. 13..
  */
-public class SecondFragment extends Fragment implements OnSeekBarChangeListener,
-        OnChartValueSelectedListener{
+public class SecondFragment extends Fragment implements OnChartValueSelectedListener{
 
     InComeService inComeService;
     private PieChart mChart;
-    private SeekBar mSeekBarX, mSeekBarY;
     private View v;
     private TextView tvX, tvY;
 
@@ -66,30 +64,12 @@ public class SecondFragment extends Fragment implements OnSeekBarChangeListener,
         tvX = (TextView) v.findViewById(R.id.tvXMax);
         tvY = (TextView) v.findViewById(R.id.tvYMax);
 
-        mSeekBarX = (SeekBar) v.findViewById(R.id.seekBar1);
-        mSeekBarY = (SeekBar) v.findViewById(R.id.seekBar2);
-
-        mSeekBarY.setProgress(10);
-
-
-
         mChart = (PieChart)v.findViewById(R.id.chart1);
         mChart.setUsePercentValues(true);
         mChart.setDescription("");
-        //mChart.setExtraOffsets(5, 10, 5, 5);
-
-        //mChart.setDragDecelerationFrictionCoef(0.95f);
-
-        //tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
-
-        //mChart.setCenterTextTypeface(Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf"));
-        //mChart.setCenterText(String.valueOf(generateCenterSpannableText()));
 
         mChart.setDrawHoleEnabled(true);
         mChart.setHoleColorTransparent(true);
-
-        //mChart.setTransparentCircleColor(Color.WHITE);
-        //mChart.setTransparentCircleAlpha(110);
 
         mChart.setHoleRadius(58f);
         mChart.setTransparentCircleRadius(61f);
@@ -97,7 +77,6 @@ public class SecondFragment extends Fragment implements OnSeekBarChangeListener,
         mChart.setDrawCenterText(true);
 
         mChart.setRotationAngle(0);
-        // enable rotation of the chart by touch
         mChart.setRotationEnabled(true);
        // mChart.setHighlightPerTapEnabled(true);
 
@@ -107,67 +86,43 @@ public class SecondFragment extends Fragment implements OnSeekBarChangeListener,
         // add a selection listener
         mChart.setOnChartValueSelectedListener(this);
 
-        setData(3, 100);
+        setData();
 
         mChart.animateY(1400, AnimationEasing.EasingOption.EaseInBack);
         mChart.spin(2000, 0, 360);
 
         Legend l = mChart.getLegend();
         l.setPosition(LegendPosition.RIGHT_OF_CHART);
-        l.setXEntrySpace(7f);
-        l.setYEntrySpace(0f);
+        l.setXEntrySpace(10f);
+        l.setYEntrySpace(5f);
         l.setYOffset(0f);
-
-
-
         return v;
-
     }
 
     public static SecondFragment newInstance(String text) {
-
         SecondFragment f = new SecondFragment();
         Bundle b = new Bundle();
         b.putString("msg", text);
-
         f.setArguments(b);
-
         return f;
     }
 
 
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+    private void setData() {
 
-        tvX.setText("" + (mSeekBarX.getProgress() + 1));
-        tvY.setText("" + (mSeekBarY.getProgress()));
-
-        setData(mSeekBarX.getProgress(), mSeekBarY.getProgress());
-    }
-
-    private void setData(int count, float range) {
-
-        float mult = range;
 
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
-
-        // IMPORTANT: In a PieChart, no values (Entry) should have the same
-        // xIndex (even if from different DataSets), since no values can be
-        // drawn above each other.
         for (int i = 0; i < inComeEntities.size(); i++) {
             yVals1.add(new Entry(inComeEntities.get(i).getAmount(), i));
         }
-
         ArrayList<String> xVals = new ArrayList<String>();
         for (int i = 0; i < inComeEntities.size(); i++) {
             xVals.add(i,inComeEntities.get(i).getName());
         }
 
-        PieDataSet dataSet = new PieDataSet(yVals1, "Election Results");
-        dataSet.setSliceSpace(2f);
+        PieDataSet dataSet = new PieDataSet(yVals1, "");
+        dataSet.setSliceSpace(5f);
         dataSet.setSelectionShift(5f);
-
-        // add a lot of colors
 
         ArrayList<Integer> colors = new ArrayList<Integer>();
 
@@ -180,12 +135,10 @@ public class SecondFragment extends Fragment implements OnSeekBarChangeListener,
 
         PieData data = new PieData(xVals, dataSet);
         data.setValueFormatter(new PercentFormatter());
-        data.setValueTextSize(11f);
-        data.setValueTextColor(Color.WHITE);
-       // data.setValueTypeface(tf);
+        data.setValueTextSize(10f);
+        data.setValueTextColor(Color.BLACK);
         mChart.setData(data);
 
-        // undo all highlights
         mChart.highlightValues(null);
 
         mChart.invalidate();
@@ -202,13 +155,5 @@ public class SecondFragment extends Fragment implements OnSeekBarChangeListener,
         Log.i("PieChart", "nothing selected");
     }
 
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-    }
 
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-    }
 }
