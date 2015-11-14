@@ -6,9 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
 
@@ -42,7 +40,7 @@ public class MainDiagramsFragment extends FragmentActivity {
             switch(pos) {
                 case 0: return FirstFragment.newInstance("FirstFragment, Instance 1");
                 case 1: return SecondFragment.newInstance("SecondFragment, Instance 1");
-                default: return FirstFragment.newInstance("FirstFragment, Default");
+                default: return SecondFragment.newInstance("FirstFragment, Default");
             }
         }
 
