@@ -53,4 +53,15 @@ public class ExpenseEntity implements Serializable {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+
+    @Override
+    public String toString() {
+        return "ExpenseEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", date='" + date + '\'' +
+                ", amount=" + amount +
+                '}';
+    }
 }

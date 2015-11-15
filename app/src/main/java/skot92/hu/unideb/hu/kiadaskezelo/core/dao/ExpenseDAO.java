@@ -3,6 +3,7 @@ package skot92.hu.unideb.hu.kiadaskezelo.core.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.provider.ContactsContract;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,21 +43,21 @@ public class ExpenseDAO extends AppDBDAO{
 
     public List<ExpenseEntity> getAll() {
         super.open();
-        int amount;
-        String name;
-        String date;
-        long id;
         List<ExpenseEntity> expenses = new ArrayList<ExpenseEntity>();
 
-        Cursor c = database.rawQuery("SELECT * FROM "
-                + DatabaseHelper.TABLE_EXPENSE + " ;", null);
+        Cursor c = database.query(DatabaseHelper.TABLE_EXPENSE,new String[]{
+                DatabaseHelper.COLUMN_EXPENSE_AMOUNT,
+                DatabaseHelper.COLUMN_EXPENSE_DATE,
+                DatabaseHelper.COLUMN_EXPENSE_NAME,
+                DatabaseHelper.COLUMN_EXPENSE_ID},
+                null, null, null, null, null);
 
-        if(c.moveToNext()) {
+        while(c.moveToNext()) {
 
-            amount = c.getInt(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_AMOUNT));
-            name = c.getString(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_NAME));
-            id = c.getLong(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_ID));
-            date = c.getString(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_DATE));
+            int amount = c.getInt(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_AMOUNT));
+            String name = c.getString(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_NAME));
+            long id = c.getLong(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_ID));
+            String date = c.getString(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_DATE));
 
             ExpenseEntity expense = new ExpenseEntity(id,name,date,amount);
             expenses.add(expense);
