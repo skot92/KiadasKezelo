@@ -13,7 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
     private static final String DATABASE_NAME = "kiadas_es_bevetelkezelo";
@@ -22,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_IN_COME = "in_come";
     public static final String TABLE_BALANCE = "balance";
     public static final String TABLE_EXPENSE = "expense";
-    public static final String TABLE_EXPENSE_DETAILS = "expense";
+    public static final String TABLE_EXPENSE_DETAILS = "expense_details";
 
     //COLUMN TABLE_IN_COME
     public static final String COLUMN_IN_COME_ID = "id";

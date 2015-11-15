@@ -3,6 +3,7 @@ package skot92.hu.unideb.hu.kiadaskezelo.core.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.provider.ContactsContract;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,16 +29,23 @@ public class ExpenseDetailsDAO extends AppDBDAO {
         long id;
         List<ExpenseDetailsEntity> expenses = new ArrayList<ExpenseDetailsEntity>();
 
-        Cursor c = database.rawQuery("SELECT * FROM "
-                + DatabaseHelper.TABLE_EXPENSE + " where " + DatabaseHelper.COLUMN_EXPENSE_DETAILS_EXPENSE_ID
-                + " = " + expenseId, null);
+//        Cursor c = database.rawQuery("SELECT * FROM "
+//                + DatabaseHelper.TABLE_EXPENSE + " where " + DatabaseHelper.COLUMN_EXPENSE_DETAILS_EXPENSE_ID
+//                + " = " + expenseId, null);
 
-        if(c.moveToNext()) {
+        Cursor c = database.query(DatabaseHelper.TABLE_EXPENSE_DETAILS,new String[]{
+                DatabaseHelper.COLUMN_EXPENSE_DETAILS_AMOUNT,
+                DatabaseHelper.COLUMN_EXPENSE_DETAILS_DESCRIPTION,
+                DatabaseHelper.COLUMN_EXPENSE_DETAILS_ID,
+                DatabaseHelper.COLUMN_EXPENSE_DETAILS_NAME},
+                null,null,null,null,null);
 
-            amount = c.getInt(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_AMOUNT));
-            name = c.getString(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_NAME));
-            id = c.getLong(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_ID));
-            description = c.getString(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_DATE));
+        while (c.moveToNext()) {
+
+            amount = c.getInt(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_DETAILS_AMOUNT));
+            name = c.getString(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_DETAILS_NAME));
+            id = c.getLong(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_DETAILS_ID));
+            description = c.getString(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_DETAILS_DESCRIPTION));
 
             ExpenseDetailsEntity expense = new ExpenseDetailsEntity(id,expenseId,name,description,amount);
             expenses.add(expense);
