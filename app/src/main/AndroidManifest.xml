@@ -37,9 +37,16 @@
             android:label="@string/title_activity_all_income_chart"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+
         <activity
             android:name=".ui.fragments.MainDiagramsFragment"
             android:label="@string/title_activity_all_income_chart"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+
+        <activity
+            android:name=".ui.activity.all.ExpenseDetailsActivity"
+            android:label="AllExpenseActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>

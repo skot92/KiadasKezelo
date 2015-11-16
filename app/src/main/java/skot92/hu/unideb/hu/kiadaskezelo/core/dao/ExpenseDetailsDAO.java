@@ -29,16 +29,14 @@ public class ExpenseDetailsDAO extends AppDBDAO {
         long id;
         List<ExpenseDetailsEntity> expenses = new ArrayList<ExpenseDetailsEntity>();
 
-//        Cursor c = database.rawQuery("SELECT * FROM "
-//                + DatabaseHelper.TABLE_EXPENSE + " where " + DatabaseHelper.COLUMN_EXPENSE_DETAILS_EXPENSE_ID
-//                + " = " + expenseId, null);
-
-        Cursor c = database.query(DatabaseHelper.TABLE_EXPENSE_DETAILS,new String[]{
-                DatabaseHelper.COLUMN_EXPENSE_DETAILS_AMOUNT,
-                DatabaseHelper.COLUMN_EXPENSE_DETAILS_DESCRIPTION,
-                DatabaseHelper.COLUMN_EXPENSE_DETAILS_ID,
-                DatabaseHelper.COLUMN_EXPENSE_DETAILS_NAME},
-                null,null,null,null,null);
+        Cursor c = database. query(DatabaseHelper.TABLE_EXPENSE_DETAILS, new String[]{
+                        DatabaseHelper.COLUMN_EXPENSE_DETAILS_AMOUNT,
+                        DatabaseHelper.COLUMN_EXPENSE_DETAILS_DESCRIPTION,
+                        DatabaseHelper.COLUMN_EXPENSE_DETAILS_ID,
+                        DatabaseHelper.COLUMN_EXPENSE_DETAILS_NAME},
+                        DatabaseHelper.COLUMN_EXPENSE_DETAILS_EXPENSE_ID + " = ?1 ",
+                        new String[]{String.valueOf(expenseId)},
+                        null, null, null);
 
         while (c.moveToNext()) {
 

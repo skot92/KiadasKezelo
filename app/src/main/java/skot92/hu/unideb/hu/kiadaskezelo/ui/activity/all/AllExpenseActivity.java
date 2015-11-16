@@ -1,5 +1,6 @@
 package skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -55,9 +56,9 @@ public class AllExpenseActivity extends AppCompatActivity{
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                List<ExpenseDetailsEntity> detailsEntities = new ArrayList<ExpenseDetailsEntity>();
-                detailsEntities = expenseDetailsService.findById(i);
-                Log.d("click expense",String.valueOf(detailsEntities.size()));
+                Intent intent = new Intent(AllExpenseActivity.this, ExpenseDetailsActivity.class);
+                intent.putExtra("index",i);
+                startActivity(intent);
             }
         });
 

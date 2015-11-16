@@ -63,4 +63,15 @@ public class ExpenseDetailsEntity implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "ExpenseDetailsEntity{" +
+                "id=" + id +
+                ", expnseId=" + expnseId +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", amount=" + amount +
+                '}';
+    }
 }
