@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/background">
 
 
     <EditText
@@ -11,7 +12,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:hint="Név" />
+        android:hint="Név"
+        android:background="@drawable/buttonshape"/>
 
     <EditText
         android:layout_width="fill_parent"
@@ -20,7 +22,8 @@
         android:hint="Leírás"
         android:layout_below="@+id/eTDetailsName"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@drawable/buttonshape"/>
 
     <EditText
         android:layout_width="fill_parent"
@@ -31,5 +34,6 @@
         android:hint="Összeg"
         android:layout_below="@+id/eTDetailsDescrption"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@drawable/buttonshape"/>
 </RelativeLayout>
