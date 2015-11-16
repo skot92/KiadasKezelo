@@ -88,7 +88,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COLUMN_EXPENSE_DETAILS_DESCRIPTION + " TEXT, "
             + COLUMN_EXPENSE_DETAILS_AMOUNT + " INTEGER NOT NULL, "
             + "FOREIGN KEY(" + COLUMN_EXPENSE_DETAILS_EXPENSE_ID
-                + ") REFERENCES" + CREATE_TABLE_EXPENSE + "(" + COLUMN_EXPENSE_ID + ")"
+                + ") REFERENCES " + TABLE_EXPENSE + "(" + COLUMN_EXPENSE_ID + ")"
             + ")";
 
 
