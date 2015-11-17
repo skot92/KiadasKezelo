@@ -9,15 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import skot92.hu.unideb.hu.kiadaskezelo.R;
-import skot92.hu.unideb.hu.kiadaskezelo.core.dao.BalanceDAO;
-import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
 import skot92.hu.unideb.hu.kiadaskezelo.service.BalanceService;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllExpenseActivity;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllIncomeActivity;
-import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.charts.AllIncomeChartActivity;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.MainDiagramsFragment;
 
 
@@ -28,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnNewInCome;
     private Button btnAllIncome;
     private Button btnAllIncomeChart;
+    private Button btnMap;
     private TextView tBalance;
 
     private BalanceService balanceService;
@@ -43,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         btnAllExpense = (Button) findViewById(R.id.btnExpensives);
         btnNewInCome = (Button) findViewById(R.id.btnNewInCome);
         btnAllIncome = (Button) findViewById(R.id.btnInComeings);
+        btnMap = (Button) findViewById(R.id.btnMap);
         btnAllIncomeChart = (Button) findViewById(R.id.btnAllInVomeCharts);
         tBalance = (TextView) findViewById(R.id.tBalance);
 
@@ -88,6 +85,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AllExpenseActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(intent);
             }
         });

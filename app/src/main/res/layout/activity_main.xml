@@ -64,6 +64,17 @@
         android:layout_width="wrap_content"
         android:background="@drawable/buttonshape" />
 
+    <Button
+        android:id="@+id/btnMap"
+        android:text="Map"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:background="@drawable/buttonshape" />
+
 
     <TextView
         android:layout_width="wrap_content"
