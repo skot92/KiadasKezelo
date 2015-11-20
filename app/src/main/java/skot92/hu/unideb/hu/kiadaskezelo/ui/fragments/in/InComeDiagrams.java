@@ -1,4 +1,4 @@
-package skot92.hu.unideb.hu.kiadaskezelo.ui.fragments;
+package skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.in;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import skot92.hu.unideb.hu.kiadaskezelo.R;
 /**
  * Created by skot9 on 2015. 11. 13..
  */
-public class MainDiagramsFragment extends FragmentActivity {
+public class InComeDiagrams extends FragmentActivity {
 
     private String tabtitles[] = new String[] { "Tab1", "Tab2", "Tab3" };
 
@@ -38,9 +38,9 @@ public class MainDiagramsFragment extends FragmentActivity {
         @Override
         public Fragment getItem(int pos) {
             switch(pos) {
-                case 0: return FirstFragment.newInstance("FirstFragment, Instance 1");
-                case 1: return SecondFragment.newInstance("SecondFragment, Instance 1");
-                default: return SecondFragment.newInstance("FirstFragment, Default");
+                case 0: return GroupByDateDiagram.newInstance("GroupByDateDiagram, Instance 1");
+                case 1: return GroupByNameDiagram.newInstance("GroupByNameDiagram, Instance 1");
+                default: return GroupByNameDiagram.newInstance("GroupByDateDiagram, Default");
             }
         }
 

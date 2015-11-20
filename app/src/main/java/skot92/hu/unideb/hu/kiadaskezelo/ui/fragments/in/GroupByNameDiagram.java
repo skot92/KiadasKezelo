@@ -1,19 +1,12 @@
-package skot92.hu.unideb.hu.kiadaskezelo.ui.fragments;
+package skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.in;
 
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.RelativeSizeSpan;
-import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.AnimationEasing;
@@ -40,7 +33,7 @@ import skot92.hu.unideb.hu.kiadaskezelo.service.InComeService;
 /**
  * Created by skot9 on 2015. 11. 13..
  */
-public class SecondFragment extends Fragment implements OnChartValueSelectedListener{
+public class GroupByNameDiagram extends Fragment implements OnChartValueSelectedListener{
 
     InComeService inComeService;
     private PieChart mChart;
@@ -99,8 +92,8 @@ public class SecondFragment extends Fragment implements OnChartValueSelectedList
         return v;
     }
 
-    public static SecondFragment newInstance(String text) {
-        SecondFragment f = new SecondFragment();
+    public static GroupByNameDiagram newInstance(String text) {
+        GroupByNameDiagram f = new GroupByNameDiagram();
         Bundle b = new Bundle();
         b.putString("msg", text);
         f.setArguments(b);

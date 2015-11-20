@@ -1,4 +1,4 @@
-package skot92.hu.unideb.hu.kiadaskezelo.ui.fragments;
+package skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.in;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ import skot92.hu.unideb.hu.kiadaskezelo.service.InComeService;
 /**
  * Created by skot9 on 2015. 11. 13..
  */
-public class FirstFragment extends Fragment {
+public class GroupByDateDiagram extends Fragment {
 
     Map<String,Integer> incomens;
     InComeService inComeService;
@@ -49,9 +49,9 @@ public class FirstFragment extends Fragment {
 
     }
 
-    public static FirstFragment newInstance(String text) {
+    public static GroupByDateDiagram newInstance(String text) {
 
-        FirstFragment f = new FirstFragment();
+        GroupByDateDiagram f = new GroupByDateDiagram();
         Bundle b = new Bundle();
         b.putString("msg", text);
 

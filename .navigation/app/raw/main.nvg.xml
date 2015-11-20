@@ -8,8 +8,16 @@
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
         className = "skot92.hu.unideb.hu.kiadaskezelo.ui.activity.InComeActivity"/>
       <point      
-        x = "1900"      
-        y = "300"/>
+        x = "2372"      
+        y = "348"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllExpenseActivity"/>
+      <point      
+        x = "172"      
+        y = "204"/>
     </statePointEntry>
     <statePointEntry>
       <state      
@@ -18,14 +26,6 @@
       <point      
         x = "1184"      
         y = "776"/>
-    </statePointEntry>
-    <statePointEntry>
-      <state      
-        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllExpenseActivity"/>
-      <point      
-        x = "-32"      
-        y = "208"/>
     </statePointEntry>
     <statePointEntry>
       <state      
@@ -50,6 +50,14 @@
       <point      
         x = "750"      
         y = "350"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.ExpenseDetailsActivity"/>
+      <point      
+        x = "1768"      
+        y = "100"/>
     </statePointEntry>
     <statePointEntry>
       <state      
