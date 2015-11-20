@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Map;
+
 import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.service.BalanceService;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllExpenseActivity;
@@ -85,6 +87,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AllExpenseActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(intent);
             }
         });
