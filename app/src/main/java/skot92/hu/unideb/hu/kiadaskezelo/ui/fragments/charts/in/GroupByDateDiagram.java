@@ -1,4 +1,4 @@
-package skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.in;
+package skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.charts.in;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -38,6 +38,7 @@ public class GroupByDateDiagram extends Fragment {
         LineChart chart = (LineChart)v.findViewById(R.id.chart);
 
         LineData data = new LineData(getXAxisValues(),getDataSet());
+        chart.setNoDataTextDescription("Nincs bevétel");
         chart.setData(data);
         chart.setDescription("");
         chart.animateXY(2000, 2000);

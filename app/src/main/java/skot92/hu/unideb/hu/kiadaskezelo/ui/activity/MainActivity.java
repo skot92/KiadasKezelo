@@ -9,13 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.Map;
-
 import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.service.BalanceService;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllExpenseActivity;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllIncomeActivity;
-import skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.in.InComeDiagrams;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.charts.in.InComeDiagrams;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -44,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         btnMap = (Button) findViewById(R.id.btnMap);
         btnAllIncomeChart = (Button) findViewById(R.id.btnAllInVomeCharts);
         tBalance = (TextView) findViewById(R.id.tBalance);
+
 
         tBalance.setText(String.valueOf(balanceService.findBalance()));
         controll();

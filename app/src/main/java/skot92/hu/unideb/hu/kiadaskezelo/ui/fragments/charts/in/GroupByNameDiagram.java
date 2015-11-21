@@ -1,4 +1,4 @@
-package skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.in;
+package skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.charts.in;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -130,6 +130,8 @@ public class GroupByNameDiagram extends Fragment implements OnChartValueSelected
         data.setValueFormatter(new PercentFormatter());
         data.setValueTextSize(10f);
         data.setValueTextColor(Color.BLACK);
+
+        mChart.setNoDataTextDescription("Nincs bevétel");
         mChart.setData(data);
 
         mChart.highlightValues(null);

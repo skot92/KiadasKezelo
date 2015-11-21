@@ -38,7 +38,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "skot92.hu.unideb.hu.kiadaskezelo.ui.activity.charts.AllIncomeChartActivity"/>
+        className = "skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.charts.AllIncomeChartActivity"/>
       <point      
         x = "700"      
         y = "300"/>

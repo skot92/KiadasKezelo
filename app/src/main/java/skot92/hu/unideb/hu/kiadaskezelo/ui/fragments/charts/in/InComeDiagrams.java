@@ -1,4 +1,4 @@
-package skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.in;
+package skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.charts.in;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import skot92.hu.unideb.hu.kiadaskezelo.R;
  */
 public class InComeDiagrams extends FragmentActivity {
 
-    private String tabtitles[] = new String[] { "Tab1", "Tab2", "Tab3" };
+    private String tabtitles[] = new String[] { "Dátum szerint", "Név szerint"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class InComeDiagrams extends FragmentActivity {
         public Fragment getItem(int pos) {
             switch(pos) {
                 case 0: return GroupByDateDiagram.newInstance("GroupByDateDiagram, Instance 1");
-                case 1: return GroupByNameDiagram.newInstance("GroupByNameDiagram, Instance 1");
+                case 1: return GroupByNameDiagram.newInstance("GroupByNameDiagram, Instance 2");
                 default: return GroupByNameDiagram.newInstance("GroupByDateDiagram, Default");
             }
         }
