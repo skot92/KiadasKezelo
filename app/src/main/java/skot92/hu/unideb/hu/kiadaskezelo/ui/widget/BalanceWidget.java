@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
+import skot92.hu.unideb.hu.kiadaskezelo.service.BalanceService;
 
 /**
  * Created by skot9 on 2015. 11. 22..
@@ -18,6 +19,11 @@ import skot92.hu.unideb.hu.kiadaskezelo.R;
 
 
 public class BalanceWidget extends AppWidgetProvider {
+
+    private BalanceService balanceService;
+
+
+
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager,
                          int[] appWidgetIds)
@@ -30,8 +36,9 @@ public class BalanceWidget extends AppWidgetProvider {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
                     R.layout.balance_widget);
             // Szöveg beállítása
-            remoteViews.setTextViewText(R.id.tvStatus, new Date(System.currentTimeMillis()).toLocaleString());
-            remoteViews.setTextViewText(R.id.widgetBalance, "566546");
+            balanceService = new BalanceService(context);
+            String balance = String.valueOf(balanceService.findBalance());
+            remoteViews.setTextViewText(R.id.tvStatus, balance );
 
             // Kattintás esemény kezelése, hatására frissül ismét a balance_widget
             Intent intent = new Intent(context, BalanceWidget.class);
@@ -41,6 +48,7 @@ public class BalanceWidget extends AppWidgetProvider {
 
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
                     0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
             remoteViews.setOnClickPendingIntent(R.id.tvStatus, pendingIntent);
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }
