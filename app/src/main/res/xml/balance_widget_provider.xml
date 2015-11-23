@@ -3,6 +3,6 @@
     "http://schemas.android.com/apk/res/android"
   android:minWidth="146dip"
   android:minHeight="72dip"
-  android:updatePeriodMillis="300000"
+  android:updatePeriodMillis="10"
   android:initialLayout="@layout/balance_widget"
 />

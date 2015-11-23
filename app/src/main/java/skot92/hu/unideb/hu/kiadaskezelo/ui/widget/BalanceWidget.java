@@ -22,12 +22,9 @@ public class BalanceWidget extends AppWidgetProvider {
 
     private BalanceService balanceService;
 
-
-
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager,
-                         int[] appWidgetIds)
-    {
+                         int[] appWidgetIds) {
         // ID-k lekérdezése
         ComponentName thisWidget = new ComponentName(context,
                 BalanceWidget.class);
@@ -53,4 +50,5 @@ public class BalanceWidget extends AppWidgetProvider {
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }
     }
+
 }
