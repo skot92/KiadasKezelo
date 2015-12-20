@@ -11,6 +11,7 @@ import java.util.List;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.BalanceEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
+import skot92.hu.unideb.hu.kiadaskezelo.core.helper.ExpenseTable;
 
 /**
  * Created by skot9 on 2015. 10. 19..
@@ -24,10 +25,10 @@ public class ExpenseDAO extends AppDBDAO{
     public long save(ExpenseEntity expense) {
         super.open();
         ContentValues values = new ContentValues();
-        values.put(DatabaseHelper.COLUMN_EXPENSE_NAME, expense.getName());
-        values.put(DatabaseHelper.COLUMN_EXPENSE_DATE, expense.getDate());
-        values.put(DatabaseHelper.COLUMN_EXPENSE_AMOUNT, 0);
-        long expense_id = database.insert(DatabaseHelper.TABLE_EXPENSE, null, values);
+        values.put(ExpenseTable.EXPENSE_NAME, expense.getName());
+        values.put(ExpenseTable.EXPENSE_DATE, expense.getDate());
+        values.put(ExpenseTable.EXPENSE_AMOUNT, 0);
+        long expense_id = database.insert(ExpenseTable.TABLE_NAME, null, values);
         super.close();
         return  expense_id;
     }
@@ -35,8 +36,8 @@ public class ExpenseDAO extends AppDBDAO{
     public long update (int sum, long id) {
         super.open();
         ContentValues values = new ContentValues();
-        values.put(DatabaseHelper.COLUMN_EXPENSE_AMOUNT, sum);
-        long expense_id = database.update(DatabaseHelper.TABLE_EXPENSE,values,"id=" + id, null);
+        values.put(ExpenseTable.EXPENSE_AMOUNT, sum);
+        long expense_id = database.update(ExpenseTable.TABLE_NAME,values,"id=" + id, null);
         super.close();
         return  expense_id;
     }
@@ -45,19 +46,19 @@ public class ExpenseDAO extends AppDBDAO{
         super.open();
         List<ExpenseEntity> expenses = new ArrayList<ExpenseEntity>();
 
-        Cursor c = database.query(DatabaseHelper.TABLE_EXPENSE,new String[]{
-                DatabaseHelper.COLUMN_EXPENSE_AMOUNT,
-                DatabaseHelper.COLUMN_EXPENSE_DATE,
-                DatabaseHelper.COLUMN_EXPENSE_NAME,
-                DatabaseHelper.COLUMN_EXPENSE_ID},
+        Cursor c = database.query(ExpenseTable.TABLE_NAME,new String[]{
+                        ExpenseTable.EXPENSE_AMOUNT,
+                        ExpenseTable.EXPENSE_DATE,
+                        ExpenseTable.EXPENSE_NAME,
+                        ExpenseTable.EXPENSE_ID},
                 null, null, null, null, null);
 
         while(c.moveToNext()) {
 
-            int amount = c.getInt(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_AMOUNT));
-            String name = c.getString(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_NAME));
-            long id = c.getLong(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_ID));
-            String date = c.getString(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_DATE));
+            int amount = c.getInt(c.getColumnIndex(ExpenseTable.EXPENSE_AMOUNT));
+            String name = c.getString(c.getColumnIndex(ExpenseTable.EXPENSE_NAME));
+            long id = c.getLong(c.getColumnIndex(ExpenseTable.EXPENSE_ID));
+            String date = c.getString(c.getColumnIndex(ExpenseTable.EXPENSE_DATE));
 
             ExpenseEntity expense = new ExpenseEntity(id,name,date,amount);
             expenses.add(expense);

@@ -18,78 +18,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Database Name
     private static final String DATABASE_NAME = "kiadas_es_bevetelkezelo";
 
-    // Table Names
-    public static final String TABLE_IN_COME = "in_come";
-    public static final String TABLE_BALANCE = "balance";
-    public static final String TABLE_EXPENSE = "expense";
-    public static final String TABLE_EXPENSE_DETAILS = "expense_details";
-
-    //COLUMN TABLE_IN_COME
-    public static final String COLUMN_IN_COME_ID = "id";
-    public static final String COLUMN_IN_COME_NAME = "income_name";
-    public static final String COLUMN_IN_COME_DATE = "income_date";
-    public static final String COLUMN_IN_COME_AMOUNT = "income_amount";
-
-    //COLUMN TABLE_BALANCE
-    public static final String COLUMN_BALANCE_ID = "id";
-    public static final String COLUMN_BALANCE_DATE = "balance_date";
-    public static final String COLUMN_BALANCE_TYPE = "balance_type";
-    public static final String COLUMN_BALANCE_AMOUNT = "balance_amount";
-
-    //COLUMN TABLE_EXPENSE
-    public static final String COLUMN_EXPENSE_ID = "id";
-    public static final String COLUMN_EXPENSE_DATE = "expense_date";
-    public static final String COLUMN_EXPENSE_NAME = "expense_name";
-    public static final String COLUMN_EXPENSE_AMOUNT = "expense_amount";
-
-    //COLUMN TABLE_EXPENSE_DETAILS
-    public static final String COLUMN_EXPENSE_DETAILS_ID = "id";
-    public static final String COLUMN_EXPENSE_DETAILS_EXPENSE_ID = "expense_id";
-    public static final String COLUMN_EXPENSE_DETAILS_NAME = "expense_details_name";
-    public static final String COLUMN_EXPENSE_DETAILS_DESCRIPTION = "expense_details_description";
-    public static final String COLUMN_EXPENSE_DETAILS_AMOUNT = "expense_details_amount";
 
     private static DatabaseHelper instance;
 
-    // Table Create Statements
-    private static final String CREATE_TABLE_IN_COME = "CREATE TABLE "
-            + TABLE_IN_COME
-            + "("
-            + COLUMN_IN_COME_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COLUMN_IN_COME_AMOUNT + " INTEGER NOT NULL, "
-            + COLUMN_IN_COME_NAME + " TEXT  NOT NULL, "
-            + COLUMN_IN_COME_DATE + " datetime  NOT NULL"
-            + ")";
-
-    private static final String CREATE_TABLE_BALANCE = "CREATE TABLE "
-            + TABLE_BALANCE
-            + "("
-            + COLUMN_BALANCE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COLUMN_BALANCE_AMOUNT + " INTEGER NOT NULL, "
-            + COLUMN_BALANCE_DATE + " datetime  NOT NULL, "
-            + COLUMN_BALANCE_TYPE + " TEXT  NOT NULL"
-            + ")";
-
-    private static final String CREATE_TABLE_EXPENSE = "CREATE TABLE "
-            + TABLE_EXPENSE
-            + "("
-            + COLUMN_EXPENSE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COLUMN_EXPENSE_AMOUNT + " INTEGER NOT NULL, "
-            + COLUMN_EXPENSE_DATE + " datetime  NOT NULL, "
-            + COLUMN_EXPENSE_NAME + " TEXT  NOT NULL"
-            + ")";
-
-    private static final String CREATE_TABLE_EXPENSE_DETAILS = "CREATE TABLE "
-            + TABLE_EXPENSE_DETAILS
-            + "("
-            + COLUMN_EXPENSE_DETAILS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COLUMN_EXPENSE_DETAILS_EXPENSE_ID + " INTEGER NOT NULL, "
-            + COLUMN_EXPENSE_DETAILS_NAME + " TEXT  NOT NULL, "
-            + COLUMN_EXPENSE_DETAILS_DESCRIPTION + " TEXT, "
-            + COLUMN_EXPENSE_DETAILS_AMOUNT + " INTEGER NOT NULL, "
-            + "FOREIGN KEY(" + COLUMN_EXPENSE_DETAILS_EXPENSE_ID
-                + ") REFERENCES " + TABLE_EXPENSE + "(" + COLUMN_EXPENSE_ID + ")"
-            + ")";
 
 
     public DatabaseHelper(Context context) {
@@ -107,10 +38,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // creating required tables
         try {
-            db.execSQL(CREATE_TABLE_IN_COME);
-            db.execSQL(CREATE_TABLE_BALANCE);
-            db.execSQL(CREATE_TABLE_EXPENSE);
-            db.execSQL(CREATE_TABLE_EXPENSE_DETAILS);
+            db.execSQL(InComeTable.CREATE_TABLE);
+            db.execSQL(BalanceTable.CREATE_TABLE);
+            db.execSQL(ExpenseTable.CREATE_TABLE);
+            db.execSQL(ExpenseDetailsTable.CREATE_TABLE);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -119,10 +50,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // on upgrade drop older tables
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_IN_COME);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BALANCE);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_EXPENSE);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_EXPENSE_DETAILS);
+        db.execSQL("DROP TABLE IF EXISTS " + InComeTable.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + BalanceTable.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ExpenseTable.CREATE_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + ExpenseDetailsTable.TABLE_NAME);
 
         // create new tables
         onCreate(db);

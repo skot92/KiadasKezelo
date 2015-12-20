@@ -11,6 +11,7 @@ import java.util.List;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseDetailsEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
+import skot92.hu.unideb.hu.kiadaskezelo.core.helper.ExpenseDetailsTable;
 
 /**
  * Created by skot9 on 2015. 10. 19..
@@ -29,21 +30,21 @@ public class ExpenseDetailsDAO extends AppDBDAO {
         long id;
         List<ExpenseDetailsEntity> expenses = new ArrayList<ExpenseDetailsEntity>();
 
-        Cursor c = database. query(DatabaseHelper.TABLE_EXPENSE_DETAILS, new String[]{
-                        DatabaseHelper.COLUMN_EXPENSE_DETAILS_AMOUNT,
-                        DatabaseHelper.COLUMN_EXPENSE_DETAILS_DESCRIPTION,
-                        DatabaseHelper.COLUMN_EXPENSE_DETAILS_ID,
-                        DatabaseHelper.COLUMN_EXPENSE_DETAILS_NAME},
-                        DatabaseHelper.COLUMN_EXPENSE_DETAILS_EXPENSE_ID + " = ?1 ",
+        Cursor c = database. query(ExpenseDetailsTable.TABLE_NAME, new String[]{
+                        ExpenseDetailsTable.EXPENSE_DETAILS_AMOUNT,
+                        ExpenseDetailsTable.EXPENSE_DETAILS_DESCRIPTION,
+                        ExpenseDetailsTable.EXPENSE_DETAILS_EXPENSE_ID,
+                        ExpenseDetailsTable.EXPENSE_DETAILS_NAME},
+                ExpenseDetailsTable.EXPENSE_DETAILS_EXPENSE_ID + " = ?1 ",
                         new String[]{String.valueOf(expenseId)},
                         null, null, null);
 
         while (c.moveToNext()) {
 
-            amount = c.getInt(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_DETAILS_AMOUNT));
-            name = c.getString(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_DETAILS_NAME));
-            id = c.getLong(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_DETAILS_ID));
-            description = c.getString(c.getColumnIndex(DatabaseHelper.COLUMN_EXPENSE_DETAILS_DESCRIPTION));
+            amount = c.getInt(c.getColumnIndex(ExpenseDetailsTable.EXPENSE_DETAILS_AMOUNT));
+            name = c.getString(c.getColumnIndex(ExpenseDetailsTable.EXPENSE_DETAILS_NAME));
+            id = c.getLong(c.getColumnIndex(ExpenseDetailsTable.EXPENSE_DETAILS_ID));
+            description = c.getString(c.getColumnIndex(ExpenseDetailsTable.EXPENSE_DETAILS_DESCRIPTION));
 
             ExpenseDetailsEntity expense = new ExpenseDetailsEntity(id,expenseId,name,description,amount);
             expenses.add(expense);
@@ -60,11 +61,11 @@ public class ExpenseDetailsDAO extends AppDBDAO {
         ContentValues values = new ContentValues();
         for (ExpenseDetailsEntity detail : details) {
             sum += detail.getAmount();
-            values.put(DatabaseHelper.COLUMN_EXPENSE_DETAILS_AMOUNT, detail.getAmount());
-            values.put(DatabaseHelper.COLUMN_EXPENSE_DETAILS_DESCRIPTION, detail.getDescription());
-            values.put(DatabaseHelper.COLUMN_EXPENSE_DETAILS_EXPENSE_ID, expenseId);
-            values.put(DatabaseHelper.COLUMN_EXPENSE_DETAILS_NAME, detail.getName());
-            database.insert(DatabaseHelper.TABLE_EXPENSE_DETAILS, null, values);
+            values.put(ExpenseDetailsTable.EXPENSE_DETAILS_AMOUNT, detail.getAmount());
+            values.put(ExpenseDetailsTable.EXPENSE_DETAILS_DESCRIPTION, detail.getDescription());
+            values.put(ExpenseDetailsTable.EXPENSE_DETAILS_EXPENSE_ID, expenseId);
+            values.put(ExpenseDetailsTable.EXPENSE_DETAILS_NAME, detail.getName());
+            database.insert(ExpenseDetailsTable.TABLE_NAME, null, values);
         }
         super.close();
         return sum;
