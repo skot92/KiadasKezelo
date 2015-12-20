@@ -15,7 +15,6 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
-import skot92.hu.unideb.hu.kiadaskezelo.core.dao.InComeDAO;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.InComeEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.service.InComeService;
 
@@ -38,7 +37,7 @@ public class InComeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_income);
+        setContentView(R.layout.activity_new_income_in);
 
         inComeService = new InComeService(getApplicationContext());
         mPickDate = (Button) findViewById(R.id.myDatePickerButton);

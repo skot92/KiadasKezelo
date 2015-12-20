@@ -14,7 +14,6 @@ import android.widget.Toast;
 import java.util.List;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
-import skot92.hu.unideb.hu.kiadaskezelo.core.dao.InComeDAO;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.InComeEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.service.InComeService;
 
@@ -29,7 +28,7 @@ public class AllIncomeActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_income);
+        setContentView(R.layout.activity_all_income_list_view);
 
         inComeService = new InComeService(getApplicationContext());
 
@@ -39,7 +38,7 @@ public class AllIncomeActivity extends AppCompatActivity {
         inputSearch = (EditText) findViewById(R.id.inputSearch);
 
         // Adding items to listview
-        adapter = new ArrayAdapter<InComeEntity>(this, R.layout.all_income_list_item, R.id.product_name, names);
+        adapter = new ArrayAdapter<InComeEntity>(this, R.layout.list_item, R.id.product_name, names);
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

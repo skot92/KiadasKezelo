@@ -21,7 +21,6 @@ import java.util.List;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.core.dao.BalanceDAO;
-import skot92.hu.unideb.hu.kiadaskezelo.core.dao.ExpenseDAO;
 import skot92.hu.unideb.hu.kiadaskezelo.core.dao.ExpenseDetailsDAO;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.BalanceEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseDetailsEntity;
@@ -53,7 +52,7 @@ public class NewExpenseActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_expense);
+        setContentView(R.layout.activity_new_expense_in);
 
         expenseService = new ExpenseService(getApplicationContext());
 

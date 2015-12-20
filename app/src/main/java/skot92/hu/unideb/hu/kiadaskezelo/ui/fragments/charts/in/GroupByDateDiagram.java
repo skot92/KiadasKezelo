@@ -30,7 +30,7 @@ public class GroupByDateDiagram extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.activity_all_income_chart, container, false);
+        v = inflater.inflate(R.layout.activity_linechart, container, false);
 
         inComeService = new InComeService(getActivity().getApplicationContext());
         incomens = inComeService.findAmountGroupByDate();
