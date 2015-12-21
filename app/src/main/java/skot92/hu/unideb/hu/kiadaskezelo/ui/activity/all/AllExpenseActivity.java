@@ -6,74 +6,73 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.SparseArray;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ExpandableListView;
+import android.widget.Filterable;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
+import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseDetailsEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.service.ExpenseDetailsService;
 import skot92.hu.unideb.hu.kiadaskezelo.service.ExpenseService;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.Adapter.Group;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.Adapter.MyExpandableListAdapter;
 
 /**
  * Created by skot9 on 2015. 11. 14..
  */
 public class AllExpenseActivity extends AppCompatActivity{
 
-    private ListView lv;
-    ArrayAdapter<ExpenseEntity> adapter;
+    private  SparseArray<Group> groups = new SparseArray<>();
+    private ExpenseService expenseService;
+    private ExpenseDetailsService expenseDetailsService;
+    private List<ExpenseEntity> expenses;
     EditText inputSearch;
-    ExpenseService expenseService;
-    ExpenseDetailsService expenseDetailsService;
+    private MyExpandableListAdapter adapter;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_expense_list_view);
 
+
         expenseDetailsService = new ExpenseDetailsService(getApplicationContext());
         expenseService = new ExpenseService(getApplicationContext());
+        createData();
 
-        final List<ExpenseEntity> expenses = expenseService.findAll();
-
-        lv = (ListView) findViewById(R.id.list_view);
         inputSearch = (EditText) findViewById(R.id.inputSearch);
 
-        // Adding items to listview
-        adapter = new ArrayAdapter<ExpenseEntity>(this, R.layout.list_item, R.id.product_name, expenses);
-        lv.setAdapter(adapter);
+        ExpandableListView listView = (ExpandableListView) findViewById(R.id.listView);
+        adapter = new MyExpandableListAdapter(this,
+                groups);
+        listView.setAdapter(adapter);
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(AllExpenseActivity.this, ExpenseDetailsActivity.class);
-                intent.putExtra("index",i);
-                startActivity(intent);
-            }
-        });
 
-        inputSearch.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-                // When user changed the Text
-                AllExpenseActivity.this.adapter.getFilter().filter(cs);
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-                                          int arg3) {
-                // TODO Auto-generated method stub
-            }
-
-            @Override
-            public void afterTextChanged(Editable arg0) {
-                // TODO Auto-generated method stub
-            }
-        });
     }
+
+    public void createData() {
+        expenses = expenseService.findAll();
+        for (int j = 0; j < expenses.size(); j++) {
+            Group group = new Group(expenses.get(j).getName());
+
+          List<ExpenseDetailsEntity> expenseDetails = expenseDetailsService.findById(expenses.get(j).getId());
+            for (int i = 0; i < expenseDetails.size(); i++) {
+               group.children.add(expenseDetails.get(i).getName());
+            }
+            groups.append(j, group);
+        }
+    }
+
+
+
 }

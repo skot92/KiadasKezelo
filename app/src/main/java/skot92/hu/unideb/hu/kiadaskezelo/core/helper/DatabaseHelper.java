@@ -13,7 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     // Database Name
     private static final String DATABASE_NAME = "kiadas_es_bevetelkezelo";
@@ -52,7 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // on upgrade drop older tables
         db.execSQL("DROP TABLE IF EXISTS " + InComeTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + BalanceTable.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + ExpenseTable.CREATE_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + ExpenseTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ExpenseDetailsTable.TABLE_NAME);
 
         // create new tables

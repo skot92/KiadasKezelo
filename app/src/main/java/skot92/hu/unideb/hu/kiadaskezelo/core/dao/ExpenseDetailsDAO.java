@@ -35,7 +35,7 @@ public class ExpenseDetailsDAO extends AppDBDAO {
                         ExpenseDetailsTable.EXPENSE_DETAILS_DESCRIPTION,
                         ExpenseDetailsTable.EXPENSE_DETAILS_EXPENSE_ID,
                         ExpenseDetailsTable.EXPENSE_DETAILS_NAME},
-                ExpenseDetailsTable.EXPENSE_DETAILS_EXPENSE_ID + " = ?1 ",
+                         ExpenseDetailsTable.EXPENSE_DETAILS_EXPENSE_ID + " = ?1 ",
                         new String[]{String.valueOf(expenseId)},
                         null, null, null);
 
@@ -43,7 +43,7 @@ public class ExpenseDetailsDAO extends AppDBDAO {
 
             amount = c.getInt(c.getColumnIndex(ExpenseDetailsTable.EXPENSE_DETAILS_AMOUNT));
             name = c.getString(c.getColumnIndex(ExpenseDetailsTable.EXPENSE_DETAILS_NAME));
-            id = c.getLong(c.getColumnIndex(ExpenseDetailsTable.EXPENSE_DETAILS_ID));
+            id = c.getLong(2);
             description = c.getString(c.getColumnIndex(ExpenseDetailsTable.EXPENSE_DETAILS_DESCRIPTION));
 
             ExpenseDetailsEntity expense = new ExpenseDetailsEntity(id,expenseId,name,description,amount);
