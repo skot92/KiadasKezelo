@@ -2,8 +2,6 @@ package skot92.hu.unideb.hu.kiadaskezelo.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +11,8 @@ import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.service.BalanceService;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllExpenseActivity;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllIncomeActivity;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.in.InComeActivity;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.in.NewExpenseActivity;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.charts.in.InComeDiagrams;
 
 

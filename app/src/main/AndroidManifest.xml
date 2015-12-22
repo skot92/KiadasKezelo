@@ -35,10 +35,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.InComeActivity" >
+        <activity android:name=".ui.activity.in.InComeActivity">
         </activity>
 
-        <activity android:name=".ui.activity.NewExpenseActivity" >
+        <activity android:name=".ui.activity.in.NewExpenseActivity">
         </activity>
 
         <activity

@@ -5,43 +5,38 @@
     class = "java.util.ArrayList">
     <statePointEntry>
       <state      
-        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "skot92.hu.unideb.hu.kiadaskezelo.ui.activity.InComeActivity"/>
-      <point      
-        x = "2372"      
-        y = "348"/>
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"
+          className="skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.MainDiagramsFragment" />
+      <point x="1184" y="776" />
     </statePointEntry>
     <statePointEntry>
       <state      
-        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"
+          className="skot92.hu.unideb.hu.kiadaskezelo.ui.activity.MapsActivity" />
+      <point x="1608" y="296" />
+    </statePointEntry>
+    <statePointEntry>
+      <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
         className = "skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllExpenseActivity"/>
-      <point      
-        x = "172"      
-        y = "204"/>
+      <point x="1436" y="-104" />
     </statePointEntry>
     <statePointEntry>
       <state      
-        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.MainDiagramsFragment"/>
-      <point      
-        x = "1184"      
-        y = "776"/>
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"
+          className="skot92.hu.unideb.hu.kiadaskezelo.ui.activity.in.NewExpenseActivity" />
+      <point x="-120" y="496" />
     </statePointEntry>
     <statePointEntry>
       <state      
-        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllIncomeActivity"/>
-      <point      
-        x = "672"      
-        y = "864"/>
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"
+          className="skot92.hu.unideb.hu.kiadaskezelo.ui.activity.in.InComeActivity" />
+      <point x="2372" y="348" />
     </statePointEntry>
     <statePointEntry>
       <state      
-        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.charts.AllIncomeChartActivity"/>
-      <point      
-        x = "700"      
-        y = "300"/>
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"
+          className="skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.charts.in.InComeDiagrams" />
+      <point x="964" y="420" />
     </statePointEntry>
     <statePointEntry>
       <state      
@@ -61,11 +56,14 @@
     </statePointEntry>
     <statePointEntry>
       <state      
-        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "skot92.hu.unideb.hu.kiadaskezelo.ui.activity.NewExpenseActivity"/>
-      <point      
-        x = "800"      
-        y = "400"/>
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"
+          className="skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.charts.AllIncomeChartActivity" />
+      <point x="700" y="300" />
+    </statePointEntry>
+    <statePointEntry>
+      <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+          className="skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllIncomeActivity" />
+      <point x="1200" y="628" />
     </statePointEntry>
   </locations>
 </navigationModel>
