@@ -35,12 +35,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.in.InComeActivity">
-        </activity>
-
-        <activity android:name=".ui.activity.in.NewExpenseActivity">
-        </activity>
-
         <activity
             android:name=".ui.activity.all.AllIncomeActivity"
             android:label="@string/title_activity_all_income"
@@ -50,12 +44,6 @@
         <activity
             android:name=".ui.activity.all.AllExpenseActivity"
             android:label="AllExpenseActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-
-        <activity
-            android:name=".ui.fragments.charts.in.InComeDiagrams"
-            android:label="@string/title_activity_all_income_chart"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
 

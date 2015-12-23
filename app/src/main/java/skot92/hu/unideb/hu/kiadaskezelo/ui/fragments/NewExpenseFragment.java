@@ -1,14 +1,16 @@
-package skot92.hu.unideb.hu.kiadaskezelo.ui.activity.in;
+package skot92.hu.unideb.hu.kiadaskezelo.ui.fragments;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -27,13 +29,15 @@ import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseDetailsEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.service.ExpenseService;
 
-public class NewExpenseActivity extends ListActivity {
+
+public class NewExpenseFragment extends ListFragment{
 
     private Button btnNewItem;
     private Button btnSaveExpense;
+    View myFragmentView;
 
     EditText expenseName;
-     Button expenseDate;
+    Button expenseDate;
 
     private List<ExpenseDetailsEntity> detailsList;
     private List<String> values;
@@ -43,34 +47,39 @@ public class NewExpenseActivity extends ListActivity {
     private int mYear;
     private int mMonth;
     private int mDay;
-
+    private DatePickerFragment picker;
     static final int DATE_DIALOG_ID = 1;
 
     ExpenseService expenseService;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_expense_in);
 
-        expenseService = new ExpenseService(getApplicationContext());
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        myFragmentView = inflater.inflate(R.layout.fragment_one, container, false);
+        btnNewItem = (Button)myFragmentView.findViewById(R.id.btnAddNewItem);
+        btnSaveExpense = (Button)myFragmentView.findViewById(R.id.btnSaveExpense);
+        controll();
+
+        return myFragmentView;
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+        expenseService = new ExpenseService(getActivity().getApplicationContext());
 
         detailsList = new ArrayList<ExpenseDetailsEntity>();
         values = new ArrayList<String>();
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, values);
+        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, values);
         setListAdapter(adapter);
 
-        btnNewItem = (Button) findViewById(R.id.btnAddNewItem);
-        btnSaveExpense = (Button) findViewById(R.id.btnSaveExpense);
-
-        final Calendar c = Calendar.getInstance();
-        mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
-        mDay = c.get(Calendar.DAY_OF_MONTH);
-
-        controll();
     }
 
     public void controll() {
@@ -91,7 +100,7 @@ public class NewExpenseActivity extends ListActivity {
 
 
     public void onCreateNewItemDetailsDialog() {
-        Context context = this;
+        Context context = getContext();
         LayoutInflater li = LayoutInflater.from(context);
         View promptsView = li.inflate(R.layout.dialog_new_item_details, null);
 
@@ -139,7 +148,7 @@ public class NewExpenseActivity extends ListActivity {
 
 
     public void onCreateNewExpenseDialog() {
-        Context context = this;
+        Context context = getContext();
         LayoutInflater li = LayoutInflater.from(context);
         View promptsView = li.inflate(R.layout.dialog_new_expense, null);
 
@@ -151,26 +160,27 @@ public class NewExpenseActivity extends ListActivity {
 
         expenseName = (EditText) promptsView
                 .findViewById(R.id.eTExpenseName);
-         expenseDate = (Button) promptsView
+        expenseDate = (Button) promptsView
                 .findViewById(R.id.myDatePickerButton1);
 
-        expenseDate.setText(String.valueOf(mYear + "." + (mMonth+1) + "." + mDay + "."));
-
         expenseDate.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                showDialog(DATE_DIALOG_ID);
+                picker = new DatePickerFragment();
+                picker.setViewId(expenseDate.getId());
+                picker.show(getFragmentManager(), "datePicker");
             }
         });
 
-        // set dialog message
+
         alertDialogBuilder
                 .setCancelable(false)
                 .setPositiveButton("OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
                                 saveExpense();
-                                finish();
-                                Toast.makeText(getApplicationContext(), "Sikeres mentés", Toast.LENGTH_SHORT).show();
+                                adapter.clear();
+                                Toast.makeText(getContext(), "Sikeres mentés", Toast.LENGTH_SHORT).show();
                             }
                         })
                 .setNegativeButton("Cancel",
@@ -185,39 +195,7 @@ public class NewExpenseActivity extends ListActivity {
     }
 
 
-    private void updateDisplay() {
-        expenseDate.setText(
-                new StringBuilder()
-                        .append(mMonth + 1).append("-")
-                        .append(mDay).append("-")
-                        .append(mYear).append(" ")
-        );
-    }
-
-    private DatePickerDialog.OnDateSetListener mDateSetListener =
-            new DatePickerDialog.OnDateSetListener() {
-                public void onDateSet(DatePicker view, int year,
-                                      int monthOfYear, int dayOfMonth) {
-                    mYear = year;
-                    mMonth = monthOfYear;
-                    mDay = dayOfMonth;
-                    updateDisplay();
-                }
-            };
-
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case DATE_DIALOG_ID:
-                return new DatePickerDialog(this,
-                        mDateSetListener,
-                        mYear, mMonth, mDay);
-        }
-        return null;
-    }
-
-
-    public void saveExpense() {
+  public void saveExpense() {
         ExpenseEntity expenseEntity = new ExpenseEntity();
         expenseEntity.setAmount(0);
         expenseEntity.setName(expenseName.getText().toString());
@@ -225,20 +203,17 @@ public class NewExpenseActivity extends ListActivity {
 
         Long id = expenseService.save(expenseEntity);
 
-        ExpenseDetailsDAO expenseDetailsDAO = new ExpenseDetailsDAO(getApplicationContext());
+        ExpenseDetailsDAO expenseDetailsDAO = new ExpenseDetailsDAO(getContext());
         int sum =  expenseDetailsDAO.save(detailsList,id);
 
         sum = -sum;
         expenseService.update(sum, id);
 
-        BalanceDAO balanceDAO = new BalanceDAO(getApplicationContext());
+        BalanceDAO balanceDAO = new BalanceDAO(getContext());
         BalanceEntity balanceEntity = new BalanceEntity();
         balanceEntity.setDate(expenseEntity.getDate());
         balanceEntity.setType("expense");
         balanceEntity.setAmount(sum);
         balanceDAO.save(balanceEntity);
     }
-
 }
-
-

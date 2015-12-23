@@ -20,12 +20,7 @@
         className = "skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllExpenseActivity"/>
       <point x="1436" y="-104" />
     </statePointEntry>
-    <statePointEntry>
-      <state      
-        class = "com.android.tools.idea.editors.navigation.model.ActivityState"
-          className="skot92.hu.unideb.hu.kiadaskezelo.ui.activity.in.NewExpenseActivity" />
-      <point x="-120" y="496" />
-    </statePointEntry>
+
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"
