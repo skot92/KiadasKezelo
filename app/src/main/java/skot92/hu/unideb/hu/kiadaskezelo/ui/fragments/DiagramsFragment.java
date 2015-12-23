@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import skot92.hu.unideb.hu.kiadaskezelo.R;
 
 
-public class TwoFragment extends Fragment{
+public class DiagramsFragment extends Fragment{
 
-    public TwoFragment() {
+    public DiagramsFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class TwoFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_income, container, false);
+        return inflater.inflate(R.layout.fragment_diagrams, container, false);
     }
 
 }
