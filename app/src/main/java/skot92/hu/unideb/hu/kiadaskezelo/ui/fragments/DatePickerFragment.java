@@ -21,7 +21,7 @@ public class DatePickerFragment extends DialogFragment
 
 
     private String formattedDate;
-    private int viewId;
+    private Button dateButton;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -43,14 +43,17 @@ public class DatePickerFragment extends DialogFragment
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         formattedDate = sdf.format(c.getTime());
-        Button activityButton = (Button)getActivity().findViewById(viewId);
-        activityButton.setText (formattedDate);
+        dateButton.setText (formattedDate);
         Log.d("asd",formattedDate);
     }
 
-    public void setViewId(int id){
-        this.viewId = id;
+
+
+    public void setButton(Button button) {
+        this.dateButton = button;
     }
+
+
 
 
 

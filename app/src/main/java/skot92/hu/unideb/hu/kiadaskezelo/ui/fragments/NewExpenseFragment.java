@@ -167,7 +167,7 @@ public class NewExpenseFragment extends ListFragment{
             @Override
             public void onClick(View v) {
                 picker = new DatePickerFragment();
-                picker.setViewId(expenseDate.getId());
+                picker.setButton(expenseDate);
                 picker.show(getFragmentManager(), "datePicker");
             }
         });

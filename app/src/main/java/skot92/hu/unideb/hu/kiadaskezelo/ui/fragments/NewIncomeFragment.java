@@ -51,7 +51,8 @@ public class NewIncomeFragment extends Fragment  {
         mPickDate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 picker = new DatePickerFragment();
-                picker.setViewId(mPickDate.getId());
+                //picker.setViewId(mPickDate.getId());
+                picker.setButton(mPickDate);
                 picker.show(getFragmentManager(), "datePicker");
             }
         });
