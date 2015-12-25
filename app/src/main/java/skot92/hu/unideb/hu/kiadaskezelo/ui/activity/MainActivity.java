@@ -15,7 +15,7 @@ import java.util.List;
 import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.NewExpenseFragment;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.NewIncomeFragment;
-import skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.DiagramsFragment;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.ViewAllExpenseOrIncomeFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new NewExpenseFragment(), "Új kiadás");
         adapter.addFrag(new NewIncomeFragment(), "Új bevétel");
-        adapter.addFrag(new DiagramsFragment(), "Diagramok");
+        adapter.addFrag(new ViewAllExpenseOrIncomeFragment(), "Diagramok");
         viewPager.setAdapter(adapter);
     }
 
