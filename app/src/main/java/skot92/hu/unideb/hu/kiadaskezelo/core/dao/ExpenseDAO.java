@@ -37,7 +37,7 @@ public class ExpenseDAO extends AppDBDAO{
         super.open();
         ContentValues values = new ContentValues();
         values.put(ExpenseTable.EXPENSE_AMOUNT, sum);
-        long expense_id = database.update(ExpenseTable.TABLE_NAME,values,"id=" + id, null);
+        long expense_id = database.update(ExpenseTable.TABLE_NAME, values, "id=" + id, null);
         super.close();
         return  expense_id;
     }
@@ -67,5 +67,19 @@ public class ExpenseDAO extends AppDBDAO{
         c.close();
         super.close();
         return  expenses;
+    }
+
+    public int getSumAmount() {
+        super.open();
+        Cursor c = database.query(ExpenseTable.TABLE_NAME,new String[]{
+                        "SUM( " + ExpenseTable.EXPENSE_AMOUNT + " )"},
+                null, null, null, null, null);
+
+        if(c.moveToFirst()) {
+            return c.getInt(0);
+        }
+        c.close();
+        super.close();
+        return  -1;
     }
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="157dp"
+        android:layout_height="wrap_content"
+        android:text="Összes kiadás"
+        android:id="@+id/txSumExpense"
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="91dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Összes bevétel"
+        android:id="@+id/txSumInComes"
+        android:layout_below="@+id/txSumExpense"
+        android:textSize="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="58dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/txAllExpense"
+        android:layout_alignTop="@+id/txSumExpense"
+        android:layout_toRightOf="@+id/txSumExpense"
+        android:layout_above="@+id/txSumInComes" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/txAllInComes"
+        android:layout_alignTop="@+id/txSumInComes"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

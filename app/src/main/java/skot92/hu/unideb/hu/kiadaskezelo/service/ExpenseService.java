@@ -33,4 +33,6 @@ public class ExpenseService {
     public List<ExpenseEntity> findAll() {
        return expenseDAO.getAll();
     }
+
+    public int getSumAmount(){ return  expenseDAO.getSumAmount(); }
 }
