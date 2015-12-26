@@ -3,8 +3,10 @@ package skot92.hu.unideb.hu.kiadaskezelo.service;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import skot92.hu.unideb.hu.kiadaskezelo.core.dao.ExpenseDAO;
@@ -27,7 +29,7 @@ public class ExpenseService {
     }
 
     public long update (int sum, long id) {
-        return expenseDAO.update(sum,id);
+        return expenseDAO.update(sum, id);
     }
 
     public List<ExpenseEntity> findAll() {
@@ -35,4 +37,8 @@ public class ExpenseService {
     }
 
     public int getSumAmount(){ return  expenseDAO.getSumAmount(); }
+
+    public int getSumAmountByDate(String fromDate) {
+        return  expenseDAO.getSumAmountByDate(fromDate);
+    }
 }

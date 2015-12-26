@@ -7,24 +7,24 @@
     <TextView
         android:layout_width="157dp"
         android:layout_height="wrap_content"
-        android:text="Összes kiadás"
+        android:text="Összes kiadás:"
         android:id="@+id/txSumExpense"
         android:textSize="20dp"
+        android:layout_marginTop="46dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="91dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Összes bevétel"
+        android:text="Összes bevétel:"
         android:id="@+id/txSumInComes"
-        android:layout_below="@+id/txSumExpense"
         android:textSize="20dp"
+        android:layout_below="@+id/txSumExpense"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="58dp" />
+        android:layout_marginTop="40dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -42,4 +42,54 @@
         android:id="@+id/txAllInComes"
         android:layout_alignTop="@+id/txSumInComes"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Elmúlt 30 nap"
+        android:textSize="20dp"
+        android:id="@+id/txLast30Days"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kiadás:"
+        android:textSize="20dp"
+        android:id="@+id/textView"
+        android:layout_below="@+id/txLast30Days"
+        android:layout_alignRight="@+id/txLast30Days"
+        android:layout_alignEnd="@+id/txLast30Days"
+        android:layout_marginTop="44dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bevétel:"
+        android:textSize="20dp"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/txLast30DayExpense"
+        android:layout_above="@+id/textView2"
+        android:layout_alignLeft="@+id/txAllInComes"
+        android:layout_alignStart="@+id/txAllInComes" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/txLast30DayInCome"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignLeft="@+id/txLast30DayExpense"
+        android:layout_alignStart="@+id/txLast30DayExpense" />
+
 </RelativeLayout>
