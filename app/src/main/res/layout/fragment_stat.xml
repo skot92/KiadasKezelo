@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@drawable/background">
 
     <TextView
         android:layout_width="157dp"
@@ -13,7 +14,8 @@
         android:layout_marginTop="46dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@drawable/buttonshape"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,7 +26,8 @@
         android:layout_below="@+id/txSumExpense"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="40dp"
+        android:background="@drawable/buttonshape"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,7 +36,8 @@
         android:id="@+id/txAllExpense"
         android:layout_alignTop="@+id/txSumExpense"
         android:layout_toRightOf="@+id/txSumExpense"
-        android:layout_above="@+id/txSumInComes" />
+        android:layout_above="@+id/txSumInComes"
+        android:background="@drawable/buttonshape"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,7 +45,8 @@
         android:text="New Text"
         android:id="@+id/txAllInComes"
         android:layout_alignTop="@+id/txSumInComes"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/buttonshape"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,7 +56,8 @@
         android:id="@+id/txLast30Days"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@drawable/buttonshape"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -62,7 +68,8 @@
         android:layout_below="@+id/txLast30Days"
         android:layout_alignRight="@+id/txLast30Days"
         android:layout_alignEnd="@+id/txLast30Days"
-        android:layout_marginTop="44dp" />
+        android:layout_marginTop="44dp"
+        android:background="@drawable/buttonshape"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -72,7 +79,8 @@
         android:id="@+id/textView2"
         android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView" />
+        android:layout_alignStart="@+id/textView"
+        android:background="@drawable/buttonshape"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -81,7 +89,8 @@
         android:id="@+id/txLast30DayExpense"
         android:layout_above="@+id/textView2"
         android:layout_alignLeft="@+id/txAllInComes"
-        android:layout_alignStart="@+id/txAllInComes" />
+        android:layout_alignStart="@+id/txAllInComes"
+        android:background="@drawable/buttonshape"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -90,6 +99,7 @@
         android:id="@+id/txLast30DayInCome"
         android:layout_alignBottom="@+id/textView2"
         android:layout_alignLeft="@+id/txLast30DayExpense"
-        android:layout_alignStart="@+id/txLast30DayExpense" />
+        android:layout_alignStart="@+id/txLast30DayExpense"
+        android:background="@drawable/buttonshape"/>
 
 </RelativeLayout>
