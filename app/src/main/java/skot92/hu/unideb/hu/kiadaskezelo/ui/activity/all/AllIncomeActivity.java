@@ -1,6 +1,8 @@
 package skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -44,7 +46,7 @@ public class AllIncomeActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(),""+i,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "" + i, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -53,34 +55,48 @@ public class AllIncomeActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        AllIncomeAdapter adapter;
 
 
-        switch (item.getItemId())
-        {
-            case R.id.income_sort_by_amount:
-                adapter = new AllIncomeAdapter(this, inComeService.findInComes("amount"));
-                adapter.notifyDataSetChanged();
-                lv.setAdapter(adapter);
+
+        switch (item.getItemId()) {
+
+            case R.id.income_order_by:
+                AlertDialog.Builder builder = new AlertDialog.Builder(AllIncomeActivity.this);
+                builder.setTitle("Order by:");
+                builder.setItems(new CharSequence[]
+                                {"Amount", "Date", "Name"},
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // The 'which' argument contains the index position
+                                // of the selected item
+                                AllIncomeAdapter adapter;
+                                switch (which) {
+                                    case 0:
+                                        adapter = new AllIncomeAdapter(AllIncomeActivity.this, inComeService.findInComes("amount"));
+                                        adapter.notifyDataSetChanged();
+                                        lv.setAdapter(adapter);
+                                        break;
+                                    case 1:
+                                        adapter = new AllIncomeAdapter(AllIncomeActivity.this, inComeService.findInComes("date"));
+                                        adapter.notifyDataSetChanged();
+                                        lv.setAdapter(adapter);
+                                        break;
+                                    case 2:
+                                        adapter = new AllIncomeAdapter(AllIncomeActivity.this, inComeService.findInComes("name"));
+                                        adapter.notifyDataSetChanged();
+                                        lv.setAdapter(adapter);
+                                        break;
+                                }
+                            }
+                        });
+                builder.create().show();
                 return true;
-
-            case R.id.income_sort_by_date:
-                adapter = new AllIncomeAdapter(this, inComeService.findInComes("date"));
-                adapter.notifyDataSetChanged();
-                lv.setAdapter(adapter);
-                return true;
-
-            case R.id.income_sort_by_name:
-                adapter = new AllIncomeAdapter(this, inComeService.findInComes("name"));
-                adapter.notifyDataSetChanged();
-                lv.setAdapter(adapter);
-                return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }
