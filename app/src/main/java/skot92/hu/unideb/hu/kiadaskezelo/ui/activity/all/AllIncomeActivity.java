@@ -4,22 +4,15 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import skot92.hu.unideb.hu.kiadaskezelo.R;
-import skot92.hu.unideb.hu.kiadaskezelo.core.entity.InComeEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.service.InComeService;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.Adapter.AllIncomeAdapter;
 
@@ -54,7 +47,7 @@ public class AllIncomeActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.all_incomes, menu);
 
         return true;
     }

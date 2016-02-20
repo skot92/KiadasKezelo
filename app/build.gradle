@@ -22,8 +22,6 @@ android {
         maven { url "https://jitpack.io" }
     }
 
-
-    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/layout/asd'] } }
 }
 
 dependencies {
