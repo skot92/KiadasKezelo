@@ -30,17 +30,17 @@ public class InComeDAOTest extends AndroidTestCase {
         for (Map.Entry<String, Integer> entry : incomes.entrySet()) {
             logger.info(entry.getKey() + ": " + entry.getValue());
             System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue());
-            Log.i("info",entry.getKey() + ": " + entry.getValue());
+            Log.i("info", entry.getKey() + ": " + entry.getValue());
         }
     }
 
 
     public void getInComeGroubByNameTest() {
-       List<InComeEntity> incomes = inComeDAO.getInComeGroubByName();
-        for (InComeEntity in: incomes) {
-            Log.d("asd",in.getDate());
-            Log.i("asd",in.getName());
-            Log.i("",Integer.toString(in.getAmount()));
+        List<InComeEntity> incomes = inComeDAO.getInComeGroubByName();
+        for (InComeEntity in : incomes) {
+            Log.d("asd", in.getDate());
+            Log.i("asd", in.getName());
+            Log.i("", Integer.toString(in.getAmount()));
         }
     }
 }

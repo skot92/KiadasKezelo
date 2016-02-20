@@ -30,13 +30,7 @@ public class InComeService {
     }
 
 
-    public List<String> getInComeNamesGroupByNames() {
-        return inComeDAO.getInComeNamesGroupByNames();
-    }
 
-    public List<String> findInComeNames() {
-        return inComeDAO.getInComeNames();
-    }
 
     public List<InComeEntity> findInComes(String orderBy) {
         if(descOrAsc.equals("ASC")) {
@@ -49,14 +43,6 @@ public class InComeService {
         }
     }
 
-
-    public Map<String, Integer> findAmountGroupByDate() {
-        return  inComeDAO.findAmountGroupByDate();
-    }
-
-    public List<InComeEntity>getInComeGroubByName(){
-        return inComeDAO.getInComeGroubByName();
-    }
 
 
 }

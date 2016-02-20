@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.TextView;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class AllIncomeAdapter extends ArrayAdapter<InComeEntity> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        InComeEntity user = getItem(position);
+        InComeEntity income = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_all_income, parent, false);
@@ -38,10 +39,15 @@ public class AllIncomeAdapter extends ArrayAdapter<InComeEntity> {
         TextView date = (TextView) convertView.findViewById(R.id.incomeDate);
         TextView name = (TextView) convertView.findViewById(R.id.incomeName);
         // Populate the data into the template view using the data object
-        amount.setText(String.valueOf(user.getAmount()));
-        date.setText(user.getDate());
-        name.setText(user.getName());
+        amount.setText(String.valueOf(income.getAmount()));
+        date.setText(income.getDate());
+        name.setText(income.getName());
         // Return the completed view to render on screen
         return convertView;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return super.getFilter();
     }
 }

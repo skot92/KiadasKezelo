@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
+import skot92.hu.unideb.hu.kiadaskezelo.core.helper.InComeTable;
 import skot92.hu.unideb.hu.kiadaskezelo.service.InComeService;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.Adapter.AllIncomeAdapter;
 
@@ -56,7 +57,6 @@ public class AllIncomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
 
-
         switch (item.getItemId()) {
 
             case R.id.income_order_by:
@@ -71,17 +71,20 @@ public class AllIncomeActivity extends AppCompatActivity {
                                 AllIncomeAdapter adapter;
                                 switch (which) {
                                     case 0:
-                                        adapter = new AllIncomeAdapter(AllIncomeActivity.this, inComeService.findInComes("amount"));
+                                        adapter = new AllIncomeAdapter(AllIncomeActivity.this,
+                                                inComeService.findInComes(InComeTable.IN_COME_AMOUNT));
                                         adapter.notifyDataSetChanged();
                                         lv.setAdapter(adapter);
                                         break;
                                     case 1:
-                                        adapter = new AllIncomeAdapter(AllIncomeActivity.this, inComeService.findInComes("date"));
+                                        adapter = new AllIncomeAdapter(AllIncomeActivity.this,
+                                                inComeService.findInComes(InComeTable.IN_COME_DATE));
                                         adapter.notifyDataSetChanged();
                                         lv.setAdapter(adapter);
                                         break;
                                     case 2:
-                                        adapter = new AllIncomeAdapter(AllIncomeActivity.this, inComeService.findInComes("name"));
+                                        adapter = new AllIncomeAdapter(AllIncomeActivity.this,
+                                                inComeService.findInComes(InComeTable.IN_COME_NAME));
                                         adapter.notifyDataSetChanged();
                                         lv.setAdapter(adapter);
                                         break;

@@ -6,6 +6,13 @@
     android:background="@drawable/background">
 
 
+    <EditText
+        android:id="@+id/income_search"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+        <requestFocus />
+    </EditText>
+
 
     <!-- List View -->
     <ListView

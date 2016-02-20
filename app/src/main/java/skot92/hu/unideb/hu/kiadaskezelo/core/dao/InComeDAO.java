@@ -42,58 +42,19 @@ public class InComeDAO extends AppDBDAO {
 
     }
 
-    public List<String> getInComeNamesGroupByNames() {
-        super.open();
-        List<String> names = new ArrayList<String>();
-        Cursor cursor = database.query(InComeTable.TABLE_NAME,
-                new String[]{InComeTable.IN_COME_NAME}, null, null, InComeTable.IN_COME_NAME, null, null);
-        while (cursor.moveToNext()) {
-            String name = cursor.getString(cursor.getColumnIndex(InComeTable.IN_COME_NAME));
-            names.add(name);
-        }
-        cursor.close();
-        super.close();
-        return names;
-    }
-
-    public List<String> getInComeNames() {
-        super.open();
-        List<String> names = new ArrayList<String>();
-        Cursor cursor = database.query(InComeTable.TABLE_NAME,
-                new String[]{InComeTable.IN_COME_NAME}, null, null, null, null, null);
-        while (cursor.moveToNext()) {
-            String name = cursor.getString(cursor.getColumnIndex(InComeTable.IN_COME_NAME));
-            names.add(name);
-        }
-        cursor.close();
-        super.close();
-        return names;
-    }
-
     public List<InComeEntity> getInCome(String orderBy, String descOrAsc) {
         super.open();
         Cursor cursor;
 
-        switch (orderBy) {
-            case "name":
-                cursor = database.query(InComeTable.TABLE_NAME, new String[]{
-                        InComeTable.IN_COME_AMOUNT, InComeTable.IN_COME_DATE,
-                        InComeTable.IN_COME_NAME, InComeTable.IN_COME_ID}, null, null, null, null, InComeTable.IN_COME_NAME + " " + descOrAsc);
-                break;
-            case "date":
-                cursor = database.query(InComeTable.TABLE_NAME, new String[]{
-                        InComeTable.IN_COME_AMOUNT, InComeTable.IN_COME_DATE,
-                        InComeTable.IN_COME_NAME, InComeTable.IN_COME_ID}, null, null, null, null, InComeTable.IN_COME_DATE + " " + descOrAsc);
-                break;
-            case "amount":
-                cursor = database.query(InComeTable.TABLE_NAME, new String[]{
-                        InComeTable.IN_COME_AMOUNT, InComeTable.IN_COME_DATE,
-                        InComeTable.IN_COME_NAME, InComeTable.IN_COME_ID}, null, null, null, null, InComeTable.IN_COME_AMOUNT + " " + descOrAsc);
-                break;
-            default:
-                cursor = database.query(InComeTable.TABLE_NAME, new String[]{
-                        InComeTable.IN_COME_AMOUNT, InComeTable.IN_COME_DATE,
-                        InComeTable.IN_COME_NAME, InComeTable.IN_COME_ID}, null, null, null, null, null);
+        if (orderBy.equals("")) {
+            cursor = database.query(InComeTable.TABLE_NAME, new String[]{
+                    InComeTable.IN_COME_AMOUNT, InComeTable.IN_COME_DATE,
+                    InComeTable.IN_COME_NAME, InComeTable.IN_COME_ID}, null, null, null, null, null);
+        } else {
+            cursor = database.query(InComeTable.TABLE_NAME, new String[]{
+                            InComeTable.IN_COME_AMOUNT, InComeTable.IN_COME_DATE,
+                            InComeTable.IN_COME_NAME, InComeTable.IN_COME_ID}, null, null, null, null,
+                            orderBy + " " + descOrAsc);
         }
 
 
