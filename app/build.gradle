@@ -23,7 +23,7 @@ android {
     }
 
 
-    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/layout/asd'] } }
+    sourceSets { main { res.srcDirs = ['src/all_incomes/res', 'src/all_incomes/res/layout/asd'] } }
 }
 
 dependencies {
