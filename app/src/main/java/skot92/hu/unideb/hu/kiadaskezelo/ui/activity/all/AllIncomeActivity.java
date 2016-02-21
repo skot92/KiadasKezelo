@@ -4,6 +4,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,8 +22,7 @@ import skot92.hu.unideb.hu.kiadaskezelo.ui.Adapter.AllIncomeAdapter;
 public class AllIncomeActivity extends AppCompatActivity {
 
     private ListView lv;
-    EditText inputSearch;
-    InComeService inComeService;
+    private InComeService inComeService;
 
 
     @Override
@@ -32,9 +33,8 @@ public class AllIncomeActivity extends AppCompatActivity {
         inComeService = new InComeService(getApplicationContext());
 
         lv = (ListView) findViewById(R.id.list_view);
-        inputSearch = (EditText) findViewById(R.id.inputSearch);
 
-        AllIncomeAdapter adapter = new AllIncomeAdapter(this, inComeService.findInComes(""));
+        final AllIncomeAdapter adapter = new AllIncomeAdapter(this, inComeService.findInComes(""));
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -43,7 +43,9 @@ public class AllIncomeActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "" + i, Toast.LENGTH_SHORT).show();
             }
         });
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,9 +63,9 @@ public class AllIncomeActivity extends AppCompatActivity {
 
             case R.id.income_order_by:
                 AlertDialog.Builder builder = new AlertDialog.Builder(AllIncomeActivity.this);
-                builder.setTitle("Order by:");
+                builder.setTitle(getString(R.string.order_by));
                 builder.setItems(new CharSequence[]
-                                {"Amount", "Date", "Name"},
+                                {getString(R.string.amount), getString(R.string.date), getString(R.string.name)},
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // The 'which' argument contains the index position

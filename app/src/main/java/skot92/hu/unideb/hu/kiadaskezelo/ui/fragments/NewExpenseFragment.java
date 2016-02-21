@@ -95,7 +95,7 @@ public class NewExpenseFragment extends ListFragment{
 
 
     public void onCreateNewItemDetailsDialog() {
-        Context context = getContext();
+        final Context context = getContext();
         LayoutInflater li = LayoutInflater.from(context);
         View promptsView = li.inflate(R.layout.dialog_new_item_details, null);
 
@@ -115,24 +115,32 @@ public class NewExpenseFragment extends ListFragment{
         // set dialog message
         alertDialogBuilder
                 .setCancelable(false)
-                .setPositiveButton("OK",
+                .setPositiveButton(R.string.ok,
                         new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                String name = itemName.getText().toString();
-                                String description = itemDescreption.getText().toString();
-                                int amount = Integer.parseInt(itemAmount.getText().toString());
-                                ExpenseDetailsEntity detail = new ExpenseDetailsEntity();
-                                detail.setName(name);
-                                detail.setDescription(description);
-                                detail.setAmount(amount);
-                                detailsList.add(detail);
-                                values.add(detail.getName());
-                                adapter.notifyDataSetChanged();
+                            public void onClick(DialogInterface dialog, int id) {
+                                try {
+                                    String name = itemName.getText().toString();
+                                    String description = itemDescreption.getText().toString();
+                                    int amount = Integer.parseInt(itemAmount.getText().toString());
+                                    if (name.equals("") || description.equals("")) {
+                                        throw new Exception(context.getString(R.string.error_no_filled));
+                                    }
+                                    ExpenseDetailsEntity detail = new ExpenseDetailsEntity();
+                                    detail.setName(name);
+                                    detail.setDescription(description);
+                                    detail.setAmount(amount);
+                                    detailsList.add(detail);
+                                    values.add(detail.getName());
+                                    adapter.notifyDataSetChanged();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                    Toast.makeText(getContext(), R.string.is_not_add, Toast.LENGTH_SHORT).show();
+                                }
                             }
                         })
-                .setNegativeButton("Cancel",
+                .setNegativeButton( getString(R.string.cancel),
                         new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
+                            public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
                             }
                         });
@@ -170,15 +178,15 @@ public class NewExpenseFragment extends ListFragment{
 
         alertDialogBuilder
                 .setCancelable(false)
-                .setPositiveButton("OK",
+                .setPositiveButton(getString(R.string.ok),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
                                 saveExpense();
                                 adapter.clear();
-                                Toast.makeText(getContext(), "Sikeres mentés", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), R.string.succes_save, Toast.LENGTH_SHORT).show();
                             }
                         })
-                .setNegativeButton("Cancel",
+                .setNegativeButton(R.string.cancel,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
@@ -195,6 +203,7 @@ public class NewExpenseFragment extends ListFragment{
         expenseEntity.setAmount(0);
         expenseEntity.setName(expenseName.getText().toString());
         expenseEntity.setDate(expenseDate.getText().toString());
+
 
         Long id = expenseService.save(expenseEntity);
 

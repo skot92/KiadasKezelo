@@ -55,10 +55,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new NewExpenseFragment(), "Új kiadás");
-        adapter.addFrag(new NewIncomeFragment(), "Új bevétel");
-        adapter.addFrag(new ViewAllExpenseOrIncomeFragment(), "Megtekintés");
-        adapter.addFrag(new StatFragment(), "Statisztika");
+        adapter.addFrag(new NewExpenseFragment(), getString(R.string.new_expense));
+        adapter.addFrag(new NewIncomeFragment(), getString(R.string.new_income));
+        adapter.addFrag(new ViewAllExpenseOrIncomeFragment(), getString(R.string.view));
+        adapter.addFrag(new StatFragment(), getString(R.string.stat));
         viewPager.setAdapter(adapter);
     }
 

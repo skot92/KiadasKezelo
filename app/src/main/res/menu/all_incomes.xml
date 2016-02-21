@@ -3,6 +3,6 @@
 
     <item
         android:id="@+id/income_order_by"
-        android:title="Oreder by" />
+        android:title="@string/order_by" />
 
 </menu>

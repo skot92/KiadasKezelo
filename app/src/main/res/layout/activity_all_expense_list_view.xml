@@ -6,13 +6,6 @@
     android:background="@drawable/background"
     android:focusableInTouchMode="true">
 
-    <EditText android:id="@+id/inputSearch"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:hint="Search products.."
-        android:inputType="text"
-       />
-
 
     <ExpandableListView
         android:id="@+id/listView"

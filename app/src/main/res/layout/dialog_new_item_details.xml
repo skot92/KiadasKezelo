@@ -12,14 +12,14 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:hint="Név"
+        android:hint="@string/name"
         android:background="@drawable/buttonshape"/>
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/eTDetailsDescrption"
-        android:hint="Leírás"
+        android:hint="@string/descreption"
         android:layout_below="@+id/eTDetailsName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -31,7 +31,7 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/eTdetailsAmount"
-        android:hint="Összeg"
+        android:hint="@string/sum"
         android:layout_below="@+id/eTDetailsDescrption"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

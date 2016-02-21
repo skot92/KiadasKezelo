@@ -37,7 +37,7 @@ public class AllExpenseActivity extends AppCompatActivity{
     private ExpenseService expenseService;
     private ExpenseDetailsService expenseDetailsService;
     private List<ExpenseEntity> expenses;
-    EditText inputSearch;
+
     private MyExpandableListAdapter adapter;
 
     @Override
@@ -50,7 +50,6 @@ public class AllExpenseActivity extends AppCompatActivity{
         expenseService = new ExpenseService(getApplicationContext());
         createData();
 
-        inputSearch = (EditText) findViewById(R.id.inputSearch);
 
         ExpandableListView listView = (ExpandableListView) findViewById(R.id.listView);
         adapter = new MyExpandableListAdapter(this,

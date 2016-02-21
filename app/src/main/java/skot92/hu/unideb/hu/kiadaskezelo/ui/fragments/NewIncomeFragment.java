@@ -58,13 +58,16 @@ public class NewIncomeFragment extends Fragment  {
                     income.setName(etName.getText().toString());
                     income.setAmount(Integer.parseInt(etPrice.getText().toString()));
                     if (income.getName().equals("")) {
-                        throw new Exception("nincs nev");
+                        throw new Exception(getString(R.string.no_name));
+                    }
+                    if(income.getDate().equals(getString(R.string.choose_date))){
+                        throw new Exception(getString(R.string.no_date));
                     }
                     inComeService.save(income);
-                    Toast.makeText(getContext(), "Sikeres mentés", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),getString(R.string.succes_save), Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(), "Nem sikerült lementeni", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.faliled_save, Toast.LENGTH_SHORT).show();
                 }
             }
         });
