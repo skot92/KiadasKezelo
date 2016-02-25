@@ -25,7 +25,7 @@ import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.service.ExpenseService;
 
 
-public class NewExpenseFragment extends ListFragment{
+public class NewExpenseFragment extends ListFragment {
 
     private Button btnNewItem;
     private Button btnSaveExpense;
@@ -48,14 +48,13 @@ public class NewExpenseFragment extends ListFragment{
     ExpenseService expenseService;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         myFragmentView = inflater.inflate(R.layout.fragment_new_expense, container, false);
-        btnNewItem = (Button)myFragmentView.findViewById(R.id.btnAddNewItem);
-        btnSaveExpense = (Button)myFragmentView.findViewById(R.id.btnSaveExpense);
+        btnNewItem = (Button) myFragmentView.findViewById(R.id.btnAddNewItem);
+        btnSaveExpense = (Button) myFragmentView.findViewById(R.id.btnSaveExpense);
         controll();
 
         return myFragmentView;
@@ -138,7 +137,7 @@ public class NewExpenseFragment extends ListFragment{
                                 }
                             }
                         })
-                .setNegativeButton( getString(R.string.cancel),
+                .setNegativeButton(getString(R.string.cancel),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
@@ -180,10 +179,16 @@ public class NewExpenseFragment extends ListFragment{
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.ok),
                         new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                saveExpense();
+                            public void onClick(DialogInterface dialog, int id) {
+                                try {
+                                    saveExpense();
+                                    Toast.makeText(getContext(), R.string.succes_save, Toast.LENGTH_SHORT).show();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                    Toast.makeText(getContext(), R.string.faliled_save, Toast.LENGTH_SHORT).show();
+                                }
+
                                 adapter.clear();
-                                Toast.makeText(getContext(), R.string.succes_save, Toast.LENGTH_SHORT).show();
                             }
                         })
                 .setNegativeButton(R.string.cancel,
@@ -198,17 +203,23 @@ public class NewExpenseFragment extends ListFragment{
     }
 
 
-  public void saveExpense() {
+    public void saveExpense() throws Exception {
+        Long id = null;
         ExpenseEntity expenseEntity = new ExpenseEntity();
         expenseEntity.setAmount(0);
         expenseEntity.setName(expenseName.getText().toString());
         expenseEntity.setDate(expenseDate.getText().toString());
 
 
-        Long id = expenseService.save(expenseEntity);
-
+        if (expenseEntity.getName().equals("")) {
+            throw new Exception("Nincs nev");
+        }
+        if (expenseEntity.getDate().equals("Dátum")) {
+            throw new Exception("Nincs datum");
+        }
+        id = expenseService.save(expenseEntity);
         ExpenseDetailsDAO expenseDetailsDAO = new ExpenseDetailsDAO(getContext());
-        int sum =  expenseDetailsDAO.save(detailsList,id);
+        int sum = expenseDetailsDAO.save(detailsList, id);
 
         sum = -sum;
         expenseService.update(sum, id);
@@ -219,5 +230,6 @@ public class NewExpenseFragment extends ListFragment{
         balanceEntity.setType("expense");
         balanceEntity.setAmount(sum);
         balanceDAO.save(balanceEntity);
+
     }
 }
