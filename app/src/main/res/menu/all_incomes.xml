@@ -5,4 +5,8 @@
         android:id="@+id/income_order_by"
         android:title="@string/order_by" />
 
+    <item
+        android:id="@+id/income_where"
+        android:title="@string/search" />
+
 </menu>

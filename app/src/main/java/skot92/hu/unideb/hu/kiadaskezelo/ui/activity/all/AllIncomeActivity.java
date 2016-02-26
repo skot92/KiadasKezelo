@@ -1,23 +1,25 @@
 package skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.core.helper.InComeTable;
 import skot92.hu.unideb.hu.kiadaskezelo.service.InComeService;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.Adapter.AllIncomeAdapter;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.dialogs.AllIncomesSearchDialog;
 
 public class AllIncomeActivity extends AppCompatActivity {
 
@@ -58,18 +60,15 @@ public class AllIncomeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-
+        AlertDialog.Builder builder = null;
         switch (item.getItemId()) {
-
             case R.id.income_order_by:
-                AlertDialog.Builder builder = new AlertDialog.Builder(AllIncomeActivity.this);
+                builder = new AlertDialog.Builder(AllIncomeActivity.this);
                 builder.setTitle(getString(R.string.order_by));
                 builder.setItems(new CharSequence[]
                                 {getString(R.string.amount), getString(R.string.date), getString(R.string.name)},
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                // The 'which' argument contains the index position
-                                // of the selected item
                                 AllIncomeAdapter adapter;
                                 switch (which) {
                                     case 0:
@@ -94,6 +93,20 @@ public class AllIncomeActivity extends AppCompatActivity {
                             }
                         });
                 builder.create().show();
+                return true;
+            case R.id.income_where:
+                builder = new AlertDialog.Builder(AllIncomeActivity.this);
+                builder.setTitle(getString(R.string.order_by));
+                builder.setItems(new CharSequence[]
+                                {getString(R.string.amount), getString(R.string.date), getString(R.string.name)},
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                AllIncomesSearchDialog cdd = new AllIncomesSearchDialog(AllIncomeActivity.this);
+                                cdd.show();
+                            }
+                        });
+                builder.create().show();
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

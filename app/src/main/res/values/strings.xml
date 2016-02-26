@@ -39,4 +39,5 @@
     <string name="price">Ár</string>
     <string name="save">Mentés</string>
     <string name="new_item">Új termék</string>
+    <string name="search">Keresés</string>
 </resources>
