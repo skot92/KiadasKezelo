@@ -40,7 +40,7 @@
     <string name="save">Mentés</string>
     <string name="new_item">Új termék</string>
     <string name="search">Keresés</string>
-    <string name="no_select_ralation">Nincs kiválasztva reálció!</string>
+    <string name="no_select_ralation_or_amount">Nincs kiválasztva reálció vagy az összeg!</string>
     <string name="income_search_from_sum">Bevétel keresése összeg szerint</string>
     <string name="gt">Nagyobb</string>
     <string name="lt">Kisebb</string>

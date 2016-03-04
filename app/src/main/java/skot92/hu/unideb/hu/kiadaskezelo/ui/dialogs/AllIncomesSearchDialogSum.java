@@ -45,15 +45,6 @@ public class AllIncomesSearchDialogSum extends Dialog{
     }
 
 
-    public int getSum() {
-        return Integer.parseInt(sum.getText().toString());
-    }
-
-    public String getSelectedRadioButton() {
-        return radioButton.getText().toString();
-    }
-
-
     public void addListenerOnButton() {
 
         radioSexGroup = (RadioGroup) findViewById(R.id.radioSex);
@@ -66,6 +57,9 @@ public class AllIncomesSearchDialogSum extends Dialog{
 
                 try {
                     radioButton = (RadioButton) findViewById(selectedId);
+                    if(sum.getText().toString().equals("")) {
+                        throw  new NullPointerException("sum is null");
+                    }
                     InComeService inComeService = new InComeService(AllIncomesSearchDialogSum.this.getContext());
                     AllIncomeAdapter adapter = new AllIncomeAdapter(AllIncomesSearchDialogSum.this.getContext(),
                             inComeService.findInComesSearch(radioButton.getText().toString(),sum.getText().toString()));
@@ -76,7 +70,7 @@ public class AllIncomesSearchDialogSum extends Dialog{
 
                 } catch (NullPointerException e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(), R.string.no_select_ralation,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.no_select_ralation_or_amount,Toast.LENGTH_SHORT).show();
                 }
 
             }
