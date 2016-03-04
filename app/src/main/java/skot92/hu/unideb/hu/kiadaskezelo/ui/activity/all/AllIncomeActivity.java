@@ -1,31 +1,36 @@
 package skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.core.helper.InComeTable;
 import skot92.hu.unideb.hu.kiadaskezelo.service.InComeService;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.Adapter.AllIncomeAdapter;
-import skot92.hu.unideb.hu.kiadaskezelo.ui.dialogs.AllIncomesSearchDialog;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.dialogs.AllIncomesSearchDialogSum;
 
 public class AllIncomeActivity extends AppCompatActivity {
 
-    private ListView lv;
+    public static ListView lv;
     private InComeService inComeService;
 
+
+    public static ListView getLv() {
+        return lv;
+    }
+
+    public static void setLv(ListView lv) {
+        AllIncomeActivity.lv = lv;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -96,13 +101,22 @@ public class AllIncomeActivity extends AppCompatActivity {
                 return true;
             case R.id.income_where:
                 builder = new AlertDialog.Builder(AllIncomeActivity.this);
-                builder.setTitle(getString(R.string.order_by));
+                builder.setTitle(getString(R.string.search));
                 builder.setItems(new CharSequence[]
                                 {getString(R.string.amount), getString(R.string.date), getString(R.string.name)},
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                AllIncomesSearchDialog cdd = new AllIncomesSearchDialog(AllIncomeActivity.this);
-                                cdd.show();
+                                switch (which) {
+                                    case 0:
+                                        AllIncomesSearchDialogSum cdd = new AllIncomesSearchDialogSum(AllIncomeActivity.this);
+                                        cdd.show();
+                                        Log.d("asd","asd");
+                                        break;
+                                    case 1:
+                                        break;
+                                    case 2:
+                                        break;
+                                }
                             }
                         });
                 builder.create().show();

@@ -73,39 +73,25 @@ public class InComeDAO extends AppDBDAO {
     }
 
 
-    public Map<String, Integer> findAmountGroupByDate() {
+    public List<InComeEntity> findInComesSearch(String searchBy, String sum) {
         super.open();
-        Map<String, Integer> res = new HashMap<>();
-        Cursor cursor = database.query(InComeTable.TABLE_NAME, new String[]{"sum( " +
-                        InComeTable.IN_COME_AMOUNT + ")", InComeTable.IN_COME_DATE},
-                null, null, InComeTable.IN_COME_DATE, null, null);
-        while (cursor.moveToNext()) {
-            int amount = cursor.getInt(0);
-            String date = cursor.getString(1);
-            res.put(date, amount);
-        }
-        cursor.close();
-        super.close();
-        return res;
-    }
-
-    public List<InComeEntity> getInComeGroubByName() {
-        super.open();
-        Cursor cursor = database.query(InComeTable.TABLE_NAME, new String[]{"sum( " +
-                        InComeTable.IN_COME_AMOUNT + ")", InComeTable.IN_COME_NAME},
-                null, null, InComeTable.IN_COME_NAME, null, null);
+        Cursor cursor;
+        cursor = database.query(InComeTable.TABLE_NAME, new String[]{
+                        InComeTable.IN_COME_AMOUNT, InComeTable.IN_COME_DATE,
+                        InComeTable.IN_COME_NAME, InComeTable.IN_COME_ID},
+                InComeTable.IN_COME_AMOUNT + " " + searchBy  + "?", new String[]{sum}, null, null, null);
 
         List<InComeEntity> inComeEntities = new ArrayList<InComeEntity>();
         while (cursor.moveToNext()) {
             InComeEntity entity = new InComeEntity();
             entity.setName(cursor.getString(cursor.getColumnIndex(InComeTable.IN_COME_NAME)));
-            entity.setAmount(cursor.getInt(0));
+            entity.setDate(cursor.getString(cursor.getColumnIndex(InComeTable.IN_COME_DATE)));
+            entity.setAmount(cursor.getInt(cursor.getColumnIndex(InComeTable.IN_COME_AMOUNT)));
+            entity.setId(cursor.getLong(cursor.getColumnIndex(InComeTable.IN_COME_ID)));
             inComeEntities.add(entity);
         }
         cursor.close();
         super.close();
         return inComeEntities;
     }
-
-
 }

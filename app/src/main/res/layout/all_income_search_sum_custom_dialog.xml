@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:text="Do you realy want to exit ?"
+        android:text="@string/income_search_from_sum"
         android:textColor="@android:color/white"
         android:textSize="15dp"
         android:textStyle="bold" />
@@ -34,20 +34,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Nagyobb" />
+                android:text="@string/gt" />
 
             <RadioButton
                 android:id="@+id/radioLess"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kisebb" />
+                android:text="@string/lt" />
 
             <RadioButton
                 android:id="@+id/radioEqual"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Egyernlő" />
+                android:text="@string/eq" />
         </RadioGroup>
 
 

@@ -2,7 +2,6 @@ package skot92.hu.unideb.hu.kiadaskezelo.ui.dialogs;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -13,11 +12,14 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
+import skot92.hu.unideb.hu.kiadaskezelo.service.InComeService;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.Adapter.AllIncomeAdapter;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllIncomeActivity;
 
 /**
  * Created by skot9 on 2016. 02. 26..
  */
-public class AllIncomesSearchDialog extends Dialog{
+public class AllIncomesSearchDialogSum extends Dialog{
 
     public Activity c;
     public Dialog d;
@@ -27,7 +29,7 @@ public class AllIncomesSearchDialog extends Dialog{
     private EditText sum;
     private Button btnDisplay;
 
-    public AllIncomesSearchDialog(Activity a) {
+    public AllIncomesSearchDialogSum(Activity a) {
         super(a);
         this.c = a;
     }
@@ -36,7 +38,7 @@ public class AllIncomesSearchDialog extends Dialog{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.custom_dialog);
+        setContentView(R.layout.all_income_search_sum_custom_dialog);
         sum = (EditText) findViewById(R.id.dialogSum);
         addListenerOnButton();
 
@@ -62,8 +64,20 @@ public class AllIncomesSearchDialog extends Dialog{
             public void onClick(View v) {
                 int selectedId = radioSexGroup.getCheckedRadioButtonId();
 
-                radioButton = (RadioButton) findViewById(selectedId);
-                Toast.makeText(getContext(),radioButton.getText().toString(),Toast.LENGTH_SHORT).show();
+                try {
+                    radioButton = (RadioButton) findViewById(selectedId);
+                    InComeService inComeService = new InComeService(AllIncomesSearchDialogSum.this.getContext());
+                    AllIncomeAdapter adapter = new AllIncomeAdapter(AllIncomesSearchDialogSum.this.getContext(),
+                            inComeService.findInComesSearch(radioButton.getText().toString(),sum.getText().toString()));
+                    adapter.notifyDataSetChanged();
+                    AllIncomeActivity.lv.setAdapter(adapter);
+
+                    Toast.makeText(getContext(),radioButton.getText().toString(),Toast.LENGTH_SHORT).show();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getContext(), R.string.no_select_ralation,Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

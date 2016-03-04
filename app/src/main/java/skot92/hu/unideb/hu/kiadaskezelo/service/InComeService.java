@@ -1,17 +1,12 @@
 package skot92.hu.unideb.hu.kiadaskezelo.service;
 
 import android.content.Context;
-import android.database.Cursor;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.core.dao.InComeDAO;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.InComeEntity;
-import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
-import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllIncomeActivity;
 
 /**
  * Created by skot9 on 2015. 11. 12..
@@ -30,19 +25,29 @@ public class InComeService {
     }
 
 
-
-
     public List<InComeEntity> findInComes(String orderBy) {
-        if(descOrAsc.equals("ASC")) {
-            descOrAsc="DESC";
+        if (descOrAsc.equals("ASC")) {
+            descOrAsc = "DESC";
             return inComeDAO.getInCome(orderBy, descOrAsc);
-        }
-        else {
-            descOrAsc="ASC";
+        } else {
+            descOrAsc = "ASC";
             return inComeDAO.getInCome(orderBy, descOrAsc);
         }
     }
 
+
+    public List<InComeEntity> findInComesSearch(String searchBy, String sum) {
+        if (searchBy.compareTo("Nagyobb") == 0) {
+            return inComeDAO.findInComesSearch(">", sum);
+        }
+
+        if (searchBy.compareTo("Kisebb") == 0) {
+            return inComeDAO.findInComesSearch("<", sum);
+        }
+
+        return inComeDAO.findInComesSearch("=", sum);
+
+    }
 
 
 }
