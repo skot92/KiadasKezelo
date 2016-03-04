@@ -71,8 +71,9 @@ public class AllIncomesSearchDialogSum extends Dialog{
                             inComeService.findInComesSearch(radioButton.getText().toString(),sum.getText().toString()));
                     adapter.notifyDataSetChanged();
                     AllIncomeActivity.lv.setAdapter(adapter);
-
                     Toast.makeText(getContext(),radioButton.getText().toString(),Toast.LENGTH_SHORT).show();
+                    AllIncomesSearchDialogSum.this.dismiss();
+
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                     Toast.makeText(getContext(), R.string.no_select_ralation,Toast.LENGTH_SHORT).show();
