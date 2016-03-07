@@ -19,7 +19,7 @@ import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllIncomeActivity;
 /**
  * Created by skot9 on 2016. 02. 26..
  */
-public class AllIncomesSearchDialogSum extends Dialog{
+public class AllIncomesSearchDialogAmount extends Dialog{
 
     public Activity c;
     public Dialog d;
@@ -29,7 +29,7 @@ public class AllIncomesSearchDialogSum extends Dialog{
     private EditText sum;
     private Button btnDisplay;
 
-    public AllIncomesSearchDialogSum(Activity a) {
+    public AllIncomesSearchDialogAmount(Activity a) {
         super(a);
         this.c = a;
     }
@@ -38,7 +38,7 @@ public class AllIncomesSearchDialogSum extends Dialog{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.all_income_search_sum_custom_dialog);
+        setContentView(R.layout.all_income_search_amount_custom_dialog);
         sum = (EditText) findViewById(R.id.dialogSum);
         addListenerOnButton();
 
@@ -60,13 +60,13 @@ public class AllIncomesSearchDialogSum extends Dialog{
                     if(sum.getText().toString().equals("")) {
                         throw  new NullPointerException("sum is null");
                     }
-                    InComeService inComeService = new InComeService(AllIncomesSearchDialogSum.this.getContext());
-                    AllIncomeAdapter adapter = new AllIncomeAdapter(AllIncomesSearchDialogSum.this.getContext(),
-                            inComeService.findInComesSearch(radioButton.getText().toString(),sum.getText().toString()));
+                    InComeService inComeService = new InComeService(AllIncomesSearchDialogAmount.this.getContext());
+                    AllIncomeAdapter adapter = new AllIncomeAdapter(AllIncomesSearchDialogAmount.this.getContext(),
+                            inComeService.findInComesSearchByAmount(radioButton.getText().toString(), sum.getText().toString()));
                     adapter.notifyDataSetChanged();
                     AllIncomeActivity.lv.setAdapter(adapter);
                     Toast.makeText(getContext(),radioButton.getText().toString(),Toast.LENGTH_SHORT).show();
-                    AllIncomesSearchDialogSum.this.dismiss();
+                    AllIncomesSearchDialogAmount.this.dismiss();
 
                 } catch (NullPointerException e) {
                     e.printStackTrace();

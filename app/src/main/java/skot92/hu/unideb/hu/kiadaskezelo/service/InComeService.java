@@ -4,7 +4,6 @@ import android.content.Context;
 
 import java.util.List;
 
-import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.core.dao.InComeDAO;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.InComeEntity;
 
@@ -36,16 +35,22 @@ public class InComeService {
     }
 
 
-    public List<InComeEntity> findInComesSearch(String searchBy, String sum) {
+    public List<InComeEntity> findInComesSearchByAmount(String searchBy, String sum) {
         if (searchBy.compareTo("Nagyobb") == 0) {
-            return inComeDAO.findInComesSearch(">", sum);
+            return inComeDAO.findInComesSearchByAmount(">", sum);
         }
 
         if (searchBy.compareTo("Kisebb") == 0) {
-            return inComeDAO.findInComesSearch("<", sum);
+            return inComeDAO.findInComesSearchByAmount("<", sum);
         }
 
-        return inComeDAO.findInComesSearch("=", sum);
+        return inComeDAO.findInComesSearchByAmount("=", sum);
+
+    }
+
+    public List<InComeEntity> findInComesSearchByName(String name) {
+
+        return inComeDAO.findInComesSearchByName(name);
 
     }
 

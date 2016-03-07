@@ -45,4 +45,8 @@
     <string name="gt">Nagyobb</string>
     <string name="lt">Kisebb</string>
     <string name="eq">Egyernlő</string>
+    <string name="older">Régebbi</string>
+    <string name="newer">Újabb</string>
+    <string name="on_time">Pontosan ekkor</string>
+    <string name="included">Tartlmazza</string>
 </resources>

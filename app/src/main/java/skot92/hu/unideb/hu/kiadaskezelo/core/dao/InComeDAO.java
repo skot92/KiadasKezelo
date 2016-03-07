@@ -73,13 +73,35 @@ public class InComeDAO extends AppDBDAO {
     }
 
 
-    public List<InComeEntity> findInComesSearch(String searchBy, String sum) {
+    public List<InComeEntity> findInComesSearchByAmount(String searchBy, String sum) {
         super.open();
         Cursor cursor;
         cursor = database.query(InComeTable.TABLE_NAME, new String[]{
                         InComeTable.IN_COME_AMOUNT, InComeTable.IN_COME_DATE,
                         InComeTable.IN_COME_NAME, InComeTable.IN_COME_ID},
                 InComeTable.IN_COME_AMOUNT + " " + searchBy  + "?", new String[]{sum}, null, null, null);
+
+        List<InComeEntity> inComeEntities = new ArrayList<InComeEntity>();
+        while (cursor.moveToNext()) {
+            InComeEntity entity = new InComeEntity();
+            entity.setName(cursor.getString(cursor.getColumnIndex(InComeTable.IN_COME_NAME)));
+            entity.setDate(cursor.getString(cursor.getColumnIndex(InComeTable.IN_COME_DATE)));
+            entity.setAmount(cursor.getInt(cursor.getColumnIndex(InComeTable.IN_COME_AMOUNT)));
+            entity.setId(cursor.getLong(cursor.getColumnIndex(InComeTable.IN_COME_ID)));
+            inComeEntities.add(entity);
+        }
+        cursor.close();
+        super.close();
+        return inComeEntities;
+    }
+
+    public List<InComeEntity> findInComesSearchByName(String name) {
+        super.open();
+        Cursor cursor;
+        cursor = database.query(InComeTable.TABLE_NAME, new String[]{
+                        InComeTable.IN_COME_AMOUNT, InComeTable.IN_COME_DATE,
+                        InComeTable.IN_COME_NAME, InComeTable.IN_COME_ID},
+                InComeTable.IN_COME_NAME  + " LIKE " + "?", new String[]{name}, null, null, null);
 
         List<InComeEntity> inComeEntities = new ArrayList<InComeEntity>();
         while (cursor.moveToNext()) {

@@ -16,7 +16,9 @@ import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.core.helper.InComeTable;
 import skot92.hu.unideb.hu.kiadaskezelo.service.InComeService;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.Adapter.AllIncomeAdapter;
-import skot92.hu.unideb.hu.kiadaskezelo.ui.dialogs.AllIncomesSearchDialogSum;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.dialogs.AllIncomesSearchDialogAmount;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.dialogs.AllIncomesSearchDialogDate;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.dialogs.AllIncomesSearchDialogName;
 
 public class AllIncomeActivity extends AppCompatActivity {
 
@@ -108,13 +110,19 @@ public class AllIncomeActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 switch (which) {
                                     case 0:
-                                        AllIncomesSearchDialogSum cdd = new AllIncomesSearchDialogSum(AllIncomeActivity.this);
+                                        AllIncomesSearchDialogAmount cdd = new AllIncomesSearchDialogAmount(AllIncomeActivity.this);
                                         cdd.show();
                                         Log.d("asd","asd");
                                         break;
                                     case 1:
+                                        AllIncomesSearchDialogDate cdd1 = new AllIncomesSearchDialogDate(AllIncomeActivity.this);
+                                        cdd1.show();
+                                        Log.d("asd","asd");
                                         break;
                                     case 2:
+                                        AllIncomesSearchDialogName cdd2 = new AllIncomesSearchDialogName(AllIncomeActivity.this);
+                                        cdd2.show();
+                                        Log.d("asd","asd");
                                         break;
                                 }
                             }
