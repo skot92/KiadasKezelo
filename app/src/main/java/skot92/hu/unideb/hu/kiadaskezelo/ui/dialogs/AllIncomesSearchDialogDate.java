@@ -42,6 +42,7 @@ public class AllIncomesSearchDialogDate extends Dialog{
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.all_income_search_date_custom_dialog);
         sum = (EditText) findViewById(R.id.dialogSum);
+        btnDate = (Button) findViewById(R.id.btnDate);
         addListenerOnButton();
 
     }
@@ -81,7 +82,6 @@ public class AllIncomesSearchDialogDate extends Dialog{
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerFragment fm = new DatePickerFragment();
 
             }
         });
