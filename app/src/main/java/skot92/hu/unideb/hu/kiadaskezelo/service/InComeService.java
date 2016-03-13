@@ -55,4 +55,7 @@ public class InComeService {
     }
 
 
+    public List<InComeEntity> findInComesSearchByDate(String searchBy, String date) {
+        return inComeDAO.findInComesSearchByName(searchBy,date);
+    }
 }

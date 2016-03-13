@@ -35,6 +35,7 @@ public class InComeDAO extends AppDBDAO {
         BalanceEntity balanceEntity = new BalanceEntity();
         balanceEntity.setAmount(inCome.getAmount());
         balanceEntity.setDate(inCome.getDate());
+        Log.d("date",inCome.getDate());
         balanceEntity.setType("in");
         balanceDAO.save(balanceEntity);
         super.close();
@@ -115,5 +116,11 @@ public class InComeDAO extends AppDBDAO {
         cursor.close();
         super.close();
         return inComeEntities;
+    }
+
+    public List<InComeEntity> findInComesSearchByName(String searchBy, String date) {
+        Log.d("date",date);
+        Log.d("searchBy",searchBy);
+        return null;
     }
 }
