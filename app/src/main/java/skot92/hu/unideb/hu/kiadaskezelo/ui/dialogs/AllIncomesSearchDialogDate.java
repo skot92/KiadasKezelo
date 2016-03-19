@@ -99,7 +99,7 @@ public class AllIncomesSearchDialogDate extends Dialog {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                AllIncomesSearchDialogDate.this.searchDate = year + "-" + monthOfYear + "-" + dayOfMonth;
+                                AllIncomesSearchDialogDate.this.searchDate = year + "-" + (monthOfYear+1) + "-" + dayOfMonth;
                                 Log.d("dateBtnDate",AllIncomesSearchDialogDate.this.searchDate);
                             }
                         }, mYear, mMonth, mDay);

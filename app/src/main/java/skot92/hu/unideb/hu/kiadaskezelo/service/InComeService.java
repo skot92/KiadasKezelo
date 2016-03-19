@@ -4,6 +4,7 @@ import android.content.Context;
 
 import java.util.List;
 
+import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.core.dao.InComeDAO;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.InComeEntity;
 
@@ -50,12 +51,20 @@ public class InComeService {
 
     public List<InComeEntity> findInComesSearchByName(String name) {
 
-        return inComeDAO.findInComesSearchByName(name);
+        return inComeDAO.findInComesSearchByDate(name);
 
     }
 
 
     public List<InComeEntity> findInComesSearchByDate(String searchBy, String date) {
-        return inComeDAO.findInComesSearchByName(searchBy,date);
+        if (searchBy.compareTo("Régebbi") == 0) {
+            return inComeDAO.findInComesSearchByAmount(">", date);
+        }
+
+        if (searchBy.compareTo("Újabb") == 0) {
+            return inComeDAO.findInComesSearchByAmount("<", date);
+        }
+
+        return inComeDAO.findInComesSearchByDate("=",date);
     }
 }

@@ -96,7 +96,7 @@ public class InComeDAO extends AppDBDAO {
         return inComeEntities;
     }
 
-    public List<InComeEntity> findInComesSearchByName(String name) {
+    public List<InComeEntity> findInComesSearchByDate(String name) {
         super.open();
         Cursor cursor;
         cursor = database.query(InComeTable.TABLE_NAME, new String[]{
@@ -118,9 +118,28 @@ public class InComeDAO extends AppDBDAO {
         return inComeEntities;
     }
 
-    public List<InComeEntity> findInComesSearchByName(String searchBy, String date) {
+    public List<InComeEntity> findInComesSearchByDate(String searchBy, String date) {
         Log.d("date",date);
         Log.d("searchBy",searchBy);
-        return null;
+
+        super.open();
+        Cursor cursor;
+        cursor = database.query(InComeTable.TABLE_NAME, new String[]{
+                        InComeTable.IN_COME_AMOUNT, InComeTable.IN_COME_DATE,
+                        InComeTable.IN_COME_NAME, InComeTable.IN_COME_ID},
+                InComeTable.IN_COME_DATE + " " + searchBy  + "Datetime(?)", new String[]{date}, null, null, null);
+
+        List<InComeEntity> inComeEntities = new ArrayList<InComeEntity>();
+        while (cursor.moveToNext()) {
+            InComeEntity entity = new InComeEntity();
+            entity.setName(cursor.getString(cursor.getColumnIndex(InComeTable.IN_COME_NAME)));
+            entity.setDate(cursor.getString(cursor.getColumnIndex(InComeTable.IN_COME_DATE)));
+            entity.setAmount(cursor.getInt(cursor.getColumnIndex(InComeTable.IN_COME_AMOUNT)));
+            entity.setId(cursor.getLong(cursor.getColumnIndex(InComeTable.IN_COME_ID)));
+            inComeEntities.add(entity);
+        }
+        cursor.close();
+        super.close();
+        return inComeEntities;
     }
 }
