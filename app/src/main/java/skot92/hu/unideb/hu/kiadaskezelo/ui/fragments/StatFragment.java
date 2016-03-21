@@ -60,6 +60,8 @@ public class StatFragment extends Fragment {
         calendar.add(Calendar.DATE, -30);
         txLast30DayExpense.setText(
                 String.valueOf( -1 * expenseService.getSumAmountByDate(calendar.getTime().toString())));
+        txLast30DayInCome.setText(
+                String.valueOf(inComeService.getSumAmountByDate(calendar.getTime().toString())));
 
 
         return myFragmentView;

@@ -5,9 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.BalanceEntity;
@@ -157,4 +161,36 @@ public class InComeDAO extends AppDBDAO {
         super.close();
         return -1;
     }
+
+    public int getSumAmountByDate(String fromDate) {
+        super.open();
+
+        Cursor c1 = database.rawQuery("SELECT " + InComeTable.IN_COME_AMOUNT+ " , " + InComeTable.IN_COME_DATE
+                + " FROM " + InComeTable.TABLE_NAME, null);
+
+        Date date = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.US);
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            date = sdf.parse(fromDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date dateExpense = null;
+        int sum = 0;
+        while (c1.moveToNext()) {
+            try {
+                dateExpense = sdf1.parse(c1.getString(1));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            if (dateExpense.compareTo(date) > 0) {
+                sum += c1.getInt(0);
+            }
+        }
+        c1.close();
+        super.close();
+        return sum;
+    }
+
 }

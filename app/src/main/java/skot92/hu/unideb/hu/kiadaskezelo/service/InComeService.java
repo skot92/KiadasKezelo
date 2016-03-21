@@ -69,4 +69,8 @@ public class InComeService {
     }
 
     public int getSumAmount(){ return  inComeDAO.getSumAmount(); }
+
+    public int getSumAmountByDate(String fromDate) {
+        return  inComeDAO.getSumAmountByDate(fromDate);
+    }
 }
