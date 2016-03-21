@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.chart.PieChartActivity;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.ChartsFragment;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.NewExpenseFragment;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.NewIncomeFragment;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.StatFragment;
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
         tabLayout.getTabAt(3).setIcon(tabIcons[3]);
+        tabLayout.getTabAt(4).setIcon(tabIcons[3]);
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFrag(new NewIncomeFragment(), getString(R.string.new_income));
         adapter.addFrag(new ViewAllExpenseOrIncomeFragment(), getString(R.string.view));
         adapter.addFrag(new StatFragment(), getString(R.string.stat));
+        adapter.addFrag(new ChartsFragment(), "Charts");
         viewPager.setAdapter(adapter);
     }
 

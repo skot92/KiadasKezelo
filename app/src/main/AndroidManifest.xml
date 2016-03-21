@@ -44,6 +44,12 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
 
+        <activity
+            android:name=".ui.activity.chart.PieChartActivity"
+            android:label="PieChartActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
