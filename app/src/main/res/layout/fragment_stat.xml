@@ -36,15 +36,18 @@
         android:layout_alignTop="@+id/txSumExpense"
         android:layout_toRightOf="@+id/txSumExpense"
         android:layout_above="@+id/txSumInComes"
-        android:background="@drawable/buttonshape"/>
+        android:background="@drawable/buttonshape"
+        android:text="asd" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txAllInComes"
+        android:background="@drawable/buttonshape"
         android:layout_alignTop="@+id/txSumInComes"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/buttonshape"/>
+        android:layout_toRightOf="@+id/txSumInComes"
+        android:layout_toEndOf="@+id/txSumInComes"
+        android:text="asd" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -99,5 +102,6 @@
         android:layout_alignLeft="@+id/txLast30DayExpense"
         android:layout_alignStart="@+id/txLast30DayExpense"
         android:background="@drawable/buttonshape"/>
+
 
 </RelativeLayout>

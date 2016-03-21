@@ -55,12 +55,12 @@ public class StatFragment extends Fragment {
 
 
         allExpense.setText(String.valueOf(-1 * expenseService.getSumAmount()));
+        allInComes.setText(String.valueOf(inComeService.getSumAmount()));
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, -30);
-//        txLast30DayExpense.setText(
-//                String.valueOf( -1 * expenseService.getSumAmountByDate(calendar.getTime().toString())));
+        txLast30DayExpense.setText(
+                String.valueOf( -1 * expenseService.getSumAmountByDate(calendar.getTime().toString())));
 
-        allInComes.setText("12313");
 
         return myFragmentView;
     }

@@ -13,6 +13,7 @@ import java.util.Map;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.BalanceEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.InComeEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
+import skot92.hu.unideb.hu.kiadaskezelo.core.helper.ExpenseTable;
 import skot92.hu.unideb.hu.kiadaskezelo.core.helper.InComeTable;
 
 /**
@@ -141,5 +142,19 @@ public class InComeDAO extends AppDBDAO {
         cursor.close();
         super.close();
         return inComeEntities;
+    }
+
+    public int getSumAmount() {
+        super.open();
+        Cursor c = database.query(InComeTable.TABLE_NAME, new String[]{
+                        "SUM( " + InComeTable.IN_COME_AMOUNT + " )"},
+                null, null, null, null, null);
+
+        if (c.moveToFirst()) {
+            return c.getInt(0);
+        }
+        c.close();
+        super.close();
+        return -1;
     }
 }

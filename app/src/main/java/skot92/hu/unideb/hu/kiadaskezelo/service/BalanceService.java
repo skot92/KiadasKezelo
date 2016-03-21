@@ -14,8 +14,12 @@ import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
 public class BalanceService {
 
     BalanceDAO balanceDAO;
+    InComeService inComeService;
+    ExpenseService expenseService;
 
     public BalanceService(Context context){
+        inComeService = new InComeService(context);
+        expenseService = new ExpenseService(context);
         balanceDAO = new BalanceDAO(context);
     }
 
@@ -24,6 +28,9 @@ public class BalanceService {
     }
 
     public int findBalance() {
-       return balanceDAO.getBalance();
+        int income = inComeService.getSumAmount();
+        int expense = -1 * expenseService.getSumAmount();
+        int a = income - expense;
+       return a;
     }
 }

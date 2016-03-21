@@ -67,4 +67,6 @@ public class InComeService {
 
         return inComeDAO.findInComesSearchByDate("=",date);
     }
+
+    public int getSumAmount(){ return  inComeDAO.getSumAmount(); }
 }
