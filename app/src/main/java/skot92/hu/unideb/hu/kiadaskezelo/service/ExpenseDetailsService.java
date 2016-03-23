@@ -26,6 +26,10 @@ public class ExpenseDetailsService {
        return expenseDetailsDAO.findById(expenseId);
     }
 
+    public List<ExpenseDetailsEntity> findAll() {
+        return expenseDetailsDAO.findAll();
+    }
+
     public int save(List<ExpenseDetailsEntity> details, Long expenseId ) {
         return expenseDetailsDAO.save(details,expenseId);
     }

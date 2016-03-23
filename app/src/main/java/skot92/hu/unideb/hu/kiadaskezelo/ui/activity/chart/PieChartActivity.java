@@ -34,35 +34,33 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
+import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseDetailsEntity;
+import skot92.hu.unideb.hu.kiadaskezelo.service.ExpenseDetailsService;
 
-public class PieChartActivity extends DemoBase implements OnSeekBarChangeListener,
+public class PieChartActivity extends DemoBase implements
         OnChartValueSelectedListener {
 
     private PieChart mChart;
-    private SeekBar mSeekBarX, mSeekBarY;
     private TextView tvX, tvY;
 
-    //private Typeface tf;
+    private Typeface tf;
+    private ExpenseDetailsService expenseDetailsService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        expenseDetailsService = new ExpenseDetailsService(this);
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_piechart);
 
         tvX = (TextView) findViewById(R.id.tvXMax);
         tvY = (TextView) findViewById(R.id.tvYMax);
-
-        mSeekBarX = (SeekBar) findViewById(R.id.seekBar1);
-        mSeekBarY = (SeekBar) findViewById(R.id.seekBar2);
-
-        mSeekBarY.setProgress(10);
-
-        mSeekBarX.setOnSeekBarChangeListener(this);
-        mSeekBarY.setOnSeekBarChangeListener(this);
 
         mChart = (PieChart) findViewById(R.id.chart1);
         mChart.setUsePercentValues(true);
@@ -71,7 +69,7 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
 
         mChart.setDragDecelerationFrictionCoef(0.95f);
 
-//        tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
+        tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
 
         mChart.setCenterTextTypeface(Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf"));
         mChart.setCenterText(generateCenterSpannableText());
@@ -112,32 +110,30 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
 
 
 
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-        tvX.setText("" + (mSeekBarX.getProgress() + 1));
-        tvY.setText("" + (mSeekBarY.getProgress()));
-
-        setData(mSeekBarX.getProgress(), mSeekBarY.getProgress());
-    }
-
     private void setData(int count, float range) {
+        List<ExpenseDetailsEntity> detailsEntities = expenseDetailsService.findAll();
 
         float mult = range;
 
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
 
+        //value
         // IMPORTANT: In a PieChart, no values (Entry) should have the same
         // xIndex (even if from different DataSets), since no values can be
         // drawn above each other.
-        for (int i = 0; i < count + 1; i++) {
-            yVals1.add(new Entry((float) (Math.random() * mult) + mult / 5, i));
+//        for (int i = 0; i < count + 1; i++) {
+//            yVals1.add(new Entry((float) (Math.random() * mult) + mult / 5, i));
+//        }
+        for (int i = 0; i <  detailsEntities.size(); i++)  {
+            yVals1.add(new Entry(detailsEntities.get(i).getAmount(),i));
         }
 
+        //name
         ArrayList<String> xVals = new ArrayList<String>();
 
-        for (int i = 0; i < count + 1; i++)
-            xVals.add(mParties[i % mParties.length]);
+        for (int i = 0; i < detailsEntities.size(); i++) {
+            xVals.add(detailsEntities.get(i).getName());
+        }
 
         PieDataSet dataSet = new PieDataSet(yVals1, "Election Results");
         dataSet.setSliceSpace(3f);
@@ -171,7 +167,7 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
         data.setValueFormatter(new PercentFormatter());
         data.setValueTextSize(11f);
         data.setValueTextColor(Color.WHITE);
-//        data.setValueTypeface(tf);
+        data.setValueTypeface(tf);
         mChart.setData(data);
 
         // undo all highlights
@@ -182,13 +178,13 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
 
     private SpannableString generateCenterSpannableText() {
 
-        SpannableString s = new SpannableString("MPAndroidChart\ndeveloped by Philipp Jahoda");
-        s.setSpan(new RelativeSizeSpan(1.7f), 0, 14, 0);
-        s.setSpan(new StyleSpan(Typeface.NORMAL), 14, s.length() - 15, 0);
-        s.setSpan(new ForegroundColorSpan(Color.GRAY), 14, s.length() - 15, 0);
-        s.setSpan(new RelativeSizeSpan(.8f), 14, s.length() - 15, 0);
-        s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 14, s.length(), 0);
-        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 14, s.length(), 0);
+        SpannableString s = new SpannableString("Kiadások\nkategória szerint");
+//        s.setSpan(new RelativeSizeSpan(1.7f), 0, 14, 0);
+//        s.setSpan(new StyleSpan(Typeface.NORMAL), 14, s.length() - 15, 0);
+//        s.setSpan(new ForegroundColorSpan(Color.GRAY), 14, s.length() - 15, 0);
+//        s.setSpan(new RelativeSizeSpan(.8f), 14, s.length() - 15, 0);
+//        s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 14, s.length(), 0);
+//        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 14, s.length(), 0);
         return s;
     }
 
@@ -207,15 +203,5 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
         Log.i("PieChart", "nothing selected");
     }
 
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
 
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
-    }
 }
