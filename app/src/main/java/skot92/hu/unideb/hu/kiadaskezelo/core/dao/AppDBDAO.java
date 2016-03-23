@@ -4,8 +4,6 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-
-
 import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
 
 /**

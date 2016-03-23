@@ -3,20 +3,13 @@ package skot92.hu.unideb.hu.kiadaskezelo.ui.activity.chart;
 /**
  * Created by skot9 on 2016. 03. 21..
  */
-import android.content.res.AssetManager;
+
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.RelativeSizeSpan;
-import android.text.style.StyleSpan;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.WindowManager;
-import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -26,12 +19,10 @@ import com.github.mikephil.charting.components.Legend.LegendPosition;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.interfaces.datasets.IDataSet;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +56,7 @@ public class PieChartActivity extends DemoBase implements
         mChart = (PieChart) findViewById(R.id.chart1);
         mChart.setUsePercentValues(true);
         mChart.setDescription("");
-        mChart.setExtraOffsets(5, 10, 5, 5);
+        //mChart.setExtraOffsets(5, 10, 5, 5);
 
         mChart.setDragDecelerationFrictionCoef(0.95f);
 
@@ -75,9 +66,9 @@ public class PieChartActivity extends DemoBase implements
         mChart.setCenterText(generateCenterSpannableText());
 
         mChart.setDrawHoleEnabled(true);
-        mChart.setHoleColor(Color.WHITE);
+        mChart.setHoleColor(Color.GRAY);
 
-        mChart.setTransparentCircleColor(Color.WHITE);
+        mChart.setTransparentCircleColor(Color.RED);
         mChart.setTransparentCircleAlpha(110);
 
         mChart.setHoleRadius(58f);
@@ -96,7 +87,7 @@ public class PieChartActivity extends DemoBase implements
         // add a selection listener
         mChart.setOnChartValueSelectedListener(this);
 
-        setData(3, 100);
+        setData();
 
         mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
         // mChart.spin(2000, 0, 360);
@@ -110,10 +101,9 @@ public class PieChartActivity extends DemoBase implements
 
 
 
-    private void setData(int count, float range) {
+    private void setData() {
         List<ExpenseDetailsEntity> detailsEntities = expenseDetailsService.findAll();
 
-        float mult = range;
 
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
 
@@ -166,7 +156,7 @@ public class PieChartActivity extends DemoBase implements
         PieData data = new PieData(xVals, dataSet);
         data.setValueFormatter(new PercentFormatter());
         data.setValueTextSize(11f);
-        data.setValueTextColor(Color.WHITE);
+        data.setValueTextColor(Color.BLACK);
         data.setValueTypeface(tf);
         mChart.setData(data);
 

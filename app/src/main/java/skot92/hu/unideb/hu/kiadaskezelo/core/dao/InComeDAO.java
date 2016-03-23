@@ -9,15 +9,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.BalanceEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.InComeEntity;
-import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
-import skot92.hu.unideb.hu.kiadaskezelo.core.helper.ExpenseTable;
 import skot92.hu.unideb.hu.kiadaskezelo.core.helper.InComeTable;
 
 /**

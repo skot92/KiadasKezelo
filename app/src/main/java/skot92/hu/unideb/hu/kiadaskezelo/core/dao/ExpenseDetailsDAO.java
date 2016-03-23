@@ -3,14 +3,11 @@ package skot92.hu.unideb.hu.kiadaskezelo.core.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.provider.ContactsContract;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseDetailsEntity;
-import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseEntity;
-import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
 import skot92.hu.unideb.hu.kiadaskezelo.core.helper.ExpenseDetailsTable;
 
 /**

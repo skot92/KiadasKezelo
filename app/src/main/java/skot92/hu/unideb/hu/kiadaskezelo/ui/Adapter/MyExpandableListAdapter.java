@@ -11,8 +11,6 @@ import android.widget.CheckedTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Locale;
-
 import skot92.hu.unideb.hu.kiadaskezelo.R;
 
 

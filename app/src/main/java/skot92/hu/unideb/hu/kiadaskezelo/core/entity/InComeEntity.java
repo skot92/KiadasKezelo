@@ -1,11 +1,6 @@
 package skot92.hu.unideb.hu.kiadaskezelo.core.entity;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
 
 /**
  * Created by skot9 on 2015. 10. 18..

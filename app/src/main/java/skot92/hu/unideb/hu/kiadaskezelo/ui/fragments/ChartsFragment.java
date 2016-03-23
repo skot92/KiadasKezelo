@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
-import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllIncomeActivity;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.chart.PieChartActivity;
 
 /**

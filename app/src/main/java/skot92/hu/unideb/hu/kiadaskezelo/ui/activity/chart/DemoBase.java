@@ -4,10 +4,7 @@ package skot92.hu.unideb.hu.kiadaskezelo.ui.activity.chart;
  * Created by skot9 on 2016. 03. 21..
  */
 
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-
-import skot92.hu.unideb.hu.kiadaskezelo.R;
 
 
 /**

@@ -1,15 +1,11 @@
 package skot92.hu.unideb.hu.kiadaskezelo.service;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import skot92.hu.unideb.hu.kiadaskezelo.core.dao.ExpenseDetailsDAO;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseDetailsEntity;
-import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
 
 /**
  * Created by skot9 on 2015. 11. 12..

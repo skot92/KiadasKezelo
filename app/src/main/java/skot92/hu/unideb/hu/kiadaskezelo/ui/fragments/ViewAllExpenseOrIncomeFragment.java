@@ -7,11 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ToggleButton;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.service.InComeService;
-import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.MainActivity;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllExpenseActivity;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllIncomeActivity;
 

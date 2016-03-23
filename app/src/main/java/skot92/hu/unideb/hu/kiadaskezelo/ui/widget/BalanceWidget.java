@@ -1,7 +1,5 @@
 package skot92.hu.unideb.hu.kiadaskezelo.ui.widget;
 
-import java.util.Date;
-
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;

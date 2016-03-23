@@ -11,8 +11,6 @@ import android.widget.DatePicker;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import skot92.hu.unideb.hu.kiadaskezelo.R;
-
 /**
  * Created by skot9 on 2015. 12. 23..
  */

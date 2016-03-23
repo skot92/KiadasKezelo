@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
-import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.chart.PieChartActivity;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.ChartsFragment;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.NewExpenseFragment;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.fragments.NewIncomeFragment;

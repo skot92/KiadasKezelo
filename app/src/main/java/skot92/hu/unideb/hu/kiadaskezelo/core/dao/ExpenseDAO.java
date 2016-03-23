@@ -3,7 +3,6 @@ package skot92.hu.unideb.hu.kiadaskezelo.core.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.provider.ContactsContract;
 import android.util.Log;
 
 import java.text.ParseException;
@@ -13,11 +12,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import skot92.hu.unideb.hu.kiadaskezelo.core.entity.BalanceEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseEntity;
-import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
 import skot92.hu.unideb.hu.kiadaskezelo.core.helper.ExpenseTable;
-import skot92.hu.unideb.hu.kiadaskezelo.service.ExpenseService;
 
 /**
  * Created by skot9 on 2015. 10. 19..

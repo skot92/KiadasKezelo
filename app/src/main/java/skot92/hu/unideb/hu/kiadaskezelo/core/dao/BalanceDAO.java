@@ -6,7 +6,6 @@ import android.database.Cursor;
 
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.BalanceEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.core.helper.BalanceTable;
-import skot92.hu.unideb.hu.kiadaskezelo.core.helper.DatabaseHelper;
 
 /**
  * Created by skot9 on 2015. 10. 18..
