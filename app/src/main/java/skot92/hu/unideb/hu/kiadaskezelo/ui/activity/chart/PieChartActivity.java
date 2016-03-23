@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.util.Log;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -89,7 +88,6 @@ public class PieChartActivity extends DemoBase implements
     }
 
 
-
     private void setData() {
         List<ExpenseDetailsEntity> detailsEntities = expenseDetailsService.findAll();
 
@@ -103,8 +101,8 @@ public class PieChartActivity extends DemoBase implements
 //        for (int i = 0; i < count + 1; i++) {
 //            yVals1.add(new Entry((float) (Math.random() * mult) + mult / 5, i));
 //        }
-        for (int i = 0; i <  detailsEntities.size(); i++)  {
-            yVals1.add(new Entry(detailsEntities.get(i).getAmount(),i));
+        for (int i = 0; i < detailsEntities.size(); i++) {
+            yVals1.add(new Entry(detailsEntities.get(i).getAmount(), i));
         }
 
         //name

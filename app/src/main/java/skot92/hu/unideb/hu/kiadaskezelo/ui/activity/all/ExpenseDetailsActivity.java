@@ -30,7 +30,7 @@ public class ExpenseDetailsActivity extends AppCompatActivity {
 
         detailsEntities = new ArrayList<>();
         expenseDetailsService = new ExpenseDetailsService(getApplicationContext());
-        int i = getIntent().getIntExtra("index",0);
+        int i = getIntent().getIntExtra("index", 0);
         detailsEntities = expenseDetailsService.findById(i);
         lv = (ListView) findViewById(R.id.list_view);
         // Adding items to listview

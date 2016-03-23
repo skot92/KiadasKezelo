@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
+import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.chart.LineChartActivity1;
 import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.chart.PieChartActivity;
 
 /**
@@ -18,7 +19,7 @@ public class ChartsFragment extends Fragment {
 
     private View myFragmentView;
     private Button pieChart;
-
+    private Button lineChart;
 
 
     @Override
@@ -32,13 +33,21 @@ public class ChartsFragment extends Fragment {
         // Inflate the layout for this fragment
         myFragmentView = inflater.inflate(R.layout.fragment_charts, container, false);
         pieChart = (Button) myFragmentView.findViewById(R.id.btPie);
-
+        lineChart = (Button) myFragmentView.findViewById(R.id.btLine);
 
 
         pieChart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), PieChartActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        lineChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), LineChartActivity1.class);
                 startActivity(intent);
             }
         });

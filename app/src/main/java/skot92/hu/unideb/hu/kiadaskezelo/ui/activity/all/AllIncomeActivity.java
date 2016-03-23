@@ -112,17 +112,17 @@ public class AllIncomeActivity extends AppCompatActivity {
                                     case 0:
                                         AllIncomesSearchDialogAmount cdd = new AllIncomesSearchDialogAmount(AllIncomeActivity.this);
                                         cdd.show();
-                                        Log.d("asd","asd");
+                                        Log.d("asd", "asd");
                                         break;
                                     case 1:
                                         AllIncomesSearchDialogDate cdd1 = new AllIncomesSearchDialogDate(AllIncomeActivity.this);
                                         cdd1.show();
-                                        Log.d("asd","asd");
+                                        Log.d("asd", "asd");
                                         break;
                                     case 2:
                                         AllIncomesSearchDialogName cdd2 = new AllIncomesSearchDialogName(AllIncomeActivity.this);
                                         cdd2.show();
-                                        Log.d("asd","asd");
+                                        Log.d("asd", "asd");
                                         break;
                                 }
                             }

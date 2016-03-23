@@ -23,7 +23,7 @@ public class AppDBDAO {
     }
 
     public void open() throws SQLException {
-        if(dbHelper == null)
+        if (dbHelper == null)
             dbHelper = DatabaseHelper.getHelper(mContext);
         database = dbHelper.getWritableDatabase();
     }

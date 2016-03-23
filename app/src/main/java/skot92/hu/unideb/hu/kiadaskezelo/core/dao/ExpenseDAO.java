@@ -88,7 +88,7 @@ public class ExpenseDAO extends AppDBDAO {
 
     public int getSumAmountByDate(String fromDate) {
         super.open();
-        
+
         Cursor c1 = database.rawQuery("SELECT " + ExpenseTable.EXPENSE_AMOUNT + " , " + ExpenseTable.EXPENSE_DATE
                 + " FROM " + ExpenseTable.TABLE_NAME, null);
 

@@ -14,7 +14,7 @@ public class BalanceService {
     InComeService inComeService;
     ExpenseService expenseService;
 
-    public BalanceService(Context context){
+    public BalanceService(Context context) {
         inComeService = new InComeService(context);
         expenseService = new ExpenseService(context);
         balanceDAO = new BalanceDAO(context);
@@ -28,6 +28,6 @@ public class BalanceService {
         int income = inComeService.getSumAmount();
         int expense = -1 * expenseService.getSumAmount();
         int a = income - expense;
-       return a;
+        return a;
     }
 }

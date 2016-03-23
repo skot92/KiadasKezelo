@@ -64,12 +64,14 @@ public class InComeService {
             return inComeDAO.findInComesSearchByAmount("<", date);
         }
 
-        return inComeDAO.findInComesSearchByDate("=",date);
+        return inComeDAO.findInComesSearchByDate("=", date);
     }
 
-    public int getSumAmount(){ return  inComeDAO.getSumAmount(); }
+    public int getSumAmount() {
+        return inComeDAO.getSumAmount();
+    }
 
     public int getSumAmountByDate(String fromDate) {
-        return  inComeDAO.getSumAmountByDate(fromDate);
+        return inComeDAO.getSumAmountByDate(fromDate);
     }
 }

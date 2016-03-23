@@ -27,14 +27,14 @@ public class ExpenseDetailsDAO extends AppDBDAO {
         long id;
         List<ExpenseDetailsEntity> expenses = new ArrayList<ExpenseDetailsEntity>();
 
-        Cursor c = database. query(ExpenseDetailsTable.TABLE_NAME, new String[]{
+        Cursor c = database.query(ExpenseDetailsTable.TABLE_NAME, new String[]{
                         ExpenseDetailsTable.EXPENSE_DETAILS_AMOUNT,
                         ExpenseDetailsTable.EXPENSE_DETAILS_DESCRIPTION,
                         ExpenseDetailsTable.EXPENSE_DETAILS_EXPENSE_ID,
                         ExpenseDetailsTable.EXPENSE_DETAILS_NAME},
-                         ExpenseDetailsTable.EXPENSE_DETAILS_EXPENSE_ID + " = ?1 ",
-                        new String[]{String.valueOf(expenseId)},
-                        null, null, null);
+                ExpenseDetailsTable.EXPENSE_DETAILS_EXPENSE_ID + " = ?1 ",
+                new String[]{String.valueOf(expenseId)},
+                null, null, null);
 
         while (c.moveToNext()) {
 
@@ -43,13 +43,13 @@ public class ExpenseDetailsDAO extends AppDBDAO {
             id = c.getLong(2);
             description = c.getString(c.getColumnIndex(ExpenseDetailsTable.EXPENSE_DETAILS_DESCRIPTION));
 
-            ExpenseDetailsEntity expense = new ExpenseDetailsEntity(id,expenseId,name,description,amount);
+            ExpenseDetailsEntity expense = new ExpenseDetailsEntity(id, expenseId, name, description, amount);
             expenses.add(expense);
 
         }
         c.close();
         super.close();
-        return  expenses;
+        return expenses;
     }
 
     public List<ExpenseDetailsEntity> findAll() {
@@ -61,13 +61,13 @@ public class ExpenseDetailsDAO extends AppDBDAO {
         Long expenseId;
         List<ExpenseDetailsEntity> expenses = new ArrayList<ExpenseDetailsEntity>();
 
-        Cursor c = database. query(ExpenseDetailsTable.TABLE_NAME, new String[]{
+        Cursor c = database.query(ExpenseDetailsTable.TABLE_NAME, new String[]{
                         ExpenseDetailsTable.EXPENSE_DETAILS_AMOUNT,
                         ExpenseDetailsTable.EXPENSE_DETAILS_DESCRIPTION,
                         ExpenseDetailsTable.EXPENSE_DETAILS_ID,
                         ExpenseDetailsTable.EXPENSE_DETAILS_EXPENSE_ID,
                         ExpenseDetailsTable.EXPENSE_DETAILS_NAME},
-                        null , null, null, null, null);
+                null, null, null, null, null);
 
         while (c.moveToNext()) {
 
@@ -76,16 +76,16 @@ public class ExpenseDetailsDAO extends AppDBDAO {
             id = c.getLong(2);
             description = c.getString(c.getColumnIndex(ExpenseDetailsTable.EXPENSE_DETAILS_DESCRIPTION));
             expenseId = c.getLong(3);
-            ExpenseDetailsEntity expense = new ExpenseDetailsEntity(id,expenseId,name,description,amount);
+            ExpenseDetailsEntity expense = new ExpenseDetailsEntity(id, expenseId, name, description, amount);
             expenses.add(expense);
 
         }
         c.close();
         super.close();
-        return  expenses;
+        return expenses;
     }
 
-    public int save(List<ExpenseDetailsEntity> details, Long expenseId ) {
+    public int save(List<ExpenseDetailsEntity> details, Long expenseId) {
         super.open();
         int sum = 0;
         ContentValues values = new ContentValues();

@@ -33,7 +33,7 @@ public class BalanceWidget extends AppWidgetProvider {
             // Szöveg beállítása
             balanceService = new BalanceService(context);
             String balance = String.valueOf(balanceService.findBalance());
-            remoteViews.setTextViewText(R.id.tvStatus, balance );
+            remoteViews.setTextViewText(R.id.tvStatus, balance);
 
             // Kattintás esemény kezelése, hatására frissül ismét a balance_widget
             Intent intent = new Intent(context, BalanceWidget.class);

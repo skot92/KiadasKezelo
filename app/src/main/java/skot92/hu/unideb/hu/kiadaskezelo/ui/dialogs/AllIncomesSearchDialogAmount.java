@@ -19,7 +19,7 @@ import skot92.hu.unideb.hu.kiadaskezelo.ui.activity.all.AllIncomeActivity;
 /**
  * Created by skot9 on 2016. 02. 26..
  */
-public class AllIncomesSearchDialogAmount extends Dialog{
+public class AllIncomesSearchDialogAmount extends Dialog {
 
     public Activity c;
     public Dialog d;
@@ -57,20 +57,20 @@ public class AllIncomesSearchDialogAmount extends Dialog{
 
                 try {
                     radioButton = (RadioButton) findViewById(selectedId);
-                    if(sum.getText().toString().equals("")) {
-                        throw  new NullPointerException("sum is null");
+                    if (sum.getText().toString().equals("")) {
+                        throw new NullPointerException("sum is null");
                     }
                     InComeService inComeService = new InComeService(AllIncomesSearchDialogAmount.this.getContext());
                     AllIncomeAdapter adapter = new AllIncomeAdapter(AllIncomesSearchDialogAmount.this.getContext(),
                             inComeService.findInComesSearchByAmount(radioButton.getText().toString(), sum.getText().toString()));
                     adapter.notifyDataSetChanged();
                     AllIncomeActivity.lv.setAdapter(adapter);
-                    Toast.makeText(getContext(),radioButton.getText().toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), radioButton.getText().toString(), Toast.LENGTH_SHORT).show();
                     AllIncomesSearchDialogAmount.this.dismiss();
 
                 } catch (NullPointerException e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(), R.string.no_select_ralation_or_amount,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.no_select_ralation_or_amount, Toast.LENGTH_SHORT).show();
                 }
 
             }

@@ -69,12 +69,12 @@ public class AllIncomesSearchDialogDate extends Dialog {
                     Context context = AllIncomesSearchDialogDate.this.getContext();
                     inComeService = new InComeService(context);
                     radioButton = (RadioButton) findViewById(selectedId);
-                    AllIncomeAdapter adapter = new AllIncomeAdapter(context,inComeService.findInComesSearchByDate(radioButton.getText().toString(), AllIncomesSearchDialogDate.this.searchDate));
+                    AllIncomeAdapter adapter = new AllIncomeAdapter(context, inComeService.findInComesSearchByDate(radioButton.getText().toString(), AllIncomesSearchDialogDate.this.searchDate));
 
 
                     adapter.notifyDataSetChanged();
                     AllIncomeActivity.lv.setAdapter(adapter);
-                    Toast.makeText(getContext(),radioButton.getText().toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), radioButton.getText().toString(), Toast.LENGTH_SHORT).show();
                     AllIncomesSearchDialogDate.this.dismiss();
                     Log.d("succes", "succes");
                 } catch (NullPointerException e) {
@@ -99,8 +99,8 @@ public class AllIncomesSearchDialogDate extends Dialog {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                AllIncomesSearchDialogDate.this.searchDate = year + "-" + (monthOfYear+1) + "-" + dayOfMonth;
-                                Log.d("dateBtnDate",AllIncomesSearchDialogDate.this.searchDate);
+                                AllIncomesSearchDialogDate.this.searchDate = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                                Log.d("dateBtnDate", AllIncomesSearchDialogDate.this.searchDate);
                             }
                         }, mYear, mMonth, mDay);
                 dpd.show();

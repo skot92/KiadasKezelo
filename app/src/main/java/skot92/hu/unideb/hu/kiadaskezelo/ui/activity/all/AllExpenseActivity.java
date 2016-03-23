@@ -18,9 +18,9 @@ import skot92.hu.unideb.hu.kiadaskezelo.ui.Adapter.MyExpandableListAdapter;
 /**
  * Created by skot9 on 2015. 11. 14..
  */
-public class AllExpenseActivity extends AppCompatActivity{
+public class AllExpenseActivity extends AppCompatActivity {
 
-    private  SparseArray<Group> groups = new SparseArray<>();
+    private SparseArray<Group> groups = new SparseArray<>();
     private ExpenseService expenseService;
     private ExpenseDetailsService expenseDetailsService;
     private List<ExpenseEntity> expenses;
@@ -51,14 +51,13 @@ public class AllExpenseActivity extends AppCompatActivity{
         for (int j = 0; j < expenses.size(); j++) {
             Group group = new Group(expenses.get(j).getName());
 
-          List<ExpenseDetailsEntity> expenseDetails = expenseDetailsService.findById(expenses.get(j).getId());
+            List<ExpenseDetailsEntity> expenseDetails = expenseDetailsService.findById(expenses.get(j).getId());
             for (int i = 0; i < expenseDetails.size(); i++) {
-               group.children.add(expenseDetails.get(i).getName());
+                group.children.add(expenseDetails.get(i).getName());
             }
             groups.append(j, group);
         }
     }
-
 
 
 }

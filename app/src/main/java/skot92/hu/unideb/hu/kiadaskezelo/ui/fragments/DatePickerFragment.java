@@ -41,19 +41,14 @@ public class DatePickerFragment extends DialogFragment
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         formattedDate = sdf.format(c.getTime());
-        dateButton.setText (formattedDate);
-        Log.d("asd",formattedDate);
+        dateButton.setText(formattedDate);
+        Log.d("asd", formattedDate);
     }
-
 
 
     public void setButton(Button button) {
         this.dateButton = button;
     }
-
-
-
-
 
 
 }

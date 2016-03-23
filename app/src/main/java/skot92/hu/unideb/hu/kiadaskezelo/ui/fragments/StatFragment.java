@@ -31,8 +31,6 @@ public class StatFragment extends Fragment {
     private BalanceService balanceService;
 
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,7 +51,7 @@ public class StatFragment extends Fragment {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, -30);
         txLast30DayExpense.setText(
-                String.valueOf( -1 * expenseService.getSumAmountByDate(calendar.getTime().toString())));
+                String.valueOf(-1 * expenseService.getSumAmountByDate(calendar.getTime().toString())));
         txLast30DayInCome.setText(
                 String.valueOf(inComeService.getSumAmountByDate(calendar.getTime().toString())));
         txSumBalance.setText(String.valueOf(balanceService.findBalance()));

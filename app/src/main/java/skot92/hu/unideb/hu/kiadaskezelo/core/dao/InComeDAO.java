@@ -36,7 +36,7 @@ public class InComeDAO extends AppDBDAO {
         BalanceEntity balanceEntity = new BalanceEntity();
         balanceEntity.setAmount(inCome.getAmount());
         balanceEntity.setDate(inCome.getDate());
-        Log.d("date",inCome.getDate());
+        Log.d("date", inCome.getDate());
         balanceEntity.setType("in");
         balanceDAO.save(balanceEntity);
         super.close();
@@ -56,7 +56,7 @@ public class InComeDAO extends AppDBDAO {
             cursor = database.query(InComeTable.TABLE_NAME, new String[]{
                             InComeTable.IN_COME_AMOUNT, InComeTable.IN_COME_DATE,
                             InComeTable.IN_COME_NAME, InComeTable.IN_COME_ID}, null, null, null, null,
-                            orderBy + " " + descOrAsc);
+                    orderBy + " " + descOrAsc);
         }
 
 
@@ -81,7 +81,7 @@ public class InComeDAO extends AppDBDAO {
         cursor = database.query(InComeTable.TABLE_NAME, new String[]{
                         InComeTable.IN_COME_AMOUNT, InComeTable.IN_COME_DATE,
                         InComeTable.IN_COME_NAME, InComeTable.IN_COME_ID},
-                InComeTable.IN_COME_AMOUNT + " " + searchBy  + "?", new String[]{sum}, null, null, null);
+                InComeTable.IN_COME_AMOUNT + " " + searchBy + "?", new String[]{sum}, null, null, null);
 
         List<InComeEntity> inComeEntities = new ArrayList<InComeEntity>();
         while (cursor.moveToNext()) {
@@ -103,7 +103,7 @@ public class InComeDAO extends AppDBDAO {
         cursor = database.query(InComeTable.TABLE_NAME, new String[]{
                         InComeTable.IN_COME_AMOUNT, InComeTable.IN_COME_DATE,
                         InComeTable.IN_COME_NAME, InComeTable.IN_COME_ID},
-                InComeTable.IN_COME_NAME  + " LIKE " + "?", new String[]{name}, null, null, null);
+                InComeTable.IN_COME_NAME + " LIKE " + "?", new String[]{name}, null, null, null);
 
         List<InComeEntity> inComeEntities = new ArrayList<InComeEntity>();
         while (cursor.moveToNext()) {
@@ -120,15 +120,15 @@ public class InComeDAO extends AppDBDAO {
     }
 
     public List<InComeEntity> findInComesSearchByDate(String searchBy, String date) {
-        Log.d("date",date);
-        Log.d("searchBy",searchBy);
+        Log.d("date", date);
+        Log.d("searchBy", searchBy);
 
         super.open();
         Cursor cursor;
         cursor = database.query(InComeTable.TABLE_NAME, new String[]{
                         InComeTable.IN_COME_AMOUNT, InComeTable.IN_COME_DATE,
                         InComeTable.IN_COME_NAME, InComeTable.IN_COME_ID},
-                InComeTable.IN_COME_DATE + " " + searchBy  + "Datetime(?)", new String[]{date}, null, null, null);
+                InComeTable.IN_COME_DATE + " " + searchBy + "Datetime(?)", new String[]{date}, null, null, null);
 
         List<InComeEntity> inComeEntities = new ArrayList<InComeEntity>();
         while (cursor.moveToNext()) {
@@ -161,7 +161,7 @@ public class InComeDAO extends AppDBDAO {
     public int getSumAmountByDate(String fromDate) {
         super.open();
 
-        Cursor c1 = database.rawQuery("SELECT " + InComeTable.IN_COME_AMOUNT+ " , " + InComeTable.IN_COME_DATE
+        Cursor c1 = database.rawQuery("SELECT " + InComeTable.IN_COME_AMOUNT + " , " + InComeTable.IN_COME_DATE
                 + " FROM " + InComeTable.TABLE_NAME, null);
 
         Date date = null;

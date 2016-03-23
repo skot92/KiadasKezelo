@@ -50,6 +50,12 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
 
+        <activity
+            android:name=".ui.activity.chart.LineChartActivity1"
+            android:label="LineChartActivity1"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

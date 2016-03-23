@@ -24,7 +24,7 @@ public class BalanceDAO extends AppDBDAO {
         // insert row
         long balance_id = database.insert(BalanceTable.TABLE_NAME, null, values);
         super.close();
-        return  balance_id;
+        return balance_id;
     }
 
     public int getBalance() {
@@ -32,12 +32,12 @@ public class BalanceDAO extends AppDBDAO {
         Cursor c = database.rawQuery("SELECT SUM(" + BalanceTable.BALANCE_AMOUNT + ") FROM "
                 + BalanceTable.TABLE_NAME + " ;", null);
         int amount;
-        if(c.moveToFirst())
+        if (c.moveToFirst())
             amount = c.getInt(0);
         else
             amount = 0;
         c.close();
         super.close();
-        return  amount;
+        return amount;
     }
 }

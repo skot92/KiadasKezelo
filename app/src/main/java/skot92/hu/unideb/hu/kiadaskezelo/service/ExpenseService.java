@@ -22,17 +22,19 @@ public class ExpenseService {
         return expenseDAO.save(expense);
     }
 
-    public long update (int sum, long id) {
+    public long update(int sum, long id) {
         return expenseDAO.update(sum, id);
     }
 
     public List<ExpenseEntity> findAll() {
-       return expenseDAO.getAll();
+        return expenseDAO.getAll();
     }
 
-    public int getSumAmount(){ return  expenseDAO.getSumAmount(); }
+    public int getSumAmount() {
+        return expenseDAO.getSumAmount();
+    }
 
     public int getSumAmountByDate(String fromDate) {
-        return  expenseDAO.getSumAmountByDate(fromDate);
+        return expenseDAO.getSumAmountByDate(fromDate);
     }
 }

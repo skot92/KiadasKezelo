@@ -8,7 +8,6 @@ import java.io.Serializable;
 public class InComeEntity implements Serializable {
 
 
-
     private long id;
     private String name;
     private String date;

@@ -14,19 +14,19 @@ public class ExpenseDetailsService {
 
     ExpenseDetailsDAO expenseDetailsDAO;
 
-    public  ExpenseDetailsService(Context context){
+    public ExpenseDetailsService(Context context) {
         expenseDetailsDAO = new ExpenseDetailsDAO(context);
     }
 
     public List<ExpenseDetailsEntity> findById(long expenseId) {
-       return expenseDetailsDAO.findById(expenseId);
+        return expenseDetailsDAO.findById(expenseId);
     }
 
     public List<ExpenseDetailsEntity> findAll() {
         return expenseDetailsDAO.findAll();
     }
 
-    public int save(List<ExpenseDetailsEntity> details, Long expenseId ) {
-        return expenseDetailsDAO.save(details,expenseId);
+    public int save(List<ExpenseDetailsEntity> details, Long expenseId) {
+        return expenseDetailsDAO.save(details, expenseId);
     }
 }
