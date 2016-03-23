@@ -35,7 +35,6 @@ public class PieChartActivity extends DemoBase implements
         OnChartValueSelectedListener {
 
     private PieChart mChart;
-    private TextView tvX, tvY;
 
     private Typeface tf;
     private ExpenseDetailsService expenseDetailsService;
@@ -50,13 +49,11 @@ public class PieChartActivity extends DemoBase implements
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_piechart);
 
-        tvX = (TextView) findViewById(R.id.tvXMax);
-        tvY = (TextView) findViewById(R.id.tvYMax);
 
         mChart = (PieChart) findViewById(R.id.chart1);
         mChart.setUsePercentValues(true);
+        mChart.setBackgroundColor(Color.GRAY);
         mChart.setDescription("");
-        //mChart.setExtraOffsets(5, 10, 5, 5);
 
         mChart.setDragDecelerationFrictionCoef(0.95f);
 
@@ -81,22 +78,14 @@ public class PieChartActivity extends DemoBase implements
         mChart.setRotationEnabled(true);
         mChart.setHighlightPerTapEnabled(true);
 
-        // mChart.setUnit(" €");
-        // mChart.setDrawUnitsInChart(true);
-
         // add a selection listener
         mChart.setOnChartValueSelectedListener(this);
 
         setData();
-
         mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
-        // mChart.spin(2000, 0, 360);
 
         Legend l = mChart.getLegend();
         l.setPosition(LegendPosition.RIGHT_OF_CHART);
-        l.setXEntrySpace(7f);
-        l.setYEntrySpace(0f);
-        l.setYOffset(0f);
     }
 
 
@@ -125,7 +114,7 @@ public class PieChartActivity extends DemoBase implements
             xVals.add(detailsEntities.get(i).getName());
         }
 
-        PieDataSet dataSet = new PieDataSet(yVals1, "Election Results");
+        PieDataSet dataSet = new PieDataSet(yVals1, "Kategóriák");
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);
 
