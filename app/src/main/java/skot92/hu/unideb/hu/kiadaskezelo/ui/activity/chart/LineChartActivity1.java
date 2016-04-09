@@ -23,13 +23,17 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import skot92.hu.unideb.hu.kiadaskezelo.R;
+import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseEntity;
+import skot92.hu.unideb.hu.kiadaskezelo.service.ExpenseService;
 
 public class LineChartActivity1 extends DemoBase implements
         OnChartValueSelectedListener {
 
     private LineChart mChart;
+    private ExpenseService expenseService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,7 @@ public class LineChartActivity1 extends DemoBase implements
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_linechart);
 
+        expenseService = new ExpenseService(this);
 
         mChart = (LineChart) findViewById(R.id.chart1);
         mChart.setOnChartValueSelectedListener(this);
@@ -116,19 +121,22 @@ public class LineChartActivity1 extends DemoBase implements
 
     private void setData(int count, float range) {
 
+        List<ExpenseEntity> expenseEntities = expenseService.findAll();
         ArrayList<String> xVals = new ArrayList<String>();
-        for (int i = 0; i < count; i++) {
-            xVals.add((i) + "");
+
+        for (int i = 0; i < expenseEntities.size(); i++) {
+//            xVals.add((i) + "");
+            xVals.add(expenseEntities.get(i).getName());
         }
 
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
 
-        for (int i = 0; i < count; i++) {
-            float mult = range / 2f;
-            float val = (float) (Math.random() * mult) + 50;// + (float)
+        for (int i = 0; i < expenseEntities.size(); i++) {
+//            float mult = range / 2f;
+//            float val = (float) (Math.random() * mult) + 50;// + (float)
             // ((mult *
             // 0.1) / 10);
-            yVals1.add(new Entry(val, i));
+            yVals1.add(new Entry(expenseEntities.get(i).getAmount(), i));
         }
 
         // create a dataset and give it a type
@@ -142,36 +150,15 @@ public class LineChartActivity1 extends DemoBase implements
         set1.setFillColor(ColorTemplate.getHoloBlue());
         set1.setHighLightColor(Color.rgb(244, 117, 117));
         set1.setDrawCircleHole(false);
-        //set1.setFillFormatter(new MyFillFormatter(0f));
+//        set1.setFillFormatter(new MyFillFormatter(0f));
 //        set1.setDrawHorizontalHighlightIndicator(false);
 //        set1.setVisible(false);
 //        set1.setCircleHoleColor(Color.WHITE);
 
-        ArrayList<Entry> yVals2 = new ArrayList<Entry>();
 
-        for (int i = 0; i < count; i++) {
-            float mult = range;
-            float val = (float) (Math.random() * mult) + 450;// + (float)
-            // ((mult *
-            // 0.1) / 10);
-            yVals2.add(new Entry(val, i));
-        }
-
-        // create a dataset and give it a type
-        LineDataSet set2 = new LineDataSet(yVals2, "DataSet 2");
-        set2.setAxisDependency(AxisDependency.RIGHT);
-        set2.setColor(Color.RED);
-        set2.setCircleColor(Color.WHITE);
-        set2.setLineWidth(2f);
-        set2.setCircleRadius(3f);
-        set2.setFillAlpha(65);
-        set2.setFillColor(Color.RED);
-        set2.setDrawCircleHole(false);
-        set2.setHighLightColor(Color.rgb(244, 117, 117));
-        //set2.setFillFormatter(new MyFillFormatter(900f));
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
-        dataSets.add(set2);
+        //dataSets.add(set2);
         dataSets.add(set1); // add the datasets
 
         // create a data object with the datasets

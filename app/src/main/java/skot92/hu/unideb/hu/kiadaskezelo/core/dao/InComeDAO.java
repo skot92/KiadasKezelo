@@ -189,4 +189,34 @@ public class InComeDAO extends AppDBDAO {
         return sum;
     }
 
+    public List<InComeEntity> findAll() {
+        super.open();
+        int amount;
+        String name;
+        String date;
+        Long id;
+        List<InComeEntity> incomes = new ArrayList<InComeEntity>();
+
+        Cursor c = database.query(InComeTable.TABLE_NAME, new String[]{
+                        InComeTable.IN_COME_AMOUNT,
+                        InComeTable.IN_COME_NAME,
+                        InComeTable.IN_COME_DATE,
+                        InComeTable.IN_COME_ID,},
+                null, null,InComeTable.IN_COME_NAME, null, null);
+
+        while (c.moveToNext()) {
+
+            amount = c.getInt(c.getColumnIndex(InComeTable.IN_COME_AMOUNT));
+            name = c.getString(c.getColumnIndex(InComeTable.IN_COME_NAME));
+            id = c.getLong(c.getColumnIndex(InComeTable.IN_COME_ID));
+            date = c.getString(c.getColumnIndex(InComeTable.IN_COME_DATE));
+            InComeEntity expense = new InComeEntity(id,name,date,amount);
+            incomes.add(expense);
+
+        }
+        c.close();
+        super.close();
+        return incomes;
+    }
+
 }

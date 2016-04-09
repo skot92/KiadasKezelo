@@ -30,7 +30,7 @@ import skot92.hu.unideb.hu.kiadaskezelo.R;
 import skot92.hu.unideb.hu.kiadaskezelo.core.entity.ExpenseDetailsEntity;
 import skot92.hu.unideb.hu.kiadaskezelo.service.ExpenseDetailsService;
 
-public class PieChartActivity extends DemoBase implements
+public class PieChartActivityExpenseDetails extends DemoBase implements
         OnChartValueSelectedListener {
 
     private PieChart mChart;

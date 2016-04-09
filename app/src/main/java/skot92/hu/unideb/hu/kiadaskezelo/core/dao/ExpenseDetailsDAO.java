@@ -67,7 +67,7 @@ public class ExpenseDetailsDAO extends AppDBDAO {
                         ExpenseDetailsTable.EXPENSE_DETAILS_ID,
                         ExpenseDetailsTable.EXPENSE_DETAILS_EXPENSE_ID,
                         ExpenseDetailsTable.EXPENSE_DETAILS_NAME},
-                null, null, null, null, null);
+                null, null, ExpenseDetailsTable.EXPENSE_DETAILS_DESCRIPTION, null, null);
 
         while (c.moveToNext()) {
 

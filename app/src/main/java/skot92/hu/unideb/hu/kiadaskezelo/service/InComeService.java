@@ -74,4 +74,8 @@ public class InComeService {
     public int getSumAmountByDate(String fromDate) {
         return inComeDAO.getSumAmountByDate(fromDate);
     }
+
+    public List<InComeEntity> findAll() {
+        return inComeDAO.findAll();
+    }
 }

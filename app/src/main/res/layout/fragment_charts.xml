@@ -2,32 +2,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.NewIncomeFragment"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    tools:context=".ui.fragments.NewIncomeFragment">
 
 
     <Button
+        android:id="@+id/btPieExpenseDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pie"
-        android:id="@+id/btPie"
-        android:layout_marginTop="75dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/btAllInCome"
-        android:layout_alignEnd="@+id/btAllInCome"
-        android:background="@drawable/buttonshape"/>
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Line"
-        android:id="@+id/btLine"
+        android:layout_marginTop="64dp"
         android:background="@drawable/buttonshape"
-        android:layout_below="@+id/btPie"
+        android:text="PieExpenseDetails"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+
+    <Button
+        android:id="@+id/btLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonshape"
+        android:text="Line"
+        android:layout_alignBaseline="@+id/btPieInComes"
+        android:layout_alignBottom="@+id/btPieInComes"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <Button
+        android:id="@+id/btPieInComes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonshape"
+        android:text="PieInComes"
+        android:layout_below="@+id/btPieExpenseDetails"
+        android:layout_toRightOf="@+id/btLine"
+        android:layout_toEndOf="@+id/btLine"
+        android:layout_marginTop="67dp" />
 
 
 </RelativeLayout>

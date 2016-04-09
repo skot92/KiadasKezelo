@@ -45,8 +45,15 @@
         </activity>
 
         <activity
-            android:name=".ui.activity.chart.PieChartActivity"
-            android:label="PieChartActivity"
+            android:name=".ui.activity.chart.PieChartActivityExpenseDetails"
+            android:label="PieChartActivityExpenseDetails"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+
+
+        <activity
+            android:name=".ui.activity.chart.PieChartActivityInComes"
+            android:label="PieChartActivityInComes"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
 
