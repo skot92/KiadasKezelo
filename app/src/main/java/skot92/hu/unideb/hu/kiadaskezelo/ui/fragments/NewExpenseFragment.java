@@ -55,6 +55,8 @@ public class NewExpenseFragment extends ListFragment {
         myFragmentView = inflater.inflate(R.layout.fragment_new_expense, container, false);
         btnNewItem = (Button) myFragmentView.findViewById(R.id.btnAddNewItem);
         btnSaveExpense = (Button) myFragmentView.findViewById(R.id.btnSaveExpense);
+
+
         controll();
 
         return myFragmentView;
@@ -96,10 +98,10 @@ public class NewExpenseFragment extends ListFragment {
     public void onCreateNewItemDetailsDialog() {
         final Context context = getContext();
         LayoutInflater li = LayoutInflater.from(context);
-        View promptsView = li.inflate(R.layout.dialog_new_item_details, null);
+        View promptsView = li.inflate(R.layout.dialog_new_item_details,null);
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                context);
+                context,R.style.FullDialogTheme);
 
         // set prompts.xml to alertdialog builder
         alertDialogBuilder.setView(promptsView);
@@ -145,7 +147,9 @@ public class NewExpenseFragment extends ListFragment {
                         });
 
         AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, 600);
         alertDialog.show();
+
     }
 
 

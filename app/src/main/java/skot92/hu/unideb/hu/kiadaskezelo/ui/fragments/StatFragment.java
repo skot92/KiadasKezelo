@@ -25,7 +25,6 @@ public class StatFragment extends Fragment {
     private TextView txLast30DayExpense;
     private TextView txLast30DayInCome;
     private TextView txSumBalance;
-
     private ExpenseService expenseService;
     private InComeService inComeService;
     private BalanceService balanceService;

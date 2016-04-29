@@ -61,6 +61,7 @@ public class InComeDAO extends AppDBDAO {
 
 
         List<InComeEntity> inComeEntities = new ArrayList<InComeEntity>();
+
         while (cursor.moveToNext()) {
             InComeEntity entity = new InComeEntity();
             entity.setName(cursor.getString(cursor.getColumnIndex(InComeTable.IN_COME_NAME)));
