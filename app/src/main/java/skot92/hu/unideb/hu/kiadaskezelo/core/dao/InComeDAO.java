@@ -178,12 +178,13 @@ public class InComeDAO extends AppDBDAO {
         while (c1.moveToNext()) {
             try {
                 dateExpense = sdf1.parse(c1.getString(1));
+                if (date != null && dateExpense.compareTo(date) > 0) {
+                    sum += c1.getInt(0);
+                }
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if (dateExpense.compareTo(date) > 0) {
-                sum += c1.getInt(0);
-            }
+
         }
         c1.close();
         super.close();
